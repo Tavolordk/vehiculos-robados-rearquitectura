@@ -1,0 +1,22 @@
+<header class="header-bg" [style.--header-height.px]="height"
+    [style.--header-bg-url]="bgSrc ? 'url(' + bgSrc + ')' : 'none'">
+    <div class="logo-title">
+        <img [src]="logoSrc" [alt]="logoAlt" />
+    </div>
+
+    <div class="header-title">{{ title }}</div>
+
+    <div class="user-info">
+        <div class="user-name">
+            {{ userName }}<br />
+            <span class="user-role">{{ userRole }}</span>
+        </div>
+
+        <i class="far fa-user user-icon"></i>
+
+        <button type="button" class="logout-btn" (click)="onLogout()">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>cerrar sesión</span>
+        </button>
+    </div>
+</header>

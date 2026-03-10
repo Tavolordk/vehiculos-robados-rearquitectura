@@ -1,0 +1,14 @@
+.page-wrap {
+  min-height: calc(100vh - 120px);
+}
+
+.content {
+  flex: 1;
+  padding: 24px;
+}
+
+@media (min-width: 992px) {
+  .content {
+    margin-left: 0;
+  }
+}

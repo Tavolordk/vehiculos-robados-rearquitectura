@@ -1,0 +1,111 @@
+<div class="page-shell">
+    <main class="main-slot">
+        <div class="content-header">Consulta</div>
+
+        <section class="content-card">
+            <h5 class="page-title">Consultar vehículo</h5>
+
+            <div class="search-section">
+                <div class="search-label">Capture NIV del vehículo</div>
+
+                <div class="search-input-group">
+                    <input class="search-input" type="text" [(ngModel)]="vin" placeholder="Ej. 3N1BC1AS0DK228720"
+                        (keyup.enter)="onSearch()" />
+
+                    <button class="btn-search" type="button" (click)="onSearch()" [disabled]="!canSearch() || loading">
+                        <span *ngIf="!loading">Buscar</span>
+                        <span *ngIf="loading">Buscando…</span>
+                        <i class="fas fa-search"></i>
+                    </button>
+
+                    <button class="btn-clear" type="button" (click)="onClear()" [disabled]="loading && !vin && !result">
+                        Limpiar <i class="fas fa-eraser ms-2"></i>
+                    </button>
+                </div>
+
+                <div *ngIf="errorMsg" class="alert alert-warning mt-3 py-2 px-3 mb-0">
+                    <i class="fas fa-exclamation-triangle me-2"></i>{{ errorMsg }}
+                </div>
+            </div>
+
+            <div class="result-card" *ngIf="result">
+                <div class="result-header result-header-row">
+                    <div class="header-left">Resultado obtenido del VIN</div>
+                    <div class="header-right">{{ result.vin }}</div>
+                </div>
+
+                <div class="result-row">
+                    <div class="result-label">Clase</div>
+                    <div class="result-value">{{ result.clase }}</div>
+                </div>
+
+                <div class="result-row">
+                    <div class="result-label">Marca</div>
+                    <div class="result-value">{{ result.marca }}</div>
+                </div>
+
+                <div class="result-row">
+                    <div class="result-label">Modelo</div>
+                    <div class="result-value">{{ result.modelo }}</div>
+                </div>
+
+                <div class="result-row">
+                    <div class="result-label">Año modelo</div>
+                    <div class="result-value">{{ result.anioModelo }}</div>
+                </div>
+
+                <div class="result-row">
+                    <div class="result-label">Tipo</div>
+                    <div class="result-value">{{ result.tipo }}</div>
+                </div>
+
+                <div class="result-row">
+                    <div class="result-label">Número de puertas</div>
+                    <div class="result-value">{{ result.puertas }}</div>
+                </div>
+
+                <div class="result-row">
+                    <div class="result-label">País de origen</div>
+                    <div class="result-value">{{ result.paisOrigen }}</div>
+                </div>
+
+                <div class="result-row">
+                    <div class="result-label">Cilindrada</div>
+                    <div class="result-value">{{ result.cilindrada }}</div>
+                </div>
+
+                <div class="result-row">
+                    <div class="result-label">Número de cilindros</div>
+                    <div class="result-value">{{ result.cilindros }}</div>
+                </div>
+
+                <div class="result-row">
+                    <div class="result-label">Planta ensamble</div>
+                    <div class="result-value">{{ result.plantaEnsamble }}</div>
+                </div>
+
+                <div class="result-row">
+                    <div class="result-label">Complemento</div>
+                    <div class="result-value">{{ result.complemento }}</div>
+                </div>
+
+                <div class="result-actions">
+                    <button type="button" class="btn-search" (click)="openDetalle()">
+                        Ver detalle
+                    </button>
+
+                    <button type="button" class="btn-clear" (click)="openResultadoModal()">
+                        Resultado modal
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+
+<app-detalle-consulta-modal [open]="detalleOpen()" [data]="detalleData" [tipo]="'predenuncia'" [headerOffsetPx]="72"
+    (closed)="closeDetalle()" />
+
+<app-consulta-resultado-modal *ngIf="resultadoModalOpen()" [modalId]="'consultaResultadoModal'"
+    [title]="'Resultado de la consulta'" [data]="resultadoModalData" (closed)="closeResultadoModal()"
+    (imprimir)="onImprimirResultado()" />

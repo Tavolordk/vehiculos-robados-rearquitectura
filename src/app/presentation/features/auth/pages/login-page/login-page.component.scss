@@ -1,0 +1,340 @@
+@font-face {
+  font-family: 'Noto Sans';
+  src: url('/assets/fonts/NotoSans-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:host {
+  display: block;
+  min-height: 100vh;
+  width: 100%;
+  background: #fff;
+  font-family: 'Noto Sans', 'Open Sans', Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+body {
+  background: #fff;
+}
+
+.main-content {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(16px, 5vw, 56px);
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+}
+
+.main-content::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    url('/assets/images/Fondo.png') center bottom / auto 130% no-repeat,
+    url('/assets/images/Fondo-rotado.png') center top / auto 130% no-repeat;
+  opacity: 0.22;
+}
+
+.main-content::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    url('/assets/images/Fondo.png') center center / cover no-repeat,
+    url('/assets/images/Fondo-rotado.png') center center / cover no-repeat;
+  opacity: 0.4;
+}
+
+.left-section {
+  position: relative;
+  flex: 1.4 1 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  overflow: hidden;
+  padding: clamp(16px, 5vw, 56px) clamp(16px, 4vw, 48px);
+}
+
+.left-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    url('/assets/images/Fondo.png') right bottom / auto 130% no-repeat,
+    url('/assets/images/Fondo-rotado.png') right top / auto 130% no-repeat;
+  opacity: 0.3;
+  --x-bottom: 45%;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, var(--x-bottom) 100%);
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, var(--x-bottom) 100%);
+}
+
+.left-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 640px;
+  width: 100%;
+}
+
+.left-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 1rem;
+}
+
+.left-section p {
+  font-size: 1.05rem;
+  color: #222;
+  line-height: 1.5;
+  margin: 0 0 0.9rem 0;
+}
+
+.left-link-wrap {
+  margin-top: 0.4rem;
+}
+
+.left-link {
+  color: #7a1834;
+  font-weight: 700;
+  text-decoration: underline;
+  font-size: 1.05rem;
+}
+
+.right-section {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  padding: 0;
+}
+
+.right-section .login-container {
+  width: 420px;
+  max-width: 95vw;
+  background: transparent;
+  padding: 0;
+}
+
+.logo-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.escudo {
+  width: 400px;
+  max-width: 80vw;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  margin: 0.5em auto 1em auto;
+}
+
+.system-title {
+  font-family: 'Patria', 'EB Garamond', serif;
+  font-size: 2.7rem;
+  color: #6d1437;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+  text-align: center;
+  margin: -10px 0 1rem 0;
+}
+
+.sspc-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.25rem 0 1.25rem 0;
+}
+
+.sspc-logo {
+  max-width: 260px;
+  width: 80%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  image-rendering: auto;
+}
+
+.form-box {
+  width: 350px;
+  max-width: 90vw;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: left;
+  margin: 0 auto;
+}
+
+.form-label {
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 0.2rem;
+}
+
+.form-control {
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #bbb;
+  padding: 8px 12px;
+  background: #fff;
+  color: #222;
+  height: 40px;
+  box-shadow: none;
+}
+
+.form-control:focus {
+  border-color: #6d1437;
+  box-shadow: 0 0 0 0.12rem rgba(109, 20, 55, 0.15);
+}
+
+input[formControlName='contrasena'] {
+  background-color: #aaa7a7;
+  color: #fff;
+  border: none;
+}
+
+input[formControlName='contrasena']::placeholder {
+  color: #fff;
+}
+
+.password-box .form-control {
+  background: #aaa7a7 !important;
+  color: #fff !important;
+  border: none !important;
+}
+
+.password-box .form-control:focus {
+  background: #aaa7a7 !important;
+  color: #fff !important;
+  border: none !important;
+}
+
+.input-group-text {
+  background: #aaa7a7;
+  border: none;
+  color: #fff;
+  border-radius: 0 6px 6px 0;
+  font-size: 1.1rem;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  padding-inline: 0.7rem;
+}
+
+.btn-login {
+  background-color: #6d1437;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 500;
+  border-radius: 6px;
+  border: none;
+  padding: 8px 0;
+  margin-top: 10px;
+  transition: background 0.2s ease-in-out;
+  width: 100%;
+}
+
+.btn-login:hover,
+.btn-login:focus {
+  background-color: #4d0e28;
+}
+
+.btn-login[disabled] {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.forgot-link {
+  margin-top: 18px;
+  color: #444;
+  font-size: 1rem;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.forgot-link:hover {
+  color: #6d1437;
+}
+
+.version-label {
+  position: absolute;
+  right: 18px;
+  bottom: 10px;
+  color: #171616;
+  font-size: 0.85rem;
+  user-select: none;
+}
+
+@media (max-width: 992px) {
+  .main-content {
+    flex-direction: column;
+  }
+
+  .left-section::before {
+    --blank: 65%;
+  }
+}
+
+@media (max-width: 600px) {
+  .form-box {
+    width: 95vw;
+  }
+
+  .system-title {
+    font-size: 1.8rem;
+  }
+
+  .escudo {
+    width: 280px;
+  }
+
+  .left-section p,
+  .left-title {
+    font-size: 0.98rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .system-title {
+    font-size: 1.6rem;
+  }
+
+  .sspc-logo {
+    max-width: 200px;
+  }
+
+  .escudo {
+    width: 220px;
+  }
+}

@@ -1,0 +1,156 @@
+:host {
+  display: block;
+}
+
+.content-card {
+  background-color: #fff;
+  margin: 0 20px 20px 20px;
+  padding: 30px;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  min-height: 600px;
+}
+
+.content-header {
+  background-color: #8a1c46;
+  color: #fff;
+  padding: 10px;
+  border-radius: 6px;
+  font-weight: bold;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 12px;
+}
+
+.page-title {
+  color: #8a1c46;
+  font-weight: bold;
+  margin-bottom: 30px;
+  font-size: 1.1rem;
+}
+
+.search-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.search-label {
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+}
+
+.search-input-group {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  max-width: 600px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.search-input {
+  background-color: #d3d3d3;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  width: 300px;
+  outline: none;
+}
+
+.btn-search {
+  background-color: #b08d38;
+  color: #fff;
+  border: none;
+  padding: 8px 25px;
+  border-radius: 5px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-search:hover {
+  background-color: #96762b;
+  color: #fff;
+}
+
+.btn-clear {
+  border: 1px solid #111;
+  background: #fff;
+  padding: 8px 18px;
+  border-radius: 5px;
+  font-weight: 600;
+}
+
+.result-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  max-width: 800px;
+  margin: 0 auto;
+  overflow: hidden;
+  border: 1px solid #eee;
+}
+
+.result-header {
+  padding: 15px 20px;
+  font-weight: bold;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+}
+
+.result-header-row {
+  font-weight: bold;
+}
+
+.header-left {
+  width: 40%;
+  text-align: center;
+}
+
+.header-right {
+  width: 60%;
+  text-align: center;
+}
+
+.result-row {
+  display: flex;
+  border-bottom: 1px solid #ddd;
+}
+
+.result-row:last-child {
+  border-bottom: none;
+}
+
+.result-label {
+  width: 40%;
+  padding: 10px 20px;
+  text-align: center;
+  border-right: 1px solid #ddd;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.result-value {
+  width: 60%;
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.result-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  padding: 20px;
+  flex-wrap: wrap;
+}

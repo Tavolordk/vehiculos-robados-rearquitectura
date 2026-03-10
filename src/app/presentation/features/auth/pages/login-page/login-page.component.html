@@ -1,0 +1,44 @@
+<div class="main-content">
+    <section class="right-section">
+        <div class="login-container">
+            <div class="logo-title">
+                <img src="assets/images/SSPC_vertical.png" alt="Escudo nacional" class="escudo" />
+            </div>
+
+            <div class="login-form-title text-center mb-3">
+                <b>Vehículos Robados y Recuperados</b>
+            </div>
+
+            <form [formGroup]="loginForm" (ngSubmit)="iniciarSesion()" autocomplete="off" class="form-box" novalidate>
+                <label class="form-label" for="usuario">Usuario</label>
+                <input id="usuario" formControlName="usuario" type="text" class="form-control" placeholder="Usuario"
+                    required autocomplete="off" />
+
+                <label class="form-label" for="contrasena">Contraseña</label>
+                <div class="input-group password-box">
+                    <input id="contrasena" formControlName="contrasena" [type]="hidePassword ? 'password' : 'text'"
+                        class="form-control" placeholder="Contraseña" required autocomplete="off" />
+                    <span class="input-group-text password-toggle" role="button" (click)="togglePassword()"
+                        [attr.aria-label]="hidePassword ? 'Mostrar contraseña' : 'Ocultar contraseña'"
+                        [attr.title]="hidePassword ? 'Mostrar contraseña' : 'Ocultar contraseña'">
+                        <fa-icon [icon]="hidePassword ? faEyeSlash : faEye"></fa-icon>
+                    </span>
+                </div>
+
+                <button type="submit" class="btn btn-login" [disabled]="loading || loginForm.invalid">
+                    Iniciar sesión
+                </button>
+            </form>
+
+            <a class="forgot-link" routerLink="/olvido-contrasena">
+                <p class="text-center">¿Olvidaste tu contraseña?</p>
+            </a>
+
+            <div *ngIf="mensajeError" class="alert alert-danger mt-3">
+                {{ mensajeError }}
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="version-label">v.1.0.0</div>

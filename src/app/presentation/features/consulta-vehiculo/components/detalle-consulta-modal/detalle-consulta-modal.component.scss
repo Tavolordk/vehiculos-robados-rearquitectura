@@ -1,0 +1,123 @@
+:host {
+  display: contents;
+}
+
+.modal-overlay {
+  position: fixed;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 18px 14px;
+  overflow: auto;
+}
+
+.custom-modal {
+  width: 100%;
+  max-width: 1200px;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.18);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.28);
+  overflow: hidden;
+}
+
+.modal-header-custom {
+  background: #881c42;
+  color: #fff;
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 800;
+  font-size: 1rem;
+}
+
+.close-modal {
+  background: transparent;
+  border: 0;
+  color: #fff;
+  font-weight: 900;
+  font-size: 1.05rem;
+  cursor: pointer;
+  padding: 2px 8px;
+  border-radius: 8px;
+}
+
+.close-modal:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.modal-body-custom {
+  background: #f8f9fa;
+  padding: 16px;
+}
+
+.info-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+  height: 100%;
+}
+
+.info-title {
+  color: #881c42;
+  font-weight: 900;
+  font-size: 1rem;
+  padding-bottom: 10px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.data-row {
+  margin-bottom: 10px;
+  font-size: 0.85rem;
+}
+
+.data-label {
+  font-weight: 800;
+  color: #333;
+}
+
+.data-value {
+  color: #555;
+}
+
+.vehicle-table-container {
+  background: #fff;
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+}
+
+.table-custom {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.table-custom th {
+  padding: 10px;
+  text-align: left;
+  font-weight: 900;
+  border-bottom: 1px solid #dee2e6;
+  color: #333;
+  white-space: nowrap;
+}
+
+.table-custom td {
+  padding: 10px;
+  border-bottom: 1px solid #f1f1f1;
+  color: #555;
+  white-space: nowrap;
+}
+
+.empty-row {
+  text-align: center;
+  color: #888;
+  padding: 16px !important;
+}

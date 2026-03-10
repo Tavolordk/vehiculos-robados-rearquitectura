@@ -1,0 +1,126 @@
+<div #modalRoot class="modal fade" [id]="modalId" tabindex="-1" role="dialog" aria-modal="true"
+    [attr.aria-labelledby]="modalId + 'Label'">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div style="width: 20px"></div>
+                <h5 class="modal-title" [id]="modalId + 'Label'">{{ title }}</h5>
+
+                <button type="button" class="btn-close-custom" data-bs-dismiss="modal" aria-label="Close"
+                    (click)="close()">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h6 class="info-card-title">Información del propietario</h6>
+
+                            <div class="row mb-2">
+                                <div class="col-4">
+                                    <span class="label-bold">Nombre (s)</span>
+                                    <span class="value-text ms-1">{{ upper(data.propietario.nombres) }}</span>
+                                </div>
+                                <div class="col-4">
+                                    <span class="label-bold">Primer Apellido</span>
+                                    <span class="value-text ms-1">{{ upper(data.propietario.apellidoPaterno) }}</span>
+                                </div>
+                                <div class="col-4">
+                                    <span class="label-bold">Segundo Apellido</span>
+                                    <span class="value-text ms-1">{{ upper(data.propietario.apellidoMaterno) }}</span>
+                                </div>
+                            </div>
+
+                            <div class="row mb-2">
+                                <div class="col-8">
+                                    <span class="label-bold">Calle y número</span>
+                                    <span class="value-text ms-2">{{ upper(data.propietario.calleNumero) }}</span>
+                                </div>
+                                <div class="col-4">
+                                    <span class="label-bold">C.P.</span>
+                                    <span class="value-text ms-4">{{ upper(data.propietario.cp) }}</span>
+                                </div>
+                            </div>
+
+                            <div class="row mb-2">
+                                <div class="col-12">
+                                    <span class="label-bold">Colonia</span>
+                                    <span class="value-text ms-5 ps-2">{{ upper(data.propietario.colonia) }}</span>
+                                </div>
+                            </div>
+
+                            <div class="row mb-2">
+                                <div class="col-12">
+                                    <span class="label-bold">Entidad</span>
+                                    <span class="value-text ms-5 ps-2">{{ upper(data.propietario.entidad) }}</span>
+                                </div>
+                            </div>
+
+                            <div class="row mb-2">
+                                <div class="col-12">
+                                    <span class="label-bold">Municipio</span>
+                                    <span class="value-text ms-2">{{ upper(data.propietario.municipio || '') }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h6 class="info-card-title">Información del vehículo</h6>
+
+                            <div class="mb-3">
+                                <span class="label-bold">Entidad</span>
+                                <span class="value-text ms-2">{{ upper(data.vehiculo.entidad || '') }}</span>
+                            </div>
+
+                            <div class="vehicle-grid">
+                                <div class="vehicle-item">
+                                    <span class="vehicle-label">Marca</span>
+                                    <span class="vehicle-value">{{ upper(data.vehiculo.marca) }}</span>
+                                </div>
+                                <div class="vehicle-item">
+                                    <span class="vehicle-label">Submarca</span>
+                                    <span class="vehicle-value">{{ upper(data.vehiculo.submarca) }}</span>
+                                </div>
+
+                                <div class="vehicle-item">
+                                    <span class="vehicle-label">Año modelo</span>
+                                    <span class="vehicle-value">{{ upper(data.vehiculo.anioModelo) }}</span>
+                                </div>
+                                <div class="vehicle-item">
+                                    <span class="vehicle-label">Color</span>
+                                    <span class="vehicle-value">{{ upper(data.vehiculo.color) }}</span>
+                                </div>
+
+                                <div class="vehicle-item">
+                                    <span class="vehicle-label">Motor</span>
+                                    <span class="vehicle-value">{{ upper(data.vehiculo.motor) }}</span>
+                                </div>
+                                <div class="vehicle-item">
+                                    <span class="vehicle-label">Serie/NIV</span>
+                                    <span class="vehicle-value">{{ upper(data.vehiculo.serieNiv) }}</span>
+                                </div>
+
+                                <div class="vehicle-item">
+                                    <span class="vehicle-label">NRPV</span>
+                                    <span class="vehicle-value">{{ upper(data.vehiculo.nrpv) }}</span>
+                                </div>
+                                <div class="vehicle-item">
+                                    <span class="vehicle-label">RFV</span>
+                                    <span class="vehicle-value">{{ upper(data.vehiculo.rfv) }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer-custom">
+                    <button type="button" class="btn btn-imprimir" (click)="onImprimir()">Imprimir</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

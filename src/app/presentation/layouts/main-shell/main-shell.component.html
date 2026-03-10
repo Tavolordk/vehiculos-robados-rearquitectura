@@ -1,0 +1,12 @@
+<app-header-siau-simple [title]="'Vehículos Robados y Recuperados'" [userName]="userName" [userRole]="userRole"
+    [logoSrc]="'assets/images/SSPC.png'" [bgSrc]="'assets/images/encabezado.png'" [height]="120" (logout)="onLogout()">
+</app-header-siau-simple>
+
+<div class="page-wrap d-flex">
+    <app-sidebar-siau [open]="sidebarOpen" [completedSteps]="completedSteps" (openChange)="onSidebarOpenChange($event)">
+    </app-sidebar-siau>
+
+    <main class="content">
+        <router-outlet></router-outlet>
+    </main>
+</div>

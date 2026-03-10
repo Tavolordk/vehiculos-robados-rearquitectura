@@ -1,0 +1,263 @@
+<div class="sidebar-toggle">
+    <button class="navbar-toggler" type="button" (click)="toggleSidebar()" [attr.aria-expanded]="open"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</div>
+
+<div class="sidebar-backdrop" *ngIf="open" (click)="toggleSidebar()"></div>
+
+<nav class="sidebar" [class.is-open]="open">
+    <button type="button" class="sidebar-header" (click)="toggleSection('consulta')">
+        <span class="left">
+            <i class="fas fa-search"></i>
+            <span>Consulta</span>
+        </span>
+        <i class="fas" [class.fa-chevron-down]="sections.consulta" [class.fa-chevron-right]="!sections.consulta"></i>
+    </button>
+
+    <ul class="sidebar-submenu" *ngIf="sections.consulta">
+        <li>
+            <a routerLink="/vehiculos" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }"
+                (click)="closeOnNavigate()">
+                General
+            </a>
+        </li>
+
+        <li>
+            <a routerLink="/padron-vehicular" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }"
+                (click)="closeOnNavigate()">
+                Padrón vehicular
+            </a>
+        </li>
+
+        <li>
+            <a routerLink="/consulta-vehiculo" routerLinkActive="active-link"
+                [routerLinkActiveOptions]="{ exact: true }" (click)="closeOnNavigate()">
+                Consultar vehículo
+            </a>
+        </li>
+    </ul>
+
+    <button type="button" class="sidebar-header" (click)="toggleSection('registro')">
+        <span class="left">
+            <i class="fas fa-file-alt"></i>
+            <span>Registro</span>
+        </span>
+        <i class="fas" [class.fa-chevron-down]="sections.registro" [class.fa-chevron-right]="!sections.registro"></i>
+    </button>
+
+    <ul class="sidebar-submenu" *ngIf="sections.registro">
+        <li class="submenu-parent" (click)="togglePredenuncia()">
+            <span>Predenuncia</span>
+            <i class="fas chevron-sm" [class.fa-chevron-down]="predenunciaOpen"
+                [class.fa-chevron-right]="!predenunciaOpen"></i>
+        </li>
+
+        <ng-container *ngIf="predenunciaOpen">
+            <li class="submenu-deep">
+                <a routerLink="/predenuncia/vehiculo" routerLinkActive="active-link"
+                    [routerLinkActiveOptions]="{ exact: true }" (click)="closeOnNavigate()">
+                    <i *ngIf="isStepDone('predenuncia.vehiculo')" class="fas fa-check-circle check-icon"></i>
+                    Información del vehículo robado
+                </a>
+            </li>
+
+            <li class="submenu-deep">
+                <a routerLink="/predenuncia/robo" routerLinkActive="active-link"
+                    [routerLinkActiveOptions]="{ exact: true }" (click)="closeOnNavigate()">
+                    <i *ngIf="isStepDone('predenuncia.robo')" class="fas fa-check-circle check-icon"></i>
+                    Información del robo
+                </a>
+            </li>
+
+            <li class="submenu-deep">
+                <a routerLink="/predenuncia/denunciante" routerLinkActive="active-link"
+                    [routerLinkActiveOptions]="{ exact: true }" (click)="closeOnNavigate()">
+                    <i *ngIf="isStepDone('predenuncia.denunciante')" class="fas fa-check-circle check-icon"></i>
+                    Identificación del denunciante
+                </a>
+            </li>
+
+            <li class="submenu-deep">
+                <a routerLink="/predenuncia/verificacion" routerLinkActive="active-link"
+                    [routerLinkActiveOptions]="{ exact: true }" (click)="closeOnNavigate()">
+                    <i *ngIf="isStepDone('predenuncia.verificacion')" class="fas fa-check-circle check-icon"></i>
+                    Verificación de datos
+                </a>
+            </li>
+        </ng-container>
+
+        <li class="submenu-parent" (click)="toggleDenuncia()">
+            <span>Denuncia</span>
+            <i class="fas chevron-sm" [class.fa-chevron-down]="denunciaOpen"
+                [class.fa-chevron-right]="!denunciaOpen"></i>
+        </li>
+
+        <ng-container *ngIf="denunciaOpen">
+            <li class="submenu-deep">
+                <a routerLink="/denuncia/vehiculo" routerLinkActive="active-link"
+                    [routerLinkActiveOptions]="{ exact: true }" (click)="closeOnNavigate()">
+                    <i *ngIf="isStepDone('denuncia.vehiculo')" class="fas fa-check-circle check-icon"></i>
+                    Información del vehículo robado
+                </a>
+            </li>
+
+            <li class="submenu-deep">
+                <a routerLink="/denuncia/robo" routerLinkActive="active-link"
+                    [routerLinkActiveOptions]="{ exact: true }" (click)="closeOnNavigate()">
+                    <i *ngIf="isStepDone('denuncia.robo')" class="fas fa-check-circle check-icon"></i>
+                    Información del robo
+                </a>
+            </li>
+
+            <li class="submenu-deep">
+                <a routerLink="/denuncia/denunciante" routerLinkActive="active-link"
+                    [routerLinkActiveOptions]="{ exact: true }" (click)="closeOnNavigate()">
+                    <i *ngIf="isStepDone('denuncia.denunciante')" class="fas fa-check-circle check-icon"></i>
+                    Información del denunciante
+                </a>
+            </li>
+
+            <li class="submenu-deep">
+                <a routerLink="/denuncia/modus-operandi" routerLinkActive="active-link"
+                    [routerLinkActiveOptions]="{ exact: true }" (click)="closeOnNavigate()">
+                    <i *ngIf="isStepDone('denuncia.modus')" class="fas fa-check-circle check-icon"></i>
+                    Modus operandi
+                </a>
+            </li>
+
+            <li class="submenu-deep">
+                <a routerLink="/denuncia/verificacion" routerLinkActive="active-link"
+                    [routerLinkActiveOptions]="{ exact: true }" (click)="closeOnNavigate()">
+                    <i *ngIf="isStepDone('denuncia.verificacion')" class="fas fa-check-circle check-icon"></i>
+                    Verificación de datos
+                </a>
+            </li>
+        </ng-container>
+    </ul>
+
+    <button type="button" class="sidebar-header" (click)="toggleSection('admin')">
+        <span class="left">
+            <i class="fas fa-cogs"></i>
+            <span>Administración</span>
+        </span>
+        <i class="fas" [class.fa-chevron-down]="sections.admin" [class.fa-chevron-right]="!sections.admin"></i>
+    </button>
+
+    <ul class="sidebar-submenu" *ngIf="sections.admin">
+        <li>
+            <a routerLink="/admin/configuracion-reportes" routerLinkActive="active-link"
+                [routerLinkActiveOptions]="{ exact: true }" (click)="closeOnNavigate()">
+                Configuración de Reportes
+            </a>
+        </li>
+
+        <li class="submenu-parent" (click)="toggleRecuperacion()">
+            <span>Recuperación</span>
+            <i class="fas chevron-sm" [class.fa-chevron-down]="recuperacionOpen"
+                [class.fa-chevron-right]="!recuperacionOpen"></i>
+        </li>
+
+        <ng-container *ngIf="recuperacionOpen">
+            <li class="submenu-deep">
+                <a routerLink="/admin/recuperacion/info" routerLinkActive="active-link"
+                    [routerLinkActiveOptions]="{ exact: true }" (click)="closeOnNavigate()">
+                    <i *ngIf="isStepDone('recuperacion.info')" class="fas fa-check-circle check-icon"></i>
+                    Información de la recuperación
+                </a>
+            </li>
+
+            <li class="submenu-deep">
+                <a routerLink="/admin/recuperacion/vehiculo" routerLinkActive="active-link"
+                    [routerLinkActiveOptions]="{ exact: true }" (click)="closeOnNavigate()">
+                    <i *ngIf="isStepDone('recuperacion.vehiculo')" class="fas fa-check-circle check-icon"></i>
+                    Información del vehículo
+                </a>
+            </li>
+
+            <li class="submenu-deep">
+                <a routerLink="/admin/recuperacion/ficha-criminogena" routerLinkActive="active-link"
+                    [routerLinkActiveOptions]="{ exact: true }" (click)="closeOnNavigate()">
+                    <i *ngIf="isStepDone('recuperacion.ficha')" class="fas fa-check-circle check-icon"></i>
+                    Ficha criminógena
+                </a>
+            </li>
+
+            <li class="submenu-deep">
+                <a routerLink="/admin/recuperacion/verificacion" routerLinkActive="active-link"
+                    [routerLinkActiveOptions]="{ exact: true }" (click)="closeOnNavigate()">
+                    <i *ngIf="isStepDone('recuperacion.verificacion')" class="fas fa-check-circle check-icon"></i>
+                    Verificación de datos
+                </a>
+            </li>
+        </ng-container>
+
+        <li class="submenu-parent" (click)="toggleEntrega()">
+            <span>Entrega</span>
+            <i class="fas chevron-sm" [class.fa-chevron-down]="entregaOpen" [class.fa-chevron-right]="!entregaOpen"></i>
+        </li>
+
+        <ng-container *ngIf="entregaOpen">
+            <li class="submenu-deep">
+                <a routerLink="/admin/entrega/vehiculo" routerLinkActive="active-link"
+                    [routerLinkActiveOptions]="{ exact: true }" (click)="closeOnNavigate()">
+                    <i *ngIf="isStepDone('entrega.vehiculo')" class="fas fa-check-circle check-icon"></i>
+                    Entrega de vehículo
+                </a>
+            </li>
+
+            <li class="submenu-deep">
+                <a routerLink="/admin/entrega/inspeccion-ministerial" routerLinkActive="active-link"
+                    [routerLinkActiveOptions]="{ exact: true }" (click)="closeOnNavigate()">
+                    <i *ngIf="isStepDone('entrega.inspeccion')" class="fas fa-check-circle check-icon"></i>
+                    Inspección Ministerial
+                </a>
+            </li>
+
+            <li class="submenu-deep">
+                <a routerLink="/admin/entrega/documentacion-propietario" routerLinkActive="active-link"
+                    [routerLinkActiveOptions]="{ exact: true }" (click)="closeOnNavigate()">
+                    <i *ngIf="isStepDone('entrega.documentacion')" class="fas fa-check-circle check-icon"></i>
+                    Documentación del propietario
+                </a>
+            </li>
+
+            <li class="submenu-deep">
+                <a routerLink="/admin/entrega/verificacion" routerLinkActive="active-link"
+                    [routerLinkActiveOptions]="{ exact: true }" (click)="closeOnNavigate()">
+                    <i *ngIf="isStepDone('entrega.verificacion')" class="fas fa-check-circle check-icon"></i>
+                    Verificación de datos de entrega
+                </a>
+            </li>
+        </ng-container>
+
+        <li>
+            <a routerLink="/admin/catalogos" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }"
+                (click)="closeOnNavigate()">
+                Catálogos
+            </a>
+        </li>
+
+        <li>
+            <a routerLink="/admin/bitacora" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }"
+                (click)="closeOnNavigate()">
+                Bitácora
+            </a>
+        </li>
+
+        <li>
+            <a routerLink="/admin/estadistica" routerLinkActive="active-link"
+                [routerLinkActiveOptions]="{ exact: true }" (click)="closeOnNavigate()">
+                Estadística
+            </a>
+        </li>
+
+        <li>
+            <a routerLink="/admin/permisos-colaboracion" routerLinkActive="active-link"
+                [routerLinkActiveOptions]="{ exact: true }" (click)="closeOnNavigate()">
+                Permisos de colaboración
+            </a>
+        </li>
+    </ul>
+</nav>

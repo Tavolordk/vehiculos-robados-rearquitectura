@@ -1,0 +1,184 @@
+<div class="modal-overlay" *ngIf="open" [style.top.px]="headerOffsetPx"
+    [style.height]="'calc(100vh - ' + headerOffsetPx + 'px)'" (click)="close()">
+    <div class="custom-modal" (click)="$event.stopPropagation()">
+        <div class="modal-header-custom">
+            <span>{{ headerTitle }}</span>
+            <button type="button" class="close-modal" aria-label="Cerrar" (click)="close()">X</button>
+        </div>
+
+        <div class="modal-body-custom">
+            <div class="row g-3">
+                <div class="col-lg-8">
+                    <div class="info-card">
+                        <div class="info-title">
+                            Información del robo
+                            <span *ngIf="tipo === 'predenuncia'" class="ms-2 badge bg-secondary">Predenuncia</span>
+                            <span *ngIf="tipo === 'denuncia'" class="ms-2 badge bg-success">Denuncia</span>
+                        </div>
+
+                        <div class="row data-row">
+                            <div class="col-md-3 data-label">Folio</div>
+                            <div class="col-md-9 data-value fw-bold text-danger">{{ data?.robo?.folio }}</div>
+                        </div>
+
+                        <div class="row data-row">
+                            <div class="col-md-3 data-label">Fecha de robo</div>
+                            <div class="col-md-3 data-value">{{ data?.robo?.fechaRobo }}</div>
+
+                            <div class="col-md-3 data-label">Hora de captura</div>
+                            <div class="col-md-3 data-value">{{ data?.robo?.horaCaptura }}</div>
+                        </div>
+
+                        <div class="row data-row">
+                            <div class="col-md-3 data-label">Entidad</div>
+                            <div class="col-md-3 data-value">{{ data?.robo?.entidad }}</div>
+
+                            <div class="col-md-3 data-label">Colonia</div>
+                            <div class="col-md-3 data-value">{{ data?.robo?.colonia }}</div>
+                        </div>
+
+                        <div class="row data-row">
+                            <div class="col-md-3 data-label">Municipio</div>
+                            <div class="col-md-3 data-value">{{ data?.robo?.municipio }}</div>
+
+                            <div class="col-md-3 data-label">C.P.</div>
+                            <div class="col-md-3 data-value">{{ data?.robo?.cp }}</div>
+                        </div>
+
+                        <div class="row data-row">
+                            <div class="col-md-3 data-label">Calle</div>
+                            <div class="col-md-3 data-value">{{ data?.robo?.calle }}</div>
+
+                            <div class="col-md-3 data-label">Referencia del domicilio</div>
+                            <div class="col-md-3 data-value">{{ data?.robo?.referencia }}</div>
+                        </div>
+
+                        <div class="row data-row">
+                            <div class="col-md-3 data-label">Tramo carretero</div>
+                            <div class="col-md-9 data-value">{{ data?.robo?.tramo }}</div>
+                        </div>
+
+                        <div class="row data-row">
+                            <div class="col-md-3 data-label">Kilometro</div>
+                            <div class="col-md-9 data-value">{{ data?.robo?.kilometro }}</div>
+                        </div>
+
+                        <div class="row data-row">
+                            <div class="col-md-3 data-label">Latitud</div>
+                            <div class="col-md-3 data-value">{{ data?.robo?.latitud }}</div>
+
+                            <div class="col-md-3 data-label">Longitud</div>
+                            <div class="col-md-3 data-value">{{ data?.robo?.longitud }}</div>
+                        </div>
+
+                        <div class="row data-row">
+                            <div class="col-md-3 data-label">Modalidad del Robo</div>
+                            <div class="col-md-9 data-value">{{ data?.robo?.modalidad }}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="info-card">
+                        <div class="info-title">Información del denunciante</div>
+
+                        <div class="row data-row">
+                            <div class="col-12 data-label">
+                                Tipo de persona
+                                <span class="fw-normal text-secondary ms-1">{{ data?.denunciante?.tipoPersona }}</span>
+                            </div>
+                        </div>
+
+                        <div class="row data-row">
+                            <div class="col-12 data-label">
+                                Nombre (s)
+                                <span class="fw-normal text-secondary ms-1">{{ data?.denunciante?.nombres }}</span>
+                            </div>
+                        </div>
+
+                        <div class="row data-row">
+                            <div class="col-12 data-label">
+                                Primer Apellido
+                                <span class="fw-normal text-secondary ms-1">{{ data?.denunciante?.apellido1 }}</span>
+                            </div>
+                        </div>
+
+                        <div class="row data-row">
+                            <div class="col-12 data-label">
+                                Segundo Apellido
+                                <span class="fw-normal text-secondary ms-1">{{ data?.denunciante?.apellido2 }}</span>
+                            </div>
+                        </div>
+
+                        <div class="row data-row">
+                            <div class="col-12 data-label">
+                                Sexo
+                                <span class="fw-normal text-secondary ms-1">{{ data?.denunciante?.sexo }}</span>
+                            </div>
+                        </div>
+
+                        <div class="row data-row">
+                            <div class="col-12 data-label">
+                                Teléfono
+                                <span class="fw-normal text-secondary ms-1">{{ data?.denunciante?.telefono }}</span>
+                            </div>
+                        </div>
+
+                        <div class="row data-row">
+                            <div class="col-12 data-label">
+                                RFC
+                                <span class="fw-normal text-secondary ms-1">{{ data?.denunciante?.rfc }}</span>
+                            </div>
+                        </div>
+
+                        <div class="row data-row">
+                            <div class="col-12 data-label">
+                                Correo electrónico
+                                <span class="fw-normal text-secondary ms-1">{{ data?.denunciante?.correo }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="vehicle-table-container">
+                        <div class="info-title">Información de vehículos</div>
+
+                        <div class="table-responsive">
+                            <table class="table-custom">
+                                <thead>
+                                    <tr>
+                                        <th>Marca</th>
+                                        <th>Submarca</th>
+                                        <th>Modelo</th>
+                                        <th>Color</th>
+                                        <th>Placa / Permiso</th>
+                                        <th>Serie / VIN</th>
+                                        <th>NRPV</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr *ngFor="let v of data?.vehiculos || []">
+                                        <td>{{ v.marca }}</td>
+                                        <td>{{ v.submarca }}</td>
+                                        <td>{{ v.modelo }}</td>
+                                        <td>{{ v.color }}</td>
+                                        <td>{{ v.placaPermiso }}</td>
+                                        <td>{{ v.serieVin }}</td>
+                                        <td>{{ v.nrpv }}</td>
+                                    </tr>
+
+                                    <tr *ngIf="(data?.vehiculos?.length || 0) === 0">
+                                        <td colspan="7" class="empty-row">Sin vehículos</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
