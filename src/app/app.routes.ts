@@ -14,6 +14,13 @@ export const routes: Routes = [
         component: MainShellComponent,
         children: [
             {
+                path: 'vehiculos',
+                loadChildren: () =>
+                    import('./presentation/features/consulta-general/routes/consulta-general.routes').then(
+                        (m) => m.CONSULTA_GENERAL_ROUTES
+                    ),
+            },
+            {
                 path: 'consulta-vehiculo',
                 loadChildren: () =>
                     import('./presentation/features/consulta-vehiculo/routes/consulta-vehiculo.routes').then(
@@ -22,7 +29,7 @@ export const routes: Routes = [
             },
             {
                 path: '',
-                redirectTo: 'consulta-vehiculo',
+                redirectTo: 'vehiculos',
                 pathMatch: 'full',
             },
         ],

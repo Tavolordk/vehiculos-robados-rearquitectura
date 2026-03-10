@@ -1,0 +1,226 @@
+<div class="page-shell">
+    <main class="main-slot">
+        <div class="content-header">Consulta</div>
+
+        <section class="panel panel-form">
+            <div class="panel-title">Consulta general</div>
+
+            <div class="dates-block">
+                <div class="dates-title">Fechas</div>
+
+                <div class="radio-group">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" id="robo" name="searchType"
+                            [checked]="searchType === 'robo'" (change)="searchType='robo'" />
+                        <label class="form-check-label" for="robo">Robo</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" id="actualizacion" name="searchType"
+                            [checked]="searchType === 'actualizacion'" (change)="searchType='actualizacion'" />
+                        <label class="form-check-label" for="actualizacion">Actualización</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" id="averiguacion" name="searchType"
+                            [checked]="searchType === 'averiguacion'" (change)="searchType='averiguacion'" />
+                        <label class="form-check-label" for="averiguacion">Averiguación</label>
+                    </div>
+                </div>
+
+                <div class="date-range">
+                    <span class="date-label">Del</span>
+                    <div class="date-input-wrapper">
+                        <input #fechaDelInput type="date" [(ngModel)]="fechaDel" />
+                        <i class="far fa-calendar-alt" (click)="fechaDelInput.showPicker()"></i>
+                    </div>
+
+                    <span class="date-label">Al</span>
+                    <div class="date-input-wrapper">
+                        <input #fechaAlInput type="date" [(ngModel)]="fechaAl" />
+                        <i class="far fa-calendar-alt" (click)="fechaAlInput.showPicker()"></i>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="soft-hr" />
+
+            <div *ngIf="validationMsg" class="alert alert-danger py-2 my-2">
+                {{ validationMsg }}
+            </div>
+
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label class="form-label">Folio denuncia</label>
+                    <input class="custom-input" type="text" [(ngModel)]="folioPredenuncia" />
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Placa/permiso</label>
+                    <input class="custom-input" type="text" [(ngModel)]="placaPermiso" />
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Serie/VIN</label>
+                    <input class="custom-input" type="text" [(ngModel)]="serieVin" />
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">NRPV</label>
+                    <input class="custom-input" type="text" [(ngModel)]="nrpv" />
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">No. averiguación previa</label>
+                    <input class="custom-input" type="text" [(ngModel)]="averiguacionPrevia" />
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">No. de motor</label>
+                    <input class="custom-input" type="text" [(ngModel)]="noMotor" />
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Entidad de robo</label>
+                    <select class="custom-select" [(ngModel)]="entidadRobo">
+                        <option value="">Seleccionar</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Municipio</label>
+                    <select class="custom-select" [(ngModel)]="municipio">
+                        <option value="">Seleccionar</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Fuente de información</label>
+                    <select class="custom-select" [(ngModel)]="fuenteInfo">
+                        <option value="">Seleccionar</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Marca</label>
+                    <select class="custom-select" [(ngModel)]="marca">
+                        <option value="">Seleccionar</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Submarca</label>
+                    <select class="custom-select" [(ngModel)]="submarca">
+                        <option value="">Seleccionar</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Modelo</label>
+                    <select class="custom-select" [(ngModel)]="modelo">
+                        <option value="">Seleccionar</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="actions-bottom">
+                <button class="btn-clear" type="button" (click)="onClear()" [disabled]="!hasAnyCriteria()">
+                    Limpiar <i class="fas fa-eraser ms-2"></i>
+                </button>
+
+                <button class="btn-search" type="button" (click)="onSearch()" [disabled]="!hasAnyCriteria()">
+                    Buscar <i class="fas fa-search ms-2"></i>
+                </button>
+            </div>
+        </section>
+
+        <div class="filters-row">
+            <button class="filter-pill" type="button">
+                Entidad <i class="fas fa-chevron-down"></i>
+            </button>
+            <button class="filter-pill" type="button">
+                Estatus <i class="fas fa-chevron-down"></i>
+            </button>
+        </div>
+
+        <section class="panel panel-table">
+            <div class="table-responsive">
+                <table class="results-table">
+                    <thead>
+                        <tr>
+                            <th>Fecha de robo</th>
+                            <th>Entidad</th>
+                            <th>Placa/Permiso</th>
+                            <th>Serie/NIV</th>
+                            <th>Marca</th>
+                            <th>Submarca</th>
+                            <th>Averiguación previa</th>
+                            <th class="th-estatus">Estatus</th>
+                            <th class="th-actions"></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor="let row of rows" (dblclick)="onView(row)">
+                            <td>{{ row.fechaRobo }}</td>
+                            <td>{{ row.entidad }}</td>
+                            <td>{{ row.placa }}</td>
+                            <td>{{ row.serie }}</td>
+                            <td>{{ row.marca }}</td>
+                            <td>{{ row.submarca }}</td>
+                            <td>{{ row.averiguacion }}</td>
+
+                            <td class="estatus-cell">
+                                <div class="estatus-wrap">
+                                    <span class="estatus-text">{{ row.estatus }}</span>
+
+                                    <div class="estatus-menu">
+                                        <div class="estatus-menu-title">Actualizar estatus</div>
+                                        <button type="button" class="estatus-item entregado">
+                                            <i class="far fa-check-circle"></i> Entregado
+                                        </button>
+                                        <button type="button" class="estatus-item recuperado">
+                                            <i class="far fa-check-circle"></i> Recuperado
+                                        </button>
+                                        <button type="button" class="estatus-item cancelado">
+                                            <i class="far fa-times-circle"></i> Cancelado
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+
+                            <td class="action-icons text-end">
+                                <i class="far fa-eye" title="Ver detalle" (click)="onView(row)"></i>
+                                <i class="far fa-check-circle text-success" (click)="onRecover(row)"></i>
+                                <i class="fas fa-pencil-alt text-danger" (click)="onEdit(row)"></i>
+                                <i class="fas fa-file-contract" (click)="onContract(row)"></i>
+                                <i class="fas fa-print"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <nav aria-label="Page navigation" class="pager">
+                <button class="pager-btn" type="button" aria-label="Previous">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+
+                <button class="pager-page active" type="button">1</button>
+                <button class="pager-page" type="button">2</button>
+
+                <button class="pager-btn" type="button" aria-label="Next">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </nav>
+        </section>
+    </main>
+</div>
+
+<app-detalle-consulta-modal [open]="predenunciaOpen()" [data]="predenunciaData()" [headerOffsetPx]="120"
+    (closed)="onClosePredenuncia()">
+</app-detalle-consulta-modal>
+
+<app-modal-detalle-consulta [open]="denunciaOpen()" [data]="denunciaData()" [headerOffsetPx]="120"
+    (closed)="onCloseDenuncia()" (editar)="onEditarDenuncia($event)">
+</app-modal-detalle-consulta>
