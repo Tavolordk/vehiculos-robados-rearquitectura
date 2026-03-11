@@ -113,6 +113,21 @@ export const routes: Routes = [
                 loadComponent: () =>
                     import('./presentation/administracion/pages/inspeccion-ministerial/inspeccion-ministerial.component')
                         .then((m) => m.InspeccionMinisterialComponent),
+            }, {
+                path: 'admin/entrega/documentacion-propietario',
+                loadComponent: () =>
+                    import('./presentation/administracion/pages/documentacion-propietario/documentacion-propietario.component')
+                        .then((m) => m.DocumentacionPropietarioComponent),
+            }, {
+                path: 'admin/entrega/verificacion',
+                loadComponent: () =>
+                    import('./presentation/administracion/pages/entrega-verificacion/entrega-verificacion.component')
+                        .then((m) => m.EntregaVerificacionComponent),
+            }, {
+                path: 'admin/entrega/exito-denuncia',
+                loadComponent: () =>
+                    import('./presentation/administracion/pages/entrega-exito/entrega-exito.component')
+                        .then((m) => m.EntregaExitoComponent),
             },
             {
                 path: '',

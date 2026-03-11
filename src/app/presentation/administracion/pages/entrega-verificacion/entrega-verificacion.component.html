@@ -1,0 +1,286 @@
+<div class="page-root">
+    <div class="sub-header">
+        {{ subHeader }}
+    </div>
+
+    <div class="content-wrapper">
+        <div class="info-header">
+            <h5>Verificación de datos</h5>
+
+            <div class="info-meta">
+                <span class="folio-highlight">Folio {{ folio }}</span>
+                <span class="gold-text">Fecha y hora de registro</span>
+                <span>{{ fechaHoraRegistro }}</span>
+            </div>
+        </div>
+
+        <div class="row g-3">
+            <div class="col-12 col-lg-6">
+                <div class="custom-card h-100">
+                    <div class="card-title">Entrega de vehículo</div>
+
+                    <button type="button" class="edit-icon-btn" aria-label="Editar entrega de vehículo"
+                        (click)="onEditar('entregaVehiculo')">
+                        <i class="fas fa-pencil-alt" aria-hidden="true"></i>
+                    </button>
+
+                    <div class="row g-2 mb-2">
+                        <div class="col-12 col-md-6 fw-bold">
+                            No. de averiguación previa/ Carpeta de investigación
+                        </div>
+                        <div class="col-12 col-md-6">
+                            {{ entregaVehiculo.carpetaInvestigacion }}
+                        </div>
+                    </div>
+
+                    <div class="row g-2 mb-3">
+                        <div class="col-12 col-md-6 fw-bold">
+                            No. de folio de denuncia
+                        </div>
+                        <div class="col-12 col-md-6">
+                            {{ entregaVehiculo.folioDenuncia }}
+                        </div>
+                    </div>
+
+                    <div class="row g-3">
+                        <div class="col-12 col-md-6">
+                            <div class="grid-item mb-2">
+                                <label>Fecha de denuncia</label>
+                                <span>{{ entregaVehiculo.fechaDenuncia }}</span>
+                            </div>
+                            <div class="grid-item mb-2">
+                                <label>Fecha del robo</label>
+                                <span>{{ entregaVehiculo.fechaRobo }}</span>
+                            </div>
+                            <div class="grid-item mb-2">
+                                <label>Fecha de la recuperación</label>
+                                <span>{{ entregaVehiculo.fechaRecuperacion }}</span>
+                            </div>
+                            <div class="grid-item mb-2">
+                                <label>Serie</label>
+                                <span>{{ entregaVehiculo.serie }}</span>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-md-6">
+                            <div class="grid-item mb-2">
+                                <label>Hora de denuncia</label>
+                                <span>{{ entregaVehiculo.horaDenuncia }}</span>
+                            </div>
+                            <div class="grid-item mb-2">
+                                <label>Hora del robo</label>
+                                <span>{{ entregaVehiculo.horaRobo }}</span>
+                            </div>
+                            <div class="grid-item mb-2">
+                                <label>Hora de la recuperación</label>
+                                <span>{{ entregaVehiculo.horaRecuperacion }}</span>
+                            </div>
+                            <div class="grid-item mb-2">
+                                <label>Placa</label>
+                                <span>{{ entregaVehiculo.placa || '—' }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-6">
+                <div class="custom-card h-100">
+                    <div class="card-title">Información de la entrega</div>
+
+                    <button type="button" class="edit-icon-btn" aria-label="Editar información de la entrega"
+                        (click)="onEditar('infoEntrega')">
+                        <i class="fas fa-pencil-alt" aria-hidden="true"></i>
+                    </button>
+
+                    <div class="row g-2 mb-2">
+                        <div class="col-12 col-md-6">
+                            <span class="fw-bold">Fecha de la entrega</span>
+                            <span class="ms-2">{{ infoEntrega.fechaEntrega }}</span>
+                        </div>
+
+                        <div class="col-12 col-md-6">
+                            <span class="fw-bold">Hora de la entrega</span>
+                            <span class="ms-2">{{ infoEntrega.horaEntrega }}</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-2">
+                        <span class="fw-bold">Calle y número de la entrega</span>
+                        <span class="ms-2">{{ infoEntrega.calleNumero }}</span>
+                    </div>
+
+                    <div class="mb-2">
+                        <span class="fw-bold">Referencia</span>
+                        <span class="ms-2">{{ infoEntrega.referencia }}</span>
+                    </div>
+
+                    <div class="mb-2">
+                        <span class="fw-bold">Colonia</span>
+                        <span class="ms-2">{{ infoEntrega.colonia }}</span>
+                    </div>
+
+                    <div class="mb-2">
+                        <span class="fw-bold">Municipio</span>
+                        <span class="ms-2">{{ infoEntrega.municipio }}</span>
+                    </div>
+
+                    <div class="mb-2">
+                        <span class="fw-bold">Entidad</span>
+                        <span class="ms-2">{{ infoEntrega.entidad }}</span>
+                    </div>
+
+                    <div class="mb-2">
+                        <span class="fw-bold">C.P.</span>
+                        <span class="ms-2">{{ infoEntrega.cp }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-3 mt-1">
+            <div class="col-12 col-lg-8">
+                <div class="custom-card h-100">
+                    <div class="card-title">Inspección Ministerial</div>
+
+                    <button type="button" class="edit-icon-btn" aria-label="Editar inspección ministerial"
+                        (click)="onEditar('inspeccion')">
+                        <i class="fas fa-pencil-alt" aria-hidden="true"></i>
+                    </button>
+
+                    <div class="row g-3">
+                        <div class="col-12 col-md-6">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="fw-bold">Inspección Ministerial</span>
+                                <span>{{ inspeccion.ministerial ? 'Sí' : 'No' }}</span>
+                            </div>
+
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="fw-bold">% de recuperación</span>
+                                <span>{{ inspeccion.porcentajeRecuperacion }}</span>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-md-6">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="fw-bold">Valor de la unidad (monto)</span>
+                                <span>{{ inspeccion.valorUnidad }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-4">
+                <div class="custom-card h-100">
+                    <div class="card-title">Alteración en números de identificación</div>
+
+                    <button type="button" class="edit-icon-btn" aria-label="Editar alteraciones"
+                        (click)="onEditar('alteraciones')">
+                        <i class="fas fa-pencil-alt" aria-hidden="true"></i>
+                    </button>
+
+                    <div class="d-flex justify-content-between mb-2">
+                        <span class="fw-bold">Serie/NIV alterada</span>
+                        <span class="text-end">{{ alteraciones.serieAlterada }}</span>
+                    </div>
+
+                    <div class="d-flex justify-content-between mb-2">
+                        <span class="fw-bold">Motor alterado</span>
+                        <span class="text-end">{{ alteraciones.motorAlterado }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-3 mt-1">
+            <div class="col-12">
+                <div class="custom-card">
+                    <div class="card-title">Observaciones</div>
+
+                    <button type="button" class="edit-icon-btn" aria-label="Editar observaciones"
+                        (click)="onEditar('observaciones')">
+                        <i class="fas fa-pencil-alt" aria-hidden="true"></i>
+                    </button>
+
+                    <p class="mb-0 text-secondary">
+                        {{ observaciones }}
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-3 mt-1">
+            <div class="col-12">
+                <div class="custom-card">
+                    <div class="card-title">Información de documentación del propietario</div>
+
+                    <button type="button" class="edit-icon-btn" aria-label="Editar documentación del propietario"
+                        (click)="onEditar('docPropietario')">
+                        <i class="fas fa-pencil-alt" aria-hidden="true"></i>
+                    </button>
+
+                    <div class="row mb-3">
+                        <div class="col-12 col-md-3 fw-bold">Tipo de persona</div>
+                        <div class="col-12 col-md-9">{{ docPropietario.tipoPersona }}</div>
+                    </div>
+
+                    <div class="row g-3">
+                        <div class="col-12 col-md-4">
+                            <div class="row mb-2">
+                                <div class="col-6 fw-bold">Nombre (s)</div>
+                                <div class="col-6">{{ docPropietario.nombres }}</div>
+                            </div>
+
+                            <div class="row mb-2">
+                                <div class="col-6 fw-bold">Credencial de elector</div>
+                                <div class="col-6">{{ docPropietario.credencialElector }}</div>
+                            </div>
+
+                            <div class="row mb-2">
+                                <div class="col-6 fw-bold">Comprobante de domicilio</div>
+                                <div class="col-6">{{ docPropietario.comprobanteDomicilio }}</div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-md-4">
+                            <div class="row mb-2">
+                                <div class="col-6 fw-bold">Primer Apellido</div>
+                                <div class="col-6">{{ docPropietario.primerApellido }}</div>
+                            </div>
+
+                            <div class="row mb-2">
+                                <div class="col-6 fw-bold">Pasaporte</div>
+                                <div class="col-6">{{ docPropietario.pasaporte }}</div>
+                            </div>
+
+                            <div class="row mb-2">
+                                <div class="col-6 fw-bold">Otro documento</div>
+                                <div class="col-6">{{ docPropietario.otroDocumento }}</div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-md-4">
+                            <div class="row mb-2">
+                                <div class="col-6 fw-bold">Segundo Apellido</div>
+                                <div class="col-6">{{ docPropietario.segundoApellido }}</div>
+                            </div>
+
+                            <div class="row mb-2">
+                                <div class="col-6 fw-bold">Cédula profesional</div>
+                                <div class="col-6">{{ docPropietario.cedulaProfesional }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="save-btn-container">
+            <button type="button" class="btn btn-gold" (click)="onGuardar()">
+                Guardar
+                <i class="far fa-save" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+</div>

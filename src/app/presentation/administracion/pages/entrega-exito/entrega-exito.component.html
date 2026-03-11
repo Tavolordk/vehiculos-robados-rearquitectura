@@ -1,0 +1,32 @@
+<div class="page-root">
+    <section class="confirmation-card h-auto" role="dialog" aria-label="Confirmación de Entrega">
+        <button type="button" class="close-btn" aria-label="Cerrar" (click)="onCerrar()">
+            x
+        </button>
+
+        <div class="icon-container" aria-hidden="true">
+            <div class="check-circle">
+                <div class="custom-check"></div>
+            </div>
+        </div>
+
+        <h2 class="title">¡Alta de entrega exitosa!</h2>
+        <p class="subtitle">La información se ha registrado correctamente</p>
+
+        <div class="info-label">No. de averiguación previa/ Carpeta de investigación</div>
+        <div class="info-value">{{ averiguacionPrevia }}</div>
+
+        <div class="info-label">Estatus de la denuncia</div>
+        <div class="info-value">{{ estatusDenuncia }}</div>
+
+        <div class="info-label">No. de Folio de entrega</div>
+        <div class="info-value">{{ folioEntrega }}</div>
+
+        <div class="info-label">Placa: {{ placa }}</div>
+        <div class="info-label">Serie / NIV: {{ serieNiv }}</div>
+
+        <button type="button" class="btn btn-print" (click)="onImprimir()">
+            Imprimir comprobante
+        </button>
+    </section>
+</div>

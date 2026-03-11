@@ -1,0 +1,128 @@
+<div class="main-container">
+    <div class="section-header">Entrega</div>
+
+    <div class="form-card">
+        <div class="required-text">
+            *Campos requeridos
+        </div>
+
+        <div class="row align-items-end mb-3 g-3">
+            <div class="col-12 col-md-6">
+                <h2 class="inspection-title">Inspección de la entrega</h2>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <div class="folio-info text-md-end">
+                    <span>Folio</span> {{ folio }}
+                    <span class="ms-2">Fecha y hora de registro</span> {{ fechaHoraRegistro }}
+                </div>
+            </div>
+        </div>
+
+        <h3 class="subsection-title">
+            Información de documentación del propietario
+        </h3>
+
+        <form>
+            <div class="row mb-4">
+                <div class="col-12">
+                    <label class="form-label d-block mb-2">Tipo de persona</label>
+
+                    <div class="d-flex gap-4 align-items-center flex-wrap">
+                        <div class="form-check">
+                            <input class="form-check-input" id="propietario" name="tipoPersona" type="radio"
+                                [value]="'PROPIETARIO'" [ngModel]="tipoPersona"
+                                (ngModelChange)="tipoPersona = $event" />
+                            <label class="form-check-label" for="propietario">Propietario</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" id="representante" name="tipoPersona" type="radio"
+                                [value]="'REPRESENTANTE'" [ngModel]="tipoPersona"
+                                (ngModelChange)="tipoPersona = $event" />
+                            <label class="form-check-label" for="representante">Representante legal</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4 row-spacing">
+                <div class="col-12 col-md-4">
+                    <label class="form-label">Nombre (s)*</label>
+                    <input class="form-control-custom" type="text" [ngModel]="nombres" name="nombres"
+                        (ngModelChange)="nombres = $event" />
+                </div>
+
+                <div class="col-12 col-md-4">
+                    <label class="form-label">Primer apellido *</label>
+                    <input class="form-control-custom" type="text" [ngModel]="primerApellido" name="primerApellido"
+                        (ngModelChange)="primerApellido = $event" />
+                </div>
+
+                <div class="col-12 col-md-4">
+                    <label class="form-label">Segundo apellido</label>
+                    <input class="form-control-custom" type="text" [ngModel]="segundoApellido" name="segundoApellido"
+                        (ngModelChange)="segundoApellido = $event" />
+                </div>
+            </div>
+
+            <div class="row g-4 row-spacing">
+                <div class="col-12 col-md-4">
+                    <label class="form-label">Número de la factura*</label>
+                    <input class="form-control-custom" type="text" [ngModel]="numeroFactura" name="numeroFactura"
+                        (ngModelChange)="numeroFactura = $event" />
+                </div>
+
+                <div class="col-12 col-md-4">
+                    <label class="form-label">Fecha de la factura</label>
+                    <div class="date-input-wrapper">
+                        <input class="form-control-custom" disabled type="text" />
+                        <span class="date-text">{{ fechaFactura }}</span>
+                        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-4">
+                    <label class="form-label">Credencial de elector</label>
+                    <input class="form-control-custom" type="text" [ngModel]="credencialElector"
+                        name="credencialElector" (ngModelChange)="credencialElector = $event" />
+                </div>
+            </div>
+
+            <div class="row g-4 row-spacing">
+                <div class="col-12 col-md-4">
+                    <label class="form-label">Pasaporte</label>
+                    <input class="form-control-custom" type="text" [ngModel]="pasaporte" name="pasaporte"
+                        (ngModelChange)="pasaporte = $event" />
+                </div>
+
+                <div class="col-12 col-md-4">
+                    <label class="form-label">Cédula profesional</label>
+                    <input class="form-control-custom" type="text" [ngModel]="cedulaProfesional"
+                        name="cedulaProfesional" (ngModelChange)="cedulaProfesional = $event" />
+                </div>
+
+                <div class="col-12 col-md-4">
+                    <label class="form-label">Comprobante de domicilio*</label>
+                    <input class="form-control-custom" type="text" [ngModel]="comprobanteDomicilio"
+                        name="comprobanteDomicilio" (ngModelChange)="comprobanteDomicilio = $event" />
+                </div>
+            </div>
+
+            <div class="row g-4 row-spacing">
+                <div class="col-12 col-md-4">
+                    <label class="form-label">Otro documento</label>
+                    <input class="form-control-custom" type="text" [ngModel]="otroDocumento" name="otroDocumento"
+                        (ngModelChange)="otroDocumento = $event" />
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="footer-actions">
+        <button type="button" class="btn btn-next" (click)="onSiguiente()">
+            Siguiente
+            <i class="fas fa-chevron-right" aria-hidden="true"></i>
+        </button>
+    </div>
+</div>
