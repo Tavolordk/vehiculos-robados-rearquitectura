@@ -1,0 +1,280 @@
+<div class="main-content">
+    <div class="page-header-bar">Denuncia</div>
+
+    <div class="content-wrapper">
+        <div class="verification-header">
+            <span>Verificación de datos</span>
+
+            <div class="folio-info">
+                <strong>Folio</strong> {{ folio }}
+                <strong class="ms-2">Fecha y hora de registro</strong> {{ fechaRegistro }}
+            </div>
+        </div>
+
+        <div class="two-col-grid">
+            <div>
+                <div class="card">
+                    <div class="card-header-custom">
+                        <span>Información del robo</span>
+                        <i class="fas fa-pencil-alt edit-icon" (click)="onEditar('robo')"></i>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="row mb-2">
+                            <div class="col-12">
+                                <div class="d-flex">
+                                    <div class="fw-bold" style="width: 150px;">Folio</div>
+                                    <div class="fw-bold">{{ infoRobo.folio }}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="mb-2">
+                                    <div class="fw-bold">Fecha de robo</div>
+                                    <div>{{ infoRobo.fechaRobo }}</div>
+                                </div>
+                                <div class="mb-2">
+                                    <div class="fw-bold">Entidad</div>
+                                    <div>{{ infoRobo.entidad }}</div>
+                                </div>
+                                <div class="mb-2">
+                                    <div class="fw-bold">Municipio</div>
+                                    <div>{{ infoRobo.municipio }}</div>
+                                </div>
+                                <div class="mb-2">
+                                    <div class="fw-bold">Calle</div>
+                                    <div>{{ infoRobo.calle }}</div>
+                                </div>
+                                <div class="mb-2">
+                                    <div class="fw-bold">Tramo carretero</div>
+                                    <div>{{ infoRobo.tramo }}</div>
+                                </div>
+                                <div class="mb-2">
+                                    <div class="fw-bold">Kilometro</div>
+                                    <div>{{ infoRobo.kilometro }}</div>
+                                </div>
+                                <div class="mb-2">
+                                    <div class="fw-bold">Latitud</div>
+                                    <div>{{ infoRobo.latitud }}</div>
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="mb-2">
+                                    <div class="fw-bold">Hora de captura</div>
+                                    <div>{{ infoRobo.horaCaptura }}</div>
+                                </div>
+                                <div class="mb-2">
+                                    <div class="fw-bold">Colonia</div>
+                                    <div>{{ infoRobo.colonia }}</div>
+                                </div>
+                                <div class="mb-2">
+                                    <div class="fw-bold">C.P.</div>
+                                    <div>{{ infoRobo.cp }}</div>
+                                </div>
+                                <div class="mb-2">
+                                    <div class="fw-bold">Referencia del domicilio</div>
+                                    <div>{{ infoRobo.referencia }}</div>
+                                </div>
+                                <div class="mb-2" style="margin-top: 65px;">
+                                    <div class="fw-bold">Longitud</div>
+                                    <div>{{ infoRobo.longitud }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header-custom">
+                        <span>Datos modus operandi</span>
+                        <i class="fas fa-pencil-alt edit-icon" (click)="onEditar('modus')"></i>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-5 fw-bold">Modalidad del Robo:</div>
+                            <div class="col-7">{{ modus.modalidad }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-5 fw-bold">No. de Víctimas:</div>
+                            <div class="col-7">{{ modus.victimas }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-5 fw-bold">No. de Presuntos Responsables:</div>
+                            <div class="col-7">{{ modus.presuntos }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-5 fw-bold">Tipo de lugar:</div>
+                            <div class="col-7">{{ modus.tipoLugar }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-5 fw-bold">Se hace pasar por:</div>
+                            <div class="col-7">{{ modus.seHacePasarPor }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-5 fw-bold">Peculiaridades:</div>
+                            <div class="col-7">{{ modus.peculiaridades }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-5 fw-bold">Señas particulares:</div>
+                            <div class="col-7">{{ modus.senas }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-5 fw-bold">Vestimenta:</div>
+                            <div class="col-7">{{ modus.vestimenta }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-5 fw-bold">Comportamiento:</div>
+                            <div class="col-7">{{ modus.comportamiento }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-5 fw-bold">Armas utilizadas:</div>
+                            <div class="col-7">{{ modus.armas }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-5 fw-bold">Delitos asociados:</div>
+                            <div class="col-7">{{ modus.delitos }}</div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-5 fw-bold">Vehículos asociados:</div>
+                            <div class="col-7"></div>
+                        </div>
+
+                        <table class="table-custom mt-3">
+                            <thead>
+                                <tr>
+                                    <th>Marca</th>
+                                    <th>Submarca</th>
+                                    <th>Color</th>
+                                    <th>Placa</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr *ngFor="let v of vehiculosAsociados">
+                                    <td>{{ v.marca }}</td>
+                                    <td>{{ v.submarca }}</td>
+                                    <td>{{ v.color }}</td>
+                                    <td>{{ v.placa }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="card">
+                    <div class="card-header-custom">
+                        <span>Información del denunciante</span>
+                        <i class="fas fa-pencil-alt edit-icon" (click)="onEditar('denunciante')"></i>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="mb-2">
+                            <div class="fw-bold">Tipo de persona {{ denunciante.tipoPersona }}</div>
+                        </div>
+                        <div class="mb-2">
+                            <div class="fw-bold">Nombre (s) {{ denunciante.nombres }}</div>
+                        </div>
+                        <div class="mb-2">
+                            <div class="fw-bold">Primer Apellido {{ denunciante.primerApellido }}</div>
+                        </div>
+                        <div class="mb-2">
+                            <div class="fw-bold">Segundo Apellido {{ denunciante.segundoApellido }}</div>
+                        </div>
+                        <div class="mb-2">
+                            <div class="fw-bold">Sexo {{ denunciante.sexo }}</div>
+                        </div>
+                        <div class="mb-2">
+                            <div class="fw-bold">Teléfono {{ denunciante.telefono }}</div>
+                        </div>
+                        <div class="mb-2">
+                            <div class="fw-bold">RFC {{ denunciante.rfc }}</div>
+                        </div>
+                        <div class="mb-2">
+                            <div class="fw-bold">Correo electrónico {{ denunciante.correo }}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header-custom">
+                        <span>Datos de averiguación previa</span>
+                        <i class="fas fa-pencil-alt edit-icon" (click)="onEditar('averiguacion')"></i>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="row mb-3">
+                            <div class="col-7 fw-bold">No. de Averiguación Previa</div>
+                            <div class="col-5 text-end fw-bold">{{ averiguacion.numero }}</div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-6 fw-bold">Agencia del Ministerio Público</div>
+                            <div class="col-6 text-uppercase" style="font-size: 0.75rem;">
+                                {{ averiguacion.agencia }}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6 fw-bold">Agente del Ministerio Público</div>
+                            <div class="col-6 text-uppercase" style="font-size: 0.75rem;">
+                                {{ averiguacion.agente }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header-custom">
+                <span>Información de vehículos</span>
+                <i class="fas fa-pencil-alt edit-icon" (click)="onEditar('vehiculos')"></i>
+            </div>
+
+            <div class="card-body">
+                <table class="table-custom">
+                    <thead>
+                        <tr>
+                            <th>Marca</th>
+                            <th>Submarca</th>
+                            <th>Modelo</th>
+                            <th>Color</th>
+                            <th>Placa / Permiso</th>
+                            <th>Serie / VIN</th>
+                            <th>NRPV</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor="let car of vehiculos">
+                            <td>{{ car.marca }}</td>
+                            <td>{{ car.submarca }}</td>
+                            <td>{{ car.modelo }}</td>
+                            <td>{{ car.color }}</td>
+                            <td>{{ car.placaPermiso }}</td>
+                            <td>{{ car.serieVin }}</td>
+                            <td>{{ car.nrpv }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="save-btn-container">
+            <button type="button" class="btn-save" (click)="onGuardar()">
+                Guardar <i class="far fa-save"></i>
+            </button>
+        </div>
+
+        <app-modal-alta-denuncia-exitosa [open]="modalOkOpen" [data]="modalOkData" (closed)="onModalOkClose()"
+            (imprimir)="onModalOkImprimir()" (enviarCorreo)="onModalOkEnviarCorreo()">
+        </app-modal-alta-denuncia-exitosa>
+    </div>
+</div>

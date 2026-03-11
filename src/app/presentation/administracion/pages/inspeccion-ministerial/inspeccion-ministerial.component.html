@@ -1,0 +1,109 @@
+<div class="main-container">
+    <div class="maroon-header">
+        Entrega
+    </div>
+
+    <div class="content-padding">
+        <div class="required-text">
+            *Campos requeridos
+        </div>
+
+        <div class="section-card">
+            <div class="d-flex justify-content-between align-items-start mb-3 flex-wrap gap-2">
+                <div class="section-title mb-0">
+                    Inspección Ministerial
+                </div>
+
+                <div class="folio-info">
+                    <span class="me-4">
+                        Folio
+                        <span style="color:#333;">{{ folio }}</span>
+                    </span>
+
+                    <span>
+                        Fecha y hora de registro
+                        <span style="color:#333;">{{ fechaHoraRegistro }}</span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <label class="form-label">Inspección Ministerial</label>
+
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <label for="insp-si">Sí</label>
+                            <input id="insp-si" name="inspeccion" type="radio" [value]="'SI'" [ngModel]="inspeccion"
+                                (ngModelChange)="inspeccion = $event" />
+                        </div>
+
+                        <div class="radio-item">
+                            <label for="insp-no">No</label>
+                            <input id="insp-no" name="inspeccion" type="radio" [value]="'NO'" [ngModel]="inspeccion"
+                                (ngModelChange)="inspeccion = $event" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Valor de la unidad (monto)</label>
+                    <input class="form-control-custom" placeholder="pesos (00/100) m.n" type="text"
+                        [ngModel]="valorUnidad" name="valorUnidad" (ngModelChange)="valorUnidad = $event" />
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">% de recuperación</label>
+                    <input class="form-control-custom" type="text" [ngModel]="porcentajeRecuperacion"
+                        name="porcentajeRecuperacion" (ngModelChange)="porcentajeRecuperacion = $event" />
+                </div>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <div class="section-title">
+                Alteración en números de identificación
+            </div>
+
+            <div class="row align-items-start g-3">
+                <div class="col-md-4">
+                    <label class="form-label">Serie/NIV alterada</label>
+                    <input class="form-control-custom" type="text" [ngModel]="serieNivAlterada" name="serieNivAlterada"
+                        (ngModelChange)="serieNivAlterada = $event" />
+                </div>
+
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-verify w-100" (click)="onVerificarNiv()">
+                        Verificar NIV
+                    </button>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Motor alterado</label>
+                    <input class="form-control-custom" type="text" [ngModel]="motorAlterado" name="motorAlterado"
+                        (ngModelChange)="motorAlterado = $event" />
+                </div>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <div class="section-title">
+                Observaciones
+            </div>
+
+            <textarea class="form-control-custom textarea-custom" [ngModel]="observaciones" name="observaciones"
+                [maxLength]="maxObs" (ngModelChange)="observaciones = $event"></textarea>
+
+            <div class="char-count">
+                {{ remainingObs }} CARACTERES
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-actions">
+        <button type="button" class="btn btn-next" (click)="onSiguiente()">
+            Siguiente
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+</div>

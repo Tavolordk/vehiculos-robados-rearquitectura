@@ -1,0 +1,41 @@
+<div class="modal-overlay" (click)="onBackdropClick($event)">
+    <div class="success-card" role="dialog" aria-modal="true" aria-label="Alta de recuperación exitosa">
+        <button type="button" class="close-btn" (click)="close()" aria-label="Cerrar">×</button>
+
+        <div class="check-container">
+            <div class="check-circle">
+                <i class="fas fa-check"></i>
+            </div>
+        </div>
+
+        <h1 class="title">¡Alta de recuperación exitosa!</h1>
+        <p class="subtitle">La información se ha registrado correctamente</p>
+
+        <div class="info-group">
+            <span class="info-label">No. de averiguación previa/ Carpeta de investigación</span>
+            <span class="info-value">{{ data.carpeta }}</span>
+        </div>
+
+        <div class="info-group">
+            <span class="info-label">Estatus de la denuncia</span>
+            <span class="info-value">{{ data.estatus }}</span>
+        </div>
+
+        <div class="info-group">
+            <span class="info-label">No. de Folio de denuncia</span>
+            <span class="info-value folio-value">{{ data.folio }}</span>
+        </div>
+
+        <div class="info-group">
+            <span class="info-label">Placa: {{ data.placa }}</span>
+        </div>
+
+        <div class="info-group">
+            <span class="info-label">Serie / NIV: {{ data.vin }}</span>
+        </div>
+
+        <button type="button" class="btn-imprimir" (click)="imprimir()">
+            Imprimir comprobante
+        </button>
+    </div>
+</div>

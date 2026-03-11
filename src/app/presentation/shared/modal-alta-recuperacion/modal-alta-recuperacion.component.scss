@@ -1,0 +1,113 @@
+:host {
+  display: block;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483647;
+  background: rgba(0, 0, 0, 0.45);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.success-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  max-width: 450px;
+  width: 100%;
+  padding: 40px 30px;
+  position: relative;
+  text-align: center;
+}
+
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  border: none;
+  background: transparent;
+  color: #7a1c33;
+  font-weight: 800;
+  font-size: 1.5rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.check-container {
+  margin-bottom: 22px;
+}
+
+.check-circle {
+  width: 80px;
+  height: 80px;
+  border: 3px solid #2d574d;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.check-circle i {
+  color: #2d574d;
+  font-size: 40px;
+}
+
+.title {
+  color: #2d574d;
+  font-weight: 800;
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  color: #999999;
+  font-size: 0.95rem;
+  margin-bottom: 22px;
+}
+
+.info-group {
+  margin-bottom: 14px;
+}
+
+.info-label {
+  font-weight: 800;
+  font-size: 1rem;
+  color: #000000;
+  margin-bottom: 3px;
+  display: block;
+}
+
+.info-value {
+  font-weight: 400;
+  font-size: 1rem;
+  color: #000000;
+  display: block;
+}
+
+.folio-value {
+  color: #7a1c33;
+  font-weight: 700;
+}
+
+.btn-imprimir {
+  background-color: #a68945;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 25px;
+  font-weight: 700;
+  font-size: 1rem;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.btn-imprimir:hover {
+  background-color: #8e743a;
+}

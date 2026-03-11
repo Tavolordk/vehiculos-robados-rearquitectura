@@ -1,0 +1,166 @@
+<div class="page-shell">
+    <main class="main-slot">
+        <div class="content-header">Consulta</div>
+
+        <section class="panel panel-form">
+            <div class="panel-title">Padrón vehicular</div>
+
+            <div class="section-subtitle">Información del propietario</div>
+
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label class="form-label">Nombre(s)*</label>
+                    <input class="custom-input" type="text" [(ngModel)]="propNombre" />
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Primer apellido*</label>
+                    <input class="custom-input" type="text" [(ngModel)]="propApellido1" />
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Segundo apellido</label>
+                    <input class="custom-input" type="text" [(ngModel)]="propApellido2" />
+                </div>
+            </div>
+        </section>
+
+        <section class="panel panel-form mt-3">
+            <div class="section-subtitle">Información del vehículo</div>
+
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label class="form-label">Serie / NIV</label>
+                    <input class="custom-input" type="text" [(ngModel)]="serieNiv" />
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Placa</label>
+                    <input class="custom-input" type="text" [(ngModel)]="placa" />
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Motor</label>
+                    <input class="custom-input" type="text" [(ngModel)]="motor" />
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Marca</label>
+                    <select class="custom-select" [(ngModel)]="marca" (change)="onMarcaChange()">
+                        <option value="">Seleccionar</option>
+                        <option *ngFor="let m of marcas" [value]="m">{{ m }}</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Submarca</label>
+                    <select class="custom-select" [(ngModel)]="submarca" [disabled]="!marca">
+                        <option value="">Seleccionar</option>
+                        <option *ngFor="let s of submarcas" [value]="s">{{ s }}</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Modelo</label>
+                    <select class="custom-select" [(ngModel)]="modelo">
+                        <option value="">Seleccionar</option>
+                        <option *ngFor="let a of modelos" [value]="a">{{ a }}</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Tipo de vehículo</label>
+                    <select class="custom-select" [(ngModel)]="tipoVehiculo">
+                        <option value="">Seleccionar</option>
+                        <option *ngFor="let t of tiposVehiculo" [value]="t">{{ t }}</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Entidad</label>
+                    <select class="custom-select" [(ngModel)]="entidad">
+                        <option value="">Seleccionar</option>
+                        <option *ngFor="let e of entidades" [value]="e">{{ e }}</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">NRPV</label>
+                    <input class="custom-input" type="text" [(ngModel)]="nrpv" />
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">RFV</label>
+                    <input class="custom-input" type="text" [(ngModel)]="rfv" />
+                </div>
+            </div>
+
+            <div class="actions-bottom">
+                <button class="btn-clear" type="button" (click)="onClear()" [disabled]="!hasAnyCriteria()">
+                    Limpiar <i class="fas fa-eraser ms-2"></i>
+                </button>
+
+                <button class="btn-search" type="button" (click)="onSearch()" [disabled]="!hasAnyCriteria()">
+                    Buscar <i class="fas fa-search ms-2"></i>
+                </button>
+            </div>
+        </section>
+
+        <section class="panel panel-table mt-3">
+            <div class="table-responsive">
+                <table class="results-table">
+                    <thead>
+                        <tr>
+                            <th>Serie/NIV</th>
+                            <th>Motor</th>
+                            <th>Marca</th>
+                            <th>Submarca</th>
+                            <th>Año Modelo</th>
+                            <th class="th-actions"></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor="let row of rows" (dblclick)="onView(row)">
+                            <td>{{ row.serie }}</td>
+                            <td>{{ row.motor }}</td>
+                            <td>{{ row.marca }}</td>
+                            <td>{{ row.submarca }}</td>
+                            <td>{{ row.anioModelo }}</td>
+                            <td class="action-icons text-end">
+                                <i class="far fa-eye" (click)="onView(row)"></i>
+                            </td>
+                        </tr>
+
+                        <tr *ngIf="rows.length === 0">
+                            <td colspan="6" class="text-center py-4" style="color:#666;">
+                                Sin resultados para mostrar.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <nav aria-label="Page navigation" class="pager">
+                <button class="pager-btn" type="button" aria-label="Previous" (click)="prevPage()"
+                    [disabled]="page <= 1">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+
+                <button class="pager-page" *ngFor="let p of pages" type="button" [class.active]="p === page"
+                    (click)="goToPage(p)">
+                    {{ p }}
+                </button>
+
+                <button class="pager-btn" type="button" aria-label="Next" (click)="nextPage()"
+                    [disabled]="page >= totalPages">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </nav>
+        </section>
+    </main>
+</div>
+
+<app-consulta-resultado-modal [modalId]="modalId" [title]="'Resultado de la consulta'" [data]="modalData"
+    (imprimir)="onImprimirModal()" (closed)="onModalClosed()">
+</app-consulta-resultado-modal>

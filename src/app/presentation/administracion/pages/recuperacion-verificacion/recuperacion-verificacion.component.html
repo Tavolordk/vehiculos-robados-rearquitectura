@@ -1,0 +1,184 @@
+<main class="main-content">
+    <div class="content-header">
+        Recuperación
+    </div>
+
+    <div class="content-body">
+        <div class="section-title-row">
+            <h2 class="section-title">Verificación de datos</h2>
+
+            <div class="folio-info">
+                Folio <span>{{ folio }}</span>
+                Fecha y hora de registro <span>{{ fechaHoraRegistro }}</span>
+            </div>
+        </div>
+
+        <div class="card col-12 col-lg-8">
+            <i class="fas fa-pencil-alt edit-icon" (click)="onEdit('recuperacion')"></i>
+
+            <h3 class="card-title">Información de la recuperación</h3>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="field-label">Documento de recuperación</div>
+                    <div class="field-value highlight">{{ recuperacion.documento }}</div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="field-label">Fecha del documento</div>
+                    <div class="field-value">{{ recuperacion.fechaDocumento }}</div>
+                </div>
+                <div class="col-md-6">
+                    <div class="field-label">Hora del documento</div>
+                    <div class="field-value">{{ recuperacion.horaDocumento }}</div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="field-label">Agencia MP del documento</div>
+                    <div class="field-value">{{ recuperacion.agenciaMp }}</div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="field-label">Fecha de recuperación</div>
+                    <div class="field-value">{{ recuperacion.fechaRecuperacion }}</div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="field-label">Agente MP del documento</div>
+                    <div class="field-value">{{ recuperacion.agenteMp }}</div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="field-label">Hora de recuperación</div>
+                    <div class="field-value">{{ recuperacion.horaRecuperacion }}</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <i class="fas fa-pencil-alt edit-icon" (click)="onEdit('ficha')"></i>
+
+            <h3 class="card-title">Ficha criminógena</h3>
+
+            <div class="row mb-3">
+                <div class="col-md-3">
+                    <div class="field-label">Nombre de la banda</div>
+                    <div class="field-value">{{ ficha.nombreBanda }}</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="field-label">Modalidad delictiva</div>
+                    <div class="field-value">{{ ficha.modalidadDelictiva }}</div>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th>No. de integrante</th>
+                            <th>Alias</th>
+                            <th>Nombre</th>
+                            <th>Primer apellido</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor="let it of integrantes; let i = index">
+                            <td>{{ it.noIntegrante }}</td>
+                            <td>{{ it.alias }}</td>
+                            <td>{{ it.nombre }}</td>
+                            <td>{{ it.primerApellido }}</td>
+                            <td>
+                                <i class="far fa-trash-alt trash-icon" (click)="onDeleteIntegrante(i)" title="Eliminar"
+                                    role="button" tabindex="0"></i>
+                            </td>
+                        </tr>
+
+                        <tr *ngIf="integrantes.length === 0">
+                            <td colspan="5" class="text-center text-muted py-3">
+                                Sin integrantes registrados
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="card">
+            <i class="fas fa-pencil-alt edit-icon" (click)="onEdit('vehiculo')"></i>
+
+            <h3 class="card-title">Información del vehículo</h3>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="field-label">Serie / VIN</div>
+                    <div class="field-value">{{ vehiculo.vin }}</div>
+
+                    <div class="field-label">NRPV</div>
+                    <div class="field-value">{{ vehiculo.nrpv }}</div>
+
+                    <div class="field-label">Entidad</div>
+                    <div class="field-value">{{ vehiculo.entidad }}</div>
+
+                    <div class="field-label">Submarca</div>
+                    <div class="field-value">{{ vehiculo.submarca }}</div>
+
+                    <div class="field-label">No. de motor</div>
+                    <div class="field-value">{{ vehiculo.motor }}</div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="field-label">Placa</div>
+                    <div class="field-value">{{ vehiculo.placa }}</div>
+
+                    <div class="field-label">Tipo de vehículo</div>
+                    <div class="field-value">{{ vehiculo.tipoVehiculo }}</div>
+
+                    <div class="field-label">Tipo de uso</div>
+                    <div class="field-value">{{ vehiculo.tipoUso }}</div>
+
+                    <div class="field-label">Permiso</div>
+                    <div class="field-value">{{ vehiculo.permiso }}</div>
+
+                    <div class="field-label">Señas Particulares</div>
+                    <div class="field-value">{{ vehiculo.senas }}</div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="field-label">Procedencia de la placa</div>
+                    <div class="field-value">{{ vehiculo.procedenciaPlaca }}</div>
+
+                    <div class="field-label">Modelo</div>
+                    <div class="field-value">{{ vehiculo.modelo }}</div>
+
+                    <div class="field-label">Marca</div>
+                    <div class="field-value">{{ vehiculo.marca }}</div>
+
+                    <div class="field-label">Color</div>
+                    <div class="field-value">{{ vehiculo.color }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-actions">
+        <button class="btn btn-save" type="button" (click)="onGuardar()">
+            Guardar
+            <i class="far fa-save"></i>
+        </button>
+    </div>
+</main>
+
+<app-modal-alta-recuperacion *ngIf="showSuccessModal" [data]="modalData" (closed)="onCloseSuccessModal()">
+</app-modal-alta-recuperacion>

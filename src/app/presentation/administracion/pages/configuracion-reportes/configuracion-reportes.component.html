@@ -1,0 +1,78 @@
+<div class="content-area">
+    <div class="breadcrumb-bar">
+        Administración
+    </div>
+
+    <div class="form-container">
+        <div class="required-label">*Campos requeridos</div>
+        <h2 class="section-title">Configuración de Reportes</h2>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="radio-group-title">Elegir carga de gráfico</div>
+
+                <label class="custom-radio">
+                    <input type="radio" name="carga_grafico" value="grafico-izquierdo" [(ngModel)]="tipoCargaGrafico" />
+                    Gráfico izquierdo
+                </label>
+
+                <label class="custom-radio">
+                    <input type="radio" name="carga_grafico" value="grafico-derecho" [(ngModel)]="tipoCargaGrafico" />
+                    Gráfico derecho
+                </label>
+            </div>
+
+            <div class="col-md-6">
+                <div class="radio-group-title">Modificación de texto</div>
+
+                <label class="custom-radio">
+                    <input type="radio" name="mod_texto" value="elementos-texto" [(ngModel)]="tipoModTexto" />
+                    Elementos de texto
+                </label>
+            </div>
+        </div>
+
+        <div class="file-upload-section">
+            <div class="file-upload-label">Tipo de documento</div>
+
+            <div class="custom-file-input">
+                <label class="file-btn mb-0">
+                    Elegir archivo
+                    <input type="file" hidden (change)="onArchivoSeleccionado($event)" />
+                </label>
+
+                <div class="file-path">{{ archivoNombre }}</div>
+            </div>
+        </div>
+
+        <table class="results-table">
+            <thead>
+                <tr>
+                    <th>Tipo de documento</th>
+                    <th>Nombre de archivo</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let doc of documentos; let i = index" [class.selected]="i === 0">
+                    <td>{{ doc.tipoDocumento }}</td>
+                    <td>{{ doc.nombreArchivo }}</td>
+                    <td class="action-icons">
+                        <i class="far fa-eye" (click)="onVerDocumento(i)"></i>
+                        <i class="far fa-trash-alt" (click)="onEliminarDocumento(i)"></i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="email-field">
+            <label>Correo para envío de comprobante*</label>
+            <input type="text" class="email-input" [(ngModel)]="correoComprobante" />
+        </div>
+
+        <div class="clearfix">
+            <button class="btn btn-accept" type="button" (click)="onAceptar()">Aceptar</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,100 @@
+<main class="content">
+    <div class="banner-title">Predenuncia</div>
+
+    <div class="required-text">*Campos requeridos</div>
+
+    <div class="form-card">
+        <div class="card-header-custom">
+            <h2 class="card-title-custom">Identificación del denunciante</h2>
+
+            <div class="folio-info">
+                <span class="folio-label">Folio</span> {{ folio }}
+                <span class="folio-label">Fecha y hora de registro</span> {{ fechaRegistro }}
+            </div>
+        </div>
+
+        <div class="text-center mb-2">
+            <label class="form-label-custom">
+                Tipo de persona <span class="asterisk">*</span>
+            </label>
+        </div>
+
+        <div class="radio-group">
+            <label class="radio-item">
+                <input type="radio" name="tipoPersona" [checked]="tipoPersona === 'fisica'"
+                    (change)="setTipoPersona('fisica')" />
+                <span>Física</span>
+            </label>
+
+            <label class="radio-item">
+                <input type="radio" name="tipoPersona" [checked]="tipoPersona === 'moral'"
+                    (change)="setTipoPersona('moral')" />
+                <span>Moral</span>
+            </label>
+        </div>
+
+        <div class="row g-3 mb-4">
+            <div class="col-md-4">
+                <label class="form-label-custom">
+                    Nombre (s) o razón social <span class="asterisk">*</span>
+                </label>
+                <input class="form-control-custom" type="text" [(ngModel)]="nombreRazonSocial"
+                    name="nombreRazonSocial" />
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label-custom">
+                    Primer apellido <span class="asterisk">*</span>
+                </label>
+                <input class="form-control-custom" type="text" [(ngModel)]="primerApellido" name="primerApellido"
+                    [disabled]="tipoPersona === 'moral'" />
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label-custom">Segundo apellido</label>
+                <input class="form-control-custom" type="text" [(ngModel)]="segundoApellido" name="segundoApellido"
+                    [disabled]="tipoPersona === 'moral'" />
+            </div>
+        </div>
+
+        <div class="row g-3 mb-4">
+            <div class="col-md-4">
+                <label class="form-label-custom">CURP</label>
+                <input class="form-control-custom" type="text" [(ngModel)]="curp" name="curp"
+                    [disabled]="tipoPersona === 'moral'" />
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label-custom">RFC</label>
+                <input class="form-control-custom" type="text" [(ngModel)]="rfc" name="rfc" />
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label-custom">
+                    Sexo <span class="asterisk">*</span>
+                </label>
+                <select class="form-select-custom" [(ngModel)]="sexo" name="sexo" [disabled]="tipoPersona === 'moral'">
+                    <option value="">Seleccionar</option>
+                    <option value="M">Masculino</option>
+                    <option value="F">Femenino</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row g-3 mb-2">
+            <div class="col-md-4">
+                <label class="form-label-custom">Teléfono</label>
+                <input class="form-control-custom" type="text" [(ngModel)]="telefono" name="telefono" />
+            </div>
+
+            <div class="col-md-8">
+                <label class="form-label-custom">Correo electrónico</label>
+                <input class="form-control-custom" type="email" [(ngModel)]="correo" name="correo" />
+            </div>
+        </div>
+    </div>
+
+    <button class="btn-next" type="button" (click)="onNext()">
+        Siguiente <i class="far fa-arrow-alt-circle-right"></i>
+    </button>
+</main>

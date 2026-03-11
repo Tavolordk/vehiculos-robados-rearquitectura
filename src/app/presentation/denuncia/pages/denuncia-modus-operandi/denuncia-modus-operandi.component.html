@@ -1,0 +1,233 @@
+<main class="main-content">
+    <div class="page-header-bar">Denuncia</div>
+
+    <div class="required-note">*Campos requeridos</div>
+
+    <div class="content-card">
+        <h5 class="section-title">Información del Modus Operandi</h5>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label class="form-label text-center">Modalidad del robo*</label>
+
+                <div class="radio-group">
+                    <div class="form-check">
+                        <input class="form-check-input" id="sinViolencia" name="modalidad" type="radio" value="sin"
+                            [(ngModel)]="modalidad" />
+                        <label class="form-check-label" for="sinViolencia">Sin violencia</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" id="conViolencia" name="modalidad" type="radio" value="con"
+                            [(ngModel)]="modalidad" />
+                        <label class="form-check-label" for="conViolencia">Con violencia</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">No. de victimas durante el robo*</label>
+                <input class="form-control" type="text" [(ngModel)]="victimas" />
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">No. de presuntos responsables*</label>
+                <input class="form-control" type="text" [(ngModel)]="presuntos" />
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label class="form-label">Tipo de lugar donde se efectuó el robo*</label>
+                <select class="form-select" [(ngModel)]="tipoLugar">
+                    <option selected="">Seleccionar</option>
+                    <option value="casa">Casa habitación</option>
+                    <option value="calle">Vía pública</option>
+                    <option value="estacionamiento">Estacionamiento</option>
+                </select>
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">El delincuente se hizo pasar por</label>
+                <select class="form-select" [(ngModel)]="seHizoPasarPor">
+                    <option selected="">Seleccionar</option>
+                    <option value="policia">Policía</option>
+                    <option value="empleado">Empleado</option>
+                    <option value="otro">Otro</option>
+                </select>
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">Vestimenta</label>
+                <input class="form-control" type="text" [(ngModel)]="vestimenta" />
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Peculiaridades</label>
+            <input class="form-control" type="text" [(ngModel)]="peculiaridades" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Señas particulares</label>
+            <input class="form-control" type="text" [(ngModel)]="senasParticulares" />
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <label class="form-label">Comportamiento</label>
+                <input class="form-control" type="text" [(ngModel)]="comportamiento" />
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">Armas utilizadas</label>
+                <div class="hint">(Puede seleccionar más de uno)</div>
+
+                <div class="checkbox-list">
+                    <div class="form-check">
+                        <input class="form-check-input" id="armaBlanca" type="checkbox" [ngModel]="armas.armaBlanca"
+                            (ngModelChange)="updateArma('armaBlanca', $event)" />
+                        <label class="form-check-label" for="armaBlanca">Arma blanca</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" id="armaFuego" type="checkbox" [ngModel]="armas.armaFuego"
+                            (ngModelChange)="updateArma('armaFuego', $event)" />
+                        <label class="form-check-label" for="armaFuego">Arma de fuego</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" id="fabricacion" type="checkbox"
+                            [ngModel]="armas.fabricacionRudimentaria"
+                            (ngModelChange)="updateArma('fabricacionRudimentaria', $event)" />
+                        <label class="form-check-label" for="fabricacion">Fabricación rudimentaria</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">Delitos asociados</label>
+                <div class="hint">(Puede seleccionar más de uno)</div>
+
+                <div class="checkbox-list">
+                    <div class="form-check">
+                        <input class="form-check-input" id="contraSalud" type="checkbox" [ngModel]="delitos.contraSalud"
+                            (ngModelChange)="updateDelito('contraSalud', $event)" />
+                        <label class="form-check-label" for="contraSalud">Contra la salud</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" id="homicidio" type="checkbox" [ngModel]="delitos.homicidio"
+                            (ngModelChange)="updateDelito('homicidio', $event)" />
+                        <label class="form-check-label" for="homicidio">Homicidio</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" id="lesiones" type="checkbox" [ngModel]="delitos.lesiones"
+                            (ngModelChange)="updateDelito('lesiones', $event)" />
+                        <label class="form-check-label" for="lesiones">Lesiones</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" id="secuestro" type="checkbox" [ngModel]="delitos.secuestro"
+                            (ngModelChange)="updateDelito('secuestro', $event)" />
+                        <label class="form-check-label" for="secuestro">Secuestro</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" id="violacion" type="checkbox" [ngModel]="delitos.violacion"
+                            (ngModelChange)="updateDelito('violacion', $event)" />
+                        <label class="form-check-label" for="violacion">Violación</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-card">
+        <h5 class="section-title">Vehículos asociados al robo</h5>
+
+        <div class="row mb-3">
+            <div class="col-md-3">
+                <label class="form-label">Marca</label>
+                <select class="form-select" [(ngModel)]="marca">
+                    <option selected="">Seleccionar</option>
+                    <option value="Nissan">Nissan</option>
+                    <option value="Chevrolet">Chevrolet</option>
+                    <option value="KIA">KIA</option>
+                </select>
+            </div>
+
+            <div class="col-md-3">
+                <label class="form-label">Submarca</label>
+                <select class="form-select" [(ngModel)]="submarca">
+                    <option selected="">Seleccionar</option>
+                    <option value="Tsuru">Tsuru</option>
+                    <option value="Captiva">Captiva</option>
+                    <option value="Tucson">Tucson</option>
+                </select>
+            </div>
+
+            <div class="col-md-3">
+                <label class="form-label">Color</label>
+                <select class="form-select" [(ngModel)]="color">
+                    <option selected="">Seleccionar</option>
+                    <option value="Azul">Azul</option>
+                    <option value="Rojo">Rojo</option>
+                    <option value="Gris">Gris</option>
+                </select>
+            </div>
+
+            <div class="col-md-3">
+                <label class="form-label">Placa</label>
+                <input class="form-control" type="text" [(ngModel)]="placa" />
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Observaciones</label>
+            <textarea class="form-control" rows="3" style="resize: none;" [(ngModel)]="observaciones"
+                [attr.maxLength]="maxObs"></textarea>
+
+            <div class="char-count">{{ maxObs }} CARACTERES</div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <table class="table-custom">
+                    <thead>
+                        <tr>
+                            <th>Marca</th>
+                            <th>Submarca</th>
+                            <th>Color</th>
+                            <th>Placa</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor="let a of asociados; let i = index">
+                            <td>{{ a.marca }}</td>
+                            <td>{{ a.submarca }}</td>
+                            <td>{{ a.color }}</td>
+                            <td>{{ a.placa }}</td>
+                            <td class="text-end">
+                                <i class="fas fa-trash-alt trash-icon" (click)="onEliminarAuto(i)"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-md-4 d-flex align-items-end justify-content-end">
+                <button type="button" class="btn btn-add" (click)="onAgregarAuto()">Agregar auto</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-end mt-4 mb-5">
+        <button type="button" class="btn-next" (click)="onSiguiente()">
+            Siguiente <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+</main>

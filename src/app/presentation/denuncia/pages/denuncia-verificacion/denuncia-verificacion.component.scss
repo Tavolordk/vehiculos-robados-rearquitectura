@@ -1,0 +1,152 @@
+:host {
+  display: block;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+.page-header-bar {
+  background-color: #8a1c46;
+  color: white;
+  padding: 8px 20px;
+  font-weight: bold;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.content-wrapper {
+  padding: 20px;
+}
+
+.verification-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  color: #8a1c46;
+  font-weight: bold;
+  font-size: 1rem;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.folio-info {
+  font-size: 0.85rem;
+  color: #555;
+  font-weight: normal;
+}
+
+.folio-info strong {
+  color: #8a6d3b;
+  font-weight: bold;
+  margin-right: 6px;
+}
+
+.two-col-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+
+.card {
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
+  background-color: #fff;
+}
+
+.card-header-custom {
+  padding: 15px 20px 5px;
+  font-weight: bold;
+  color: #8a1c46;
+  font-size: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.edit-icon {
+  color: #333;
+  cursor: pointer;
+}
+
+.card-body {
+  padding: 10px 20px 20px;
+}
+
+.table-custom {
+  width: 100%;
+  margin-top: 10px;
+  font-size: 0.8rem;
+  border-collapse: collapse;
+}
+
+.table-custom th {
+  font-weight: bold;
+  padding: 8px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+
+.table-custom td {
+  padding: 8px;
+  border-bottom: 1px solid #eee;
+}
+
+.save-btn-container {
+  text-align: right;
+  padding: 20px 0;
+}
+
+.btn-save {
+  background-color: #b09658;
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+}
+
+.btn-save i {
+  margin-left: 8px;
+}
+
+:host ::-webkit-scrollbar {
+  width: 6px;
+}
+
+:host ::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+}
+
+@media (max-width: 992px) {
+  .two-col-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .save-btn-container {
+    padding-top: 0;
+  }
+}
+
+@media (max-width: 576px) {
+  .content-wrapper {
+    padding: 12px;
+  }
+
+  .card-header-custom {
+    gap: 10px;
+  }
+
+  .table-custom {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}

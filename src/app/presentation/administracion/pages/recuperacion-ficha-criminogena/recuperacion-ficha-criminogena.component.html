@@ -1,0 +1,354 @@
+<div class="red-banner">
+    Recuperación
+</div>
+
+<div class="content-wrapper">
+    <div class="mb-2 required-text">
+        *Campos requeridos
+    </div>
+
+    <div class="card">
+        <div class="card-header-custom">
+            Ficha criminógena
+
+            <div class="folio-info">
+                <span>Folio</span>
+                {{ folio }}
+                <span>Fecha y hora de registro</span>
+                {{ fechaHoraRegistro }}
+            </div>
+        </div>
+
+        <div class="card-body pt-0">
+            <div class="row mb-3">
+                <div class="col-md-3">
+                    <div class="d-flex align-items-center mt-4">
+                        <label class="form-label me-3 mb-0">Ficha criminógena</label>
+
+                        <div class="radio-group">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" id="si" name="fichaRadio" type="radio" value="si"
+                                    [checked]="fichaRadio === 'si'" (change)="setFichaRadio('si')" />
+                                <label class="form-check-label" for="si">Sí</label>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" id="no" name="fichaRadio" type="radio" value="no"
+                                    [checked]="fichaRadio === 'no'" (change)="setFichaRadio('no')" />
+                                <label class="form-check-label" for="no">No</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <label class="form-label">Nombre de la banda</label>
+                    <input class="form-control" type="text" [ngModel]="nombreBanda"
+                        (ngModelChange)="nombreBanda = $event" />
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Modalidad delictiva</label>
+                    <input class="form-control" type="text" [ngModel]="modalidadDelictiva"
+                        (ngModelChange)="modalidadDelictiva = $event" />
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Medio de comisión</label>
+                    <select class="form-select" [ngModel]="medioComision" (ngModelChange)="medioComision = $event">
+                        <option selected>Seleccionar</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header-custom">
+            Integrantes
+        </div>
+
+        <div class="card-body pt-0">
+            <div class="card p-2 mb-4" style="background-color: #fff; border: 1px solid #eee;">
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th>No. de Integrante</th>
+                            <th>Alias</th>
+                            <th>Nombre</th>
+                            <th>Primer apellido</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor="let item of integrantes; let i = index">
+                            <td>{{ item.noIntegrante }}</td>
+                            <td>{{ item.alias }}</td>
+                            <td>{{ item.nombre }}</td>
+                            <td>{{ item.primerApellido }}</td>
+                            <td>
+                                <i class="far fa-trash-alt delete-icon" (click)="onDeleteIntegrante(i)"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label class="form-label">Nombre (s)*</label>
+                    <input class="form-control" type="text" [ngModel]="formIntegrante.nombre"
+                        (ngModelChange)="updateIntegranteField('nombre', $event)" />
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Primer apellido *</label>
+                    <input class="form-control" type="text" [ngModel]="formIntegrante.primerApellido"
+                        (ngModelChange)="updateIntegranteField('primerApellido', $event)" />
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Segundo apellido</label>
+                    <input class="form-control" type="text" [ngModel]="formIntegrante.segundoApellido"
+                        (ngModelChange)="updateIntegranteField('segundoApellido', $event)" />
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label class="form-label">Alias*</label>
+                    <input class="form-control" type="text" [ngModel]="formIntegrante.alias"
+                        (ngModelChange)="updateIntegranteField('alias', $event)" />
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Fecha de nacimiento</label>
+                    <div class="input-group">
+                        <input class="form-control" placeholder="dd/mm/aaaa" type="text"
+                            [ngModel]="formIntegrante.fechaNacimiento"
+                            (ngModelChange)="updateIntegranteField('fechaNacimiento', $event)" />
+                        <span class="input-group-text bg-secondary text-white border-0" style="opacity: 0.5;">
+                            <i class="far fa-calendar-alt"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Lugar de origen</label>
+                    <input class="form-control" type="text" [ngModel]="formIntegrante.lugarOrigen"
+                        (ngModelChange)="updateIntegranteField('lugarOrigen', $event)" />
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label class="form-label">Complexión</label>
+                    <select class="form-select" [ngModel]="formIntegrante.complexion"
+                        (ngModelChange)="updateIntegranteField('complexion', $event)">
+                        <option selected>Seleccionar</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Color de piel</label>
+                    <select class="form-select" [ngModel]="formIntegrante.colorPiel"
+                        (ngModelChange)="updateIntegranteField('colorPiel', $event)">
+                        <option selected>Seleccionar</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Estatura (cms)</label>
+                    <input class="form-control" type="text" [ngModel]="formIntegrante.estatura"
+                        (ngModelChange)="updateIntegranteField('estatura', $event)" />
+                </div>
+            </div>
+
+            <div class="section-title">Cabello</div>
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label class="form-label">Cantidad</label>
+                    <select class="form-select" [ngModel]="formIntegrante.cabelloCantidad"
+                        (ngModelChange)="updateIntegranteField('cabelloCantidad', $event)">
+                        <option selected>Seleccionar</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Forma</label>
+                    <select class="form-select" [ngModel]="formIntegrante.cabelloForma"
+                        (ngModelChange)="updateIntegranteField('cabelloForma', $event)">
+                        <option selected>Seleccionar</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Color</label>
+                    <select class="form-select" [ngModel]="formIntegrante.cabelloColor"
+                        (ngModelChange)="updateIntegranteField('cabelloColor', $event)">
+                        <option selected>Seleccionar</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="section-title">Cejas</div>
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label class="form-label">Dirección</label>
+                    <select class="form-select" [ngModel]="formIntegrante.cejasDireccion"
+                        (ngModelChange)="updateIntegranteField('cejasDireccion', $event)">
+                        <option selected>Seleccionar</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Forma</label>
+                    <select class="form-select" [ngModel]="formIntegrante.cejasForma"
+                        (ngModelChange)="updateIntegranteField('cejasForma', $event)">
+                        <option selected>Seleccionar</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Tamaño</label>
+                    <select class="form-select" [ngModel]="formIntegrante.cejasTamano"
+                        (ngModelChange)="updateIntegranteField('cejasTamano', $event)">
+                        <option selected>Seleccionar</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="section-title">Ojos</div>
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label class="form-label">Color</label>
+                    <select class="form-select" [ngModel]="formIntegrante.ojosColor"
+                        (ngModelChange)="updateIntegranteField('ojosColor', $event)">
+                        <option selected>Seleccionar</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Forma</label>
+                    <select class="form-select" [ngModel]="formIntegrante.ojosForma"
+                        (ngModelChange)="updateIntegranteField('ojosForma', $event)">
+                        <option selected>Seleccionar</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Tamaño</label>
+                    <select class="form-select" [ngModel]="formIntegrante.ojosTamano"
+                        (ngModelChange)="updateIntegranteField('ojosTamano', $event)">
+                        <option selected>Seleccionar</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="section-title">Otros</div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label class="form-label">Ocupación</label>
+                    <input class="form-control" type="text" [ngModel]="formIntegrante.ocupacion"
+                        (ngModelChange)="updateIntegranteField('ocupacion', $event)" />
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Modalidad</label>
+                    <input class="form-control" type="text" [ngModel]="formIntegrante.modalidad"
+                        (ngModelChange)="updateIntegranteField('modalidad', $event)" />
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-12">
+                    <label class="form-label">Señas particulares</label>
+                    <input class="form-control" type="text" [ngModel]="formIntegrante.senasParticulares"
+                        (ngModelChange)="updateIntegranteField('senasParticulares', $event)" />
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-12">
+                    <label class="form-label">Observaciones</label>
+                    <input class="form-control" type="text" [ngModel]="formIntegrante.observaciones"
+                        (ngModelChange)="updateIntegranteField('observaciones', $event)" />
+                </div>
+            </div>
+
+            <div class="section-title">Domicilio perteneciente al integrante</div>
+
+            <div class="row mb-3">
+                <div class="col-12">
+                    <label class="form-label">Calle y número</label>
+                    <input class="form-control" type="text" [ngModel]="formIntegrante.calleNumero"
+                        (ngModelChange)="updateIntegranteField('calleNumero', $event)" />
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-12">
+                    <label class="form-label">Referencia</label>
+                    <input class="form-control" type="text" [ngModel]="formIntegrante.referencia"
+                        (ngModelChange)="updateIntegranteField('referencia', $event)" />
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label class="form-label">Colonia</label>
+                    <select class="form-select" [ngModel]="formIntegrante.colonia"
+                        (ngModelChange)="updateIntegranteField('colonia', $event)">
+                        <option selected>Seleccionar</option>
+                    </select>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Entidad</label>
+                    <select class="form-select" [ngModel]="formIntegrante.entidad"
+                        (ngModelChange)="updateIntegranteField('entidad', $event)">
+                        <option selected>Seleccionar</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label class="form-label">Municipio</label>
+                    <select class="form-select" [ngModel]="formIntegrante.municipio"
+                        (ngModelChange)="updateIntegranteField('municipio', $event)">
+                        <option selected>Seleccionar</option>
+                    </select>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">C.P.</label>
+                    <input class="form-control" type="text" [ngModel]="formIntegrante.cp"
+                        (ngModelChange)="updateIntegranteField('cp', $event)" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <button type="button" class="btn btn-add" (click)="onAgregarIntegrante()">
+                        Agregar integrante
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <button type="button" class="btn btn-next" (click)="onSiguiente()">
+                Siguiente
+                <i class="fas fa-chevron-circle-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <div style="height: 50px;"></div>
+</div>

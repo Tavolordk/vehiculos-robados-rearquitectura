@@ -1,0 +1,154 @@
+<main class="main-content">
+    <div class="content-header">
+        Entrega
+    </div>
+
+    <div class="content-body">
+        <section class="info-card">
+            <div class="required-text">*Campos requeridos</div>
+
+            <div class="row mb-3 align-items-start">
+                <div class="col-12 col-lg-6">
+                    <h2 class="section-title">Entrega de vehículo</h2>
+                </div>
+
+                <div class="col-12 col-lg-6 folio-info">
+                    <span class="me-4">
+                        Folio <span class="folio-strong">{{ folio }}</span>
+                    </span>
+                    <span>
+                        Fecha y hora de registro <span class="folio-strong">{{ fechaHoraRegistro }}</span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="info-grid">
+                <div class="row mb-2">
+                    <div class="col-md-4 info-label">
+                        No. de averiguación previa / Carpeta de Investigación
+                    </div>
+                    <div class="col-md-2 info-value">
+                        {{ info.carpeta }}
+                    </div>
+                    <div class="col-md-4 info-label">
+                        No. de folio de denuncia
+                    </div>
+                    <div class="col-md-2 info-value">
+                        {{ info.folioDenuncia }}
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-4 info-label">Fecha de denuncia</div>
+                    <div class="col-md-2 info-value">{{ info.fechaDenuncia }}</div>
+                    <div class="col-md-4 info-label">Hora de denuncia</div>
+                    <div class="col-md-2 info-value">{{ info.horaDenuncia }}</div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-4 info-label">Fecha del robo</div>
+                    <div class="col-md-2 info-value">{{ info.fechaRobo }}</div>
+                    <div class="col-md-4 info-label">Hora del robo</div>
+                    <div class="col-md-2 info-value">{{ info.horaRobo }}</div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-4 info-label">Fecha de la recuperación</div>
+                    <div class="col-md-2 info-value">{{ info.fechaRecuperacion }}</div>
+                    <div class="col-md-4 info-label">Hora de la recuperación</div>
+                    <div class="col-md-2 info-value">{{ info.horaRecuperacion }}</div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-4 info-label">Serie</div>
+                    <div class="col-md-2 info-value">{{ info.serie }}</div>
+                    <div class="col-md-4 info-label">Placa</div>
+                    <div class="col-md-2 info-value">{{ info.placa }}</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="info-card">
+            <h2 class="section-title">Captura información de la entrega</h2>
+
+            <form (submit)="$event.preventDefault()">
+                <div class="row row-spacing">
+                    <div class="col-md-4">
+                        <label class="form-label">Fecha de la entrega*</label>
+                        <div class="input-group">
+                            <input class="form-control text-center" type="text" [ngModel]="entrega.fechaEntrega"
+                                name="fechaEntrega" (ngModelChange)="updateEntregaField('fechaEntrega', $event)" />
+                            <span class="input-group-text">
+                                <i class="far fa-calendar-alt"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Hora de la entrega*</label>
+                        <input class="form-control text-center" placeholder="HH:MM" type="text"
+                            [ngModel]="entrega.horaEntrega" name="horaEntrega"
+                            (ngModelChange)="updateEntregaField('horaEntrega', $event)" />
+                    </div>
+                </div>
+
+                <div class="row row-spacing">
+                    <div class="col-12">
+                        <label class="form-label">Calle y número</label>
+                        <input class="form-control" type="text" [ngModel]="entrega.calleNumero" name="calleNumero"
+                            (ngModelChange)="updateEntregaField('calleNumero', $event)" />
+                    </div>
+                </div>
+
+                <div class="row row-spacing">
+                    <div class="col-12">
+                        <label class="form-label">Referencia</label>
+                        <input class="form-control" type="text" [ngModel]="entrega.referencia" name="referencia"
+                            (ngModelChange)="updateEntregaField('referencia', $event)" />
+                    </div>
+                </div>
+
+                <div class="row row-spacing">
+                    <div class="col-md-6">
+                        <label class="form-label">Colonia</label>
+                        <select class="form-select text-center" [ngModel]="entrega.colonia" name="colonia"
+                            (ngModelChange)="updateEntregaField('colonia', $event)">
+                            <option *ngFor="let c of catalogos.colonias" [ngValue]="c">{{ c }}</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Entidad</label>
+                        <select class="form-select text-center" [ngModel]="entrega.entidad" name="entidad"
+                            (ngModelChange)="updateEntregaField('entidad', $event)">
+                            <option *ngFor="let e of catalogos.entidades" [ngValue]="e">{{ e }}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row row-spacing">
+                    <div class="col-md-6">
+                        <label class="form-label">Municipio</label>
+                        <select class="form-select text-center" [ngModel]="entrega.municipio" name="municipio"
+                            (ngModelChange)="updateEntregaField('municipio', $event)">
+                            <option *ngFor="let m of catalogos.municipios" [ngValue]="m">{{ m }}</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">C.P.</label>
+                        <input class="form-control" type="text" [ngModel]="entrega.cp" name="cp"
+                            (ngModelChange)="updateEntregaField('cp', $event)" />
+                    </div>
+                </div>
+            </form>
+        </section>
+
+        <div class="footer-actions">
+            <button type="button" class="btn btn-next" (click)="onSiguiente()">
+                Siguiente
+                <i class="far fa-arrow-alt-circle-right"></i>
+            </button>
+        </div>
+    </div>
+</main>

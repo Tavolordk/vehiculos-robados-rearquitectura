@@ -1,0 +1,197 @@
+<main class="main-content">
+    <div class="content-header">Denuncia</div>
+
+    <div class="form-container">
+        <div class="required-text">*Campos requeridos</div>
+
+        <div class="info-header">
+            <div class="section-title info-title">Información del robo</div>
+
+            <div class="info-right">
+                <span class="folio">Folio {{ folio }}</span>
+                <span class="fecha ms-3">Fecha y hora de registro</span>
+                {{ fechaRegistro }}
+            </div>
+        </div>
+
+        <div class="section-title">Averiguación previa</div>
+
+        <div class="row row-spacing">
+            <div class="col-md-4">
+                <label class="form-label">No. averiguación previa*</label>
+                <input class="form-control" type="text" [(ngModel)]="averPrev" />
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">Confirmación del No. averiguación previa*</label>
+                <input class="form-control" type="text" [(ngModel)]="averPrevConfirm" />
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">Fecha de denuncia*</label>
+                <div class="date-input-wrapper">
+                    <input class="form-control text-center" type="text" [(ngModel)]="fechaDenuncia" />
+                    <span class="input-group-text">
+                        <i class="far fa-calendar-alt"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row row-spacing">
+            <div class="col-md-4">
+                <label class="form-label">Hora de denuncia*</label>
+                <input class="form-control text-center" type="text" [(ngModel)]="horaDenuncia" />
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">Agencia del Ministerio público*</label>
+                <input class="form-control" type="text" [(ngModel)]="agenciaMP" />
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">Agente del Ministerio público*</label>
+                <input class="form-control" type="text" [(ngModel)]="agenteMP" />
+            </div>
+        </div>
+
+        <hr class="soft-hr" />
+
+        <div class="section-title">Información de la denuncia</div>
+
+        <div class="row row-spacing">
+            <div class="col-md-3">
+                <label class="form-label">Fecha de robo*</label>
+                <div class="date-input-wrapper">
+                    <input class="form-control text-center" placeholder="dd/mm/aaaa" type="text"
+                        [(ngModel)]="fechaRobo" />
+                    <span class="input-group-text">
+                        <i class="far fa-calendar-alt"></i>
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <label class="form-label">Hora del robo*</label>
+                <input class="form-control text-center" type="text" [(ngModel)]="horaRobo" />
+            </div>
+        </div>
+
+        <div class="row row-spacing">
+            <div class="col-md-3">
+                <label class="form-label">Entidad*</label>
+                <select class="form-select" [(ngModel)]="entidad">
+                    <option *ngFor="let e of entidades" [value]="e">{{ e }}</option>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Municipio*</label>
+                <select class="form-select" [(ngModel)]="municipio">
+                    <option *ngFor="let m of municipios" [value]="m">{{ m }}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="custom-radio mt-3">
+            <input id="urbana" name="locationType" type="radio" value="urbana" [(ngModel)]="locationType" />
+            <label for="urbana">A Urbana</label>
+        </div>
+
+        <ng-container *ngIf="locationType === 'urbana'">
+            <div class="row row-spacing">
+                <div class="col-md-6">
+                    <label class="form-label">Colonia*</label>
+                    <select class="form-select" [(ngModel)]="colonia">
+                        <option *ngFor="let c of colonias" [value]="c">{{ c }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row row-spacing">
+                <div class="col-12">
+                    <label class="form-label">Calle*</label>
+                    <input class="form-control" type="text" [(ngModel)]="calle" />
+                </div>
+            </div>
+
+            <div class="row row-spacing">
+                <div class="col-md-4">
+                    <label class="form-label">Número exterior</label>
+                    <input class="form-control" type="text" [(ngModel)]="numExterior" />
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Número interior</label>
+                    <input class="form-control" type="text" [(ngModel)]="numInterior" />
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">C.P.</label>
+                    <input class="form-control" type="text" [(ngModel)]="cp" />
+                </div>
+            </div>
+
+            <div class="row row-spacing">
+                <div class="col-12">
+                    <label class="form-label">Referencia del lugar de los hechos</label>
+                    <input class="form-control" type="text" [(ngModel)]="referencia" />
+                </div>
+            </div>
+        </ng-container>
+
+        <div class="custom-radio mt-4">
+            <input id="coordenadas" name="locationType" type="radio" value="coordenadas" [(ngModel)]="locationType" />
+            <label for="coordenadas">B Coordenadas</label>
+        </div>
+
+        <ng-container *ngIf="locationType === 'coordenadas'">
+            <div class="row row-spacing">
+                <div class="col-md-3">
+                    <label class="form-label">Latitud*</label>
+                    <input class="form-control" type="text" [(ngModel)]="latitud" />
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label">Longitud*</label>
+                    <input class="form-control" type="text" [(ngModel)]="longitud" />
+                </div>
+            </div>
+        </ng-container>
+
+        <div class="custom-radio mt-4">
+            <input id="tramo" name="locationType" type="radio" value="tramo" [(ngModel)]="locationType" />
+            <label for="tramo">C Tramo carretero</label>
+        </div>
+
+        <ng-container *ngIf="locationType === 'tramo'">
+            <div class="row row-spacing">
+                <div class="col-md-3">
+                    <label class="form-label">Tramo*</label>
+                    <input class="form-control" type="text" [(ngModel)]="tramo" />
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label">Kilometro*</label>
+                    <input class="form-control" type="text" [(ngModel)]="kilometro" />
+                </div>
+            </div>
+        </ng-container>
+
+        <div class="row mt-3">
+            <div class="col-12">
+                <button type="button" class="btn-map" (click)="onMapa()">
+                    Mapa <i class="fas fa-map-marker-alt"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <button type="button" class="btn-next" (click)="onSiguiente()">
+                Siguiente <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+</main>

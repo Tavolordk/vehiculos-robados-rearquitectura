@@ -1,0 +1,159 @@
+<main class="main-content">
+    <div class="page-header-bar">Denuncia</div>
+
+    <div class="required-note">*Campos requeridos</div>
+
+    <div class="form-card">
+        <div class="info-header">
+            <h5 class="section-title mb-0">Identificación del denunciante</h5>
+
+            <div class="info-right">
+                <span class="folio-info me-3">Folio {{ folio }}</span>
+                <span class="folio-info">Fecha y hora de registro</span>
+                <span class="text-dark ms-2">{{ fechaRegistro }}</span>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-12 d-flex justify-content-center">
+                <div class="d-flex align-items-center flex-wrap gap-2">
+                    <label class="form-label me-3 mb-0">Tipo de persona*</label>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" id="fisica" name="tipoPersona" type="radio" value="fisica"
+                            [(ngModel)]="tipoPersona" />
+                        <label class="form-check-label" for="fisica">Física</label>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" id="moral" name="tipoPersona" type="radio" value="moral"
+                            [(ngModel)]="tipoPersona" />
+                        <label class="form-check-label" for="moral">Moral</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label class="form-label">Nombre (s) o razón social*</label>
+                <input class="form-control" type="text" [(ngModel)]="nombreRazon" />
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">Primer apellido*</label>
+                <input class="form-control" type="text" [(ngModel)]="primerApellido" />
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">Segundo apellido</label>
+                <input class="form-control" type="text" [(ngModel)]="segundoApellido" />
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label class="form-label">CURP</label>
+                <input class="form-control" type="text" [(ngModel)]="curp" />
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">RFC</label>
+                <input class="form-control" type="text" [(ngModel)]="rfc" />
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">Sexo*</label>
+                <select class="form-select" [(ngModel)]="sexo">
+                    <option>Seleccionar</option>
+                    <option value="H">Hombre</option>
+                    <option value="M">Mujer</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label class="form-label">Teléfono</label>
+                <input class="form-control" type="text" [(ngModel)]="telefono" />
+            </div>
+
+            <div class="col-md-8">
+                <label class="form-label">Correo electrónico</label>
+                <input class="form-control" type="email" [(ngModel)]="correo" />
+            </div>
+        </div>
+    </div>
+
+    <div class="form-card">
+        <h5 class="section-title">Domicilio del denunciante</h5>
+
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <div class="form-check">
+                    <label class="form-check-label fw-bold" for="mismoDomicilio" style="margin-right: 10px;">
+                        Mismo domicilio del robo
+                    </label>
+
+                    <input class="form-check-input" id="mismoDomicilio" name="domicilioOption" type="checkbox"
+                        [(ngModel)]="mismoDomicilioRobo" />
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label class="form-label">Entidad*</label>
+                <select class="form-select" [(ngModel)]="entidad">
+                    <option *ngFor="let e of entidades" [value]="e">{{ e }}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label class="form-label">Municipio*</label>
+                <select class="form-select" [(ngModel)]="municipio">
+                    <option *ngFor="let m of municipios" [value]="m">{{ m }}</option>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Colonia*</label>
+                <select class="form-select" [(ngModel)]="colonia">
+                    <option *ngFor="let c of colonias" [value]="c">{{ c }}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <label class="form-label">Calle*</label>
+                <input class="form-control" type="text" [(ngModel)]="calle" />
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label class="form-label">Número exterior*</label>
+                <input class="form-control" type="text" [(ngModel)]="numExterior" />
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">Número interior</label>
+                <input class="form-control" type="text" [(ngModel)]="numInterior" />
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">C.P.*</label>
+                <input class="form-control" type="text" [(ngModel)]="cp" />
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-end mb-5">
+        <button type="button" class="next-btn" (click)="onSiguiente()">
+            Siguiente <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+</main>

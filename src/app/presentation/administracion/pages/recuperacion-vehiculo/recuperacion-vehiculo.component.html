@@ -1,0 +1,109 @@
+<div class="content-area">
+    <div class="section-header">
+        Recuperación
+    </div>
+
+    <div class="required-text">
+        *Campos requeridos
+    </div>
+
+    <div class="form-card">
+        <div class="form-card-header">
+            <h5>Información del vehículo</h5>
+
+            <div class="d-flex flex-wrap gap-3">
+                <div class="folio-info">
+                    Folio <span>{{ folio }}</span>
+                </div>
+
+                <div class="folio-info">
+                    Fecha y hora de registro <span>{{ fechaHoraRegistro }}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-12 col-md-4">
+                <label class="form-label">Serie / VIN*</label>
+                <input class="form-control" [value]="vehiculo.serieVin" readonly type="text" />
+            </div>
+
+            <div class="col-12 col-md-4">
+                <label class="form-label">Motor</label>
+                <input class="form-control" [value]="vehiculo.motor" readonly type="text" />
+            </div>
+
+            <div class="col-12 col-md-4">
+                <label class="form-label">Permiso</label>
+                <input class="form-control" [value]="vehiculo.permiso" readonly type="text" />
+            </div>
+
+            <div class="col-12 col-md-4">
+                <label class="form-label">Procedencia de la placa*</label>
+                <select class="form-select" [value]="vehiculo.procedenciaPlaca" disabled>
+                    <option [value]="vehiculo.procedenciaPlaca">{{ vehiculo.procedenciaPlaca }}</option>
+                </select>
+            </div>
+
+            <div class="col-12 col-md-4">
+                <label class="form-label">Placa</label>
+                <input class="form-control" [value]="vehiculo.placa" readonly type="text" />
+            </div>
+
+            <div class="col-12 col-md-4">
+                <label class="form-label">Modelo*</label>
+                <select class="form-select" [value]="vehiculo.modelo" disabled>
+                    <option [value]="vehiculo.modelo">{{ vehiculo.modelo }}</option>
+                </select>
+            </div>
+
+            <div class="col-12 col-md-4">
+                <label class="form-label">Tipo de vehículo</label>
+                <input class="form-control" [value]="vehiculo.tipoVehiculo" readonly type="text" />
+            </div>
+
+            <div class="col-12 col-md-4">
+                <label class="form-label">Tipo de uso</label>
+                <select class="form-select" [value]="vehiculo.tipoUso" disabled>
+                    <option [value]="vehiculo.tipoUso">{{ vehiculo.tipoUso }}</option>
+                </select>
+            </div>
+
+            <div class="col-12 col-md-4">
+                <label class="form-label">Marca*</label>
+                <select class="form-select" [value]="vehiculo.marca" disabled>
+                    <option [value]="vehiculo.marca">{{ vehiculo.marca }}</option>
+                </select>
+            </div>
+
+            <div class="col-12 col-md-4">
+                <label class="form-label">Submarca*</label>
+                <select class="form-select" [value]="vehiculo.submarca" disabled>
+                    <option [value]="vehiculo.submarca">{{ vehiculo.submarca }}</option>
+                </select>
+            </div>
+
+            <div class="col-12 col-md-4">
+                <label class="form-label">Color*</label>
+                <select class="form-select" [value]="vehiculo.color" disabled>
+                    <option [value]="vehiculo.color">{{ vehiculo.color }}</option>
+                </select>
+            </div>
+
+            <div class="col-12 col-md-4">
+            </div>
+
+            <div class="col-12">
+                <label class="form-label">Señas particulares del vehículo robado</label>
+                <input class="form-control" [value]="vehiculo.senasParticulares" readonly type="text" />
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-end">
+        <button type="button" class="next-btn" (click)="onNext()">
+            Siguiente
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+</div>

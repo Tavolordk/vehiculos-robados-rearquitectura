@@ -1,0 +1,33 @@
+<div class="success-modal-backdrop" *ngIf="open" (click)="onBackdropClick()">
+    <div class="success-card" role="dialog" aria-modal="true" (click)="$event.stopPropagation()">
+        <div class="close-btn" (click)="onClose()">x</div>
+
+        <div class="icon-container">
+            <div class="check-circle">
+                <i class="fas fa-check"></i>
+            </div>
+        </div>
+
+        <h2>¡Alta de denuncia exitosa!</h2>
+
+        <div class="subtitle">La información se ha registrado correctamente</div>
+
+        <div class="label">No. de averiguación previa</div>
+        <div class="value">{{ data.averiguacionPrevia }}</div>
+
+        <div class="label">No. de Folio</div>
+        <div class="folio-value">{{ data.folio }}</div>
+
+        <div class="detail-row">Placa: {{ data.placa }}</div>
+        <div class="detail-row">Serie / NIV: {{ data.serieNiv }}</div>
+
+        <div class="btn-container">
+            <button type="button" class="btn btn-gold" (click)="onImprimir()">
+                Imprimir comprobante
+            </button>
+            <button type="button" class="btn btn-gray" (click)="onEnviarCorreo()">
+                Enviar por correo
+            </button>
+        </div>
+    </div>
+</div>

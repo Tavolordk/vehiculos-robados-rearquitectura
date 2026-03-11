@@ -1,0 +1,233 @@
+<div class="section-header">
+    Recuperación
+</div>
+
+<div class="required-note">
+    *Campos requeridos
+</div>
+
+<div class="custom-card">
+    <h5 class="card-title">Información de la denuncia</h5>
+
+    <div class="status-box">
+        <div class="row g-1">
+            <div class="col-6 info-label">Estatus actual</div>
+            <div class="col-6 info-value">{{ denuncia.estatus }}</div>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-md-4 info-label">
+            No. de averiguación previa / Carpeta de Investigación
+        </div>
+        <div class="col-md-3 info-value">
+            {{ denuncia.carpeta }}
+        </div>
+
+        <div class="col-md-3 info-label">
+            No. de folio de denuncia
+        </div>
+        <div class="col-md-2 info-value">
+            {{ denuncia.folio }}
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-md-4 info-label">Fecha de denuncia</div>
+        <div class="col-md-3 info-value">{{ denuncia.fechaDenuncia }}</div>
+
+        <div class="col-md-3 info-label">Hora de denuncia</div>
+        <div class="col-md-2 info-value">{{ denuncia.horaDenuncia }}</div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 info-label">Fecha del robo</div>
+        <div class="col-md-3 info-value">{{ denuncia.fechaRobo }}</div>
+
+        <div class="col-md-3 info-label">Hora del robo</div>
+        <div class="col-md-2 info-value">{{ denuncia.horaRobo }}</div>
+    </div>
+</div>
+
+<div class="custom-card">
+    <h5 class="card-title">Información de la recuperación</h5>
+
+    <div class="row mb-3">
+        <div class="col-md-3">
+            <label class="form-label">Documento de recuperación</label>
+            <select class="form-select form-control-custom" [(ngModel)]="documentoRecuperacion">
+                <option *ngFor="let item of documentosRecuperacion" [value]="item">{{ item }}</option>
+            </select>
+        </div>
+
+        <div class="col-md-3">
+            <label class="form-label">Fecha del documento</label>
+            <div class="date-wrapper">
+                <input type="text" class="form-control form-control-custom" placeholder="dd/mm/aaaa"
+                    [(ngModel)]="fechaDocumento" />
+                <span class="input-group-text">
+                    <i class="far fa-calendar-alt"></i>
+                </span>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <label class="form-label">Hora del documento</label>
+            <div class="time-wrapper">
+                <input type="text" class="form-control form-control-custom text-center" placeholder="--:--"
+                    [(ngModel)]="horaDocumento" />
+                <span class="input-group-text">
+                    <i class="far fa-clock"></i>
+                </span>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <label class="form-label">Agencia MP del documento</label>
+            <select class="form-select form-control-custom" [(ngModel)]="agenciaMpDocumento">
+                <option *ngFor="let item of agenciasMp" [value]="item">{{ item }}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-3">
+            <label class="form-label">Agente MP del documento</label>
+            <input type="text" class="form-control form-control-custom" [(ngModel)]="agenteMpDocumento" />
+        </div>
+
+        <div class="col-md-3">
+            <label class="form-label">Fecha de recuperación*</label>
+            <div class="date-wrapper">
+                <input type="text" class="form-control form-control-custom" placeholder="dd/mm/aaaa"
+                    [(ngModel)]="fechaRecuperacion" />
+                <span class="input-group-text">
+                    <i class="far fa-calendar-alt"></i>
+                </span>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <label class="form-label">Hora de la recuperación</label>
+            <div class="time-wrapper">
+                <input type="text" class="form-control form-control-custom text-center" placeholder="--:--"
+                    [(ngModel)]="horaRecuperacion" />
+                <span class="input-group-text">
+                    <i class="far fa-clock"></i>
+                </span>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <label class="form-label">Entidad*</label>
+            <select class="form-select form-control-custom" [(ngModel)]="entidad">
+                <option *ngFor="let item of entidades" [value]="item">{{ item }}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-12">
+            <label class="form-label">Municipio*</label>
+            <select class="form-select form-control-custom" [(ngModel)]="municipio">
+                <option *ngFor="let item of municipios" [value]="item">{{ item }}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="radio-section-header">
+        <input type="radio" name="locationType" id="urbana" value="urbana" [checked]="locationType === 'urbana'"
+            (change)="setLocationType('urbana')" />
+        <label for="urbana">A Urbana</label>
+    </div>
+
+    <ng-container *ngIf="locationType === 'urbana'">
+        <div class="row mb-3">
+            <div class="col-12">
+                <label class="form-label">Colonia*</label>
+                <select class="form-select form-control-custom" [(ngModel)]="colonia">
+                    <option *ngFor="let item of colonias" [value]="item">{{ item }}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-12">
+                <label class="form-label">Calle*</label>
+                <input type="text" class="form-control form-control-custom" [(ngModel)]="calle" />
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label class="form-label">Número exterior</label>
+                <input type="text" class="form-control form-control-custom" [(ngModel)]="numeroExterior" />
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Número interior</label>
+                <input type="text" class="form-control form-control-custom" [(ngModel)]="numeroInterior" />
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">C.P.</label>
+                <input type="text" class="form-control form-control-custom" [(ngModel)]="cp" />
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-12">
+                <label class="form-label">Referencia del lugar de los hechos</label>
+                <input type="text" class="form-control form-control-custom" [(ngModel)]="referencia" />
+            </div>
+        </div>
+    </ng-container>
+
+    <div class="radio-section-header">
+        <input type="radio" name="locationType" id="coordenadas" value="coordenadas"
+            [checked]="locationType === 'coordenadas'" (change)="setLocationType('coordenadas')" />
+        <label for="coordenadas">B Coordenadas</label>
+    </div>
+
+    <ng-container *ngIf="locationType === 'coordenadas'">
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label class="form-label">Latitud*</label>
+                <input type="text" class="form-control form-control-custom" [(ngModel)]="latitud" />
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Longitud*</label>
+                <input type="text" class="form-control form-control-custom" [(ngModel)]="longitud" />
+            </div>
+        </div>
+    </ng-container>
+
+    <div class="radio-section-header">
+        <input type="radio" name="locationType" id="tramo" value="tramo" [checked]="locationType === 'tramo'"
+            (change)="setLocationType('tramo')" />
+        <label for="tramo">C Tramo carretero</label>
+    </div>
+
+    <ng-container *ngIf="locationType === 'tramo'">
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label class="form-label">Tramo*</label>
+                <input type="text" class="form-control form-control-custom" [(ngModel)]="tramo" />
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Kilómetro*</label>
+                <input type="text" class="form-control form-control-custom" [(ngModel)]="kilometro" />
+            </div>
+        </div>
+    </ng-container>
+
+    <div class="d-flex justify-content-end">
+        <button type="button" class="btn btn-gray" (click)="onMapa()">
+            Mapa <i class="fas fa-map-marker-alt ms-2"></i>
+        </button>
+    </div>
+</div>
+
+<div class="footer-actions">
+    <button type="button" class="btn btn-gold btn-next" (click)="onNext()">
+        Siguiente <i class="fas fa-chevron-right ms-2"></i>
+    </button>
+</div>

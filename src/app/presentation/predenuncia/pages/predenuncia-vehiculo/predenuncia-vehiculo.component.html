@@ -1,0 +1,137 @@
+<div class="page-wrapper">
+    <div class="section-banner">Predenuncia</div>
+
+    <div class="form-container">
+        <div class="required-text">*Campos requeridos</div>
+
+        <div class="info-row">
+            <span class="info-label">Folio</span>
+            <span class="me-4">{{ folio }}</span>
+
+            <span class="info-label">Fecha y hora de registro</span>
+            <span>{{ fechaRegistro }}</span>
+        </div>
+
+        <div class="form-title">Información del vehículo robado</div>
+
+        <div class="row g-3">
+            <div class="col-md-5">
+                <label class="form-label">Serie / VIN</label>
+                <input class="form-control" type="text" [(ngModel)]="serieVin" />
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">Placa*</label>
+                <input class="form-control" type="text" [(ngModel)]="placa" />
+            </div>
+
+            <div class="col-md-3 d-flex align-items-end">
+                <button type="button" class="btn-buscar" (click)="onBuscar()">
+                    Buscar <i class="fas fa-search"></i>
+                </button>
+            </div>
+
+            <div class="col-md-5">
+                <label class="form-label">Procedencia de la placa</label>
+                <select class="form-select" [(ngModel)]="procedenciaPlaca">
+                    <option value="">Seleccionar</option>
+                </select>
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">NRPV</label>
+                <input class="form-control" type="text" [(ngModel)]="nrpv" />
+            </div>
+
+            <div class="col-md-3"></div>
+
+            <div class="col-md-5">
+                <label class="form-label">Modelo</label>
+                <select class="form-select" [(ngModel)]="modelo">
+                    <option value="">Seleccionar</option>
+                </select>
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">Entidad*</label>
+                <select class="form-select" [(ngModel)]="entidad">
+                    <option value="">Seleccionar</option>
+                </select>
+            </div>
+
+            <div class="col-md-3"></div>
+
+            <div class="col-md-5">
+                <label class="form-label">Marca*</label>
+                <select class="form-select" [(ngModel)]="marca">
+                    <option value="">Seleccionar</option>
+                </select>
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">Submarca*</label>
+                <select class="form-select" [(ngModel)]="submarca">
+                    <option value="">Seleccionar</option>
+                </select>
+            </div>
+
+            <div class="col-md-3">
+                <label class="form-label">Permiso</label>
+                <input class="form-control" type="text" [(ngModel)]="permiso" />
+            </div>
+
+            <div class="col-md-5">
+                <label class="form-label">Color *</label>
+                <select class="form-select" [(ngModel)]="color">
+                    <option value="">Seleccionar</option>
+                </select>
+            </div>
+
+            <div class="col-md-7">
+                <label class="form-label">Señas particulares del vehículo robado</label>
+                <input class="form-control" type="text" [(ngModel)]="senas" />
+            </div>
+        </div>
+
+        <div class="clearfix">
+            <button type="button" class="btn-agregar" (click)="onAgregarAuto()">Agregar auto</button>
+        </div>
+    </div>
+
+    <div class="table-container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Marca</th>
+                    <th>Submarca</th>
+                    <th>Año Modelo</th>
+                    <th>Color</th>
+                    <th>Placa/Matrícula</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let r of rows" [class.selected]="r.selected">
+                    <td>{{ r.marca }}</td>
+                    <td>{{ r.submarca }}</td>
+                    <td>{{ r.anio }}</td>
+                    <td>{{ r.color }}</td>
+                    <td>{{ r.placa }}</td>
+                    <td>
+                        <div class="action-icons">
+                            <i class="fas fa-trash-alt text-danger" (click)="onEliminar(r)"></i>
+                            <i class="fas fa-pencil-alt" (click)="onEditar(r)"></i>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="clearfix">
+        <button type="button" class="btn-siguiente" (click)="onSiguiente()">
+            Siguiente <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+</div>

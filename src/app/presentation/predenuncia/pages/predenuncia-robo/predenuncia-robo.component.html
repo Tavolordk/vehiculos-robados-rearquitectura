@@ -1,0 +1,165 @@
+<main class="container-fluid">
+    <div class="content-card">
+        <div class="card-header-custom">Predenuncia</div>
+
+        <div class="card-body-custom">
+            <div class="required-text">*Campos requeridos</div>
+
+            <div class="section-title">
+                <span>Información del robo</span>
+
+                <div class="folio-info">
+                    <span>Folio</span> {{ folio }}
+                    <span>Fecha y hora de registro</span> {{ fechaRegistro }}
+                </div>
+            </div>
+
+            <form>
+                <div class="row g-3 mb-3">
+                    <div class="col-md-4">
+                        <label class="form-label">Fecha de robo*</label>
+                        <div class="date-input-wrapper">
+                            <input class="form-control" placeholder="dd/mm/aaaa" [(ngModel)]="fechaRobo"
+                                name="fechaRobo" />
+                            <span class="input-group-text">
+                                <i class="far fa-calendar-alt"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Hora del robo*</label>
+                        <input class="form-control text-center" [(ngModel)]="horaRobo" name="horaRobo"
+                            placeholder="00:00" />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Modalidad del robo*</label>
+                        <select class="form-select" [(ngModel)]="modalidadRobo" name="modalidadRobo">
+                            <option value="">Seleccionar</option>
+                            <option *ngFor="let m of modalidades" [value]="m">{{ m }}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row g-3 mb-3">
+                    <div class="col-md-4">
+                        <label class="form-label">Entidad*</label>
+                        <select class="form-select" [(ngModel)]="entidad" name="entidad">
+                            <option value="">Seleccionar</option>
+                            <option *ngFor="let e of entidades" [value]="e">{{ e }}</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-8">
+                        <label class="form-label">Municipio*</label>
+                        <select class="form-select" [(ngModel)]="municipio" name="municipio">
+                            <option value="">Seleccionar</option>
+                            <option *ngFor="let m of municipios" [value]="m">{{ m }}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="button" class="radio-group-btn" (click)="setLugarTipo('urbana')">
+                    <span class="radio-circle" [class.is-active]="lugarTipo === 'urbana'"></span>
+                    <span>A Urbana</span>
+                </button>
+
+                <div class="row g-3 mb-3">
+                    <div class="col-12">
+                        <label class="form-label">Colonia*</label>
+                        <select class="form-select" [(ngModel)]="colonia" name="colonia"
+                            [disabled]="lugarTipo !== 'urbana'">
+                            <option value="">Seleccionar</option>
+                            <option *ngFor="let c of colonias" [value]="c">{{ c }}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row g-3 mb-3">
+                    <div class="col-12">
+                        <label class="form-label">Calle*</label>
+                        <input class="form-control" [(ngModel)]="calle" name="calle"
+                            [disabled]="lugarTipo !== 'urbana'" />
+                    </div>
+                </div>
+
+                <div class="row g-3 mb-3">
+                    <div class="col-md-4">
+                        <label class="form-label">Número exterior</label>
+                        <input class="form-control" [(ngModel)]="numExt" name="numExt"
+                            [disabled]="lugarTipo !== 'urbana'" />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Número interior</label>
+                        <input class="form-control" [(ngModel)]="numInt" name="numInt"
+                            [disabled]="lugarTipo !== 'urbana'" />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">C.P.</label>
+                        <input class="form-control" [(ngModel)]="cp" name="cp" [disabled]="lugarTipo !== 'urbana'" />
+                    </div>
+                </div>
+
+                <div class="row g-3 mb-4">
+                    <div class="col-12">
+                        <label class="form-label">Referencia del lugar de los hechos</label>
+                        <input class="form-control" [(ngModel)]="referencia" name="referencia"
+                            [disabled]="lugarTipo !== 'urbana'" />
+                    </div>
+                </div>
+
+                <button type="button" class="radio-group-btn" (click)="setLugarTipo('coordenadas')">
+                    <span class="radio-circle" [class.is-active]="lugarTipo === 'coordenadas'"></span>
+                    <span>B Coordenadas</span>
+                </button>
+
+                <div class="row g-3 mb-3">
+                    <div class="col-md-4">
+                        <label class="form-label">Latitud*</label>
+                        <input class="form-control" [(ngModel)]="latitud" name="latitud"
+                            [disabled]="lugarTipo !== 'coordenadas'" />
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Longitud*</label>
+                        <input class="form-control" [(ngModel)]="longitud" name="longitud"
+                            [disabled]="lugarTipo !== 'coordenadas'" />
+                    </div>
+                </div>
+
+                <button type="button" class="radio-group-btn" (click)="setLugarTipo('tramo')">
+                    <span class="radio-circle" [class.is-active]="lugarTipo === 'tramo'"></span>
+                    <span>C Tramo carretero</span>
+                </button>
+
+                <div class="row g-3 mb-4">
+                    <div class="col-md-4">
+                        <label class="form-label">Tramo*</label>
+                        <input class="form-control" [(ngModel)]="tramo" name="tramo"
+                            [disabled]="lugarTipo !== 'tramo'" />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Kilometro*</label>
+                        <input class="form-control" [(ngModel)]="kilometro" name="kilometro"
+                            [disabled]="lugarTipo !== 'tramo'" />
+                    </div>
+
+                    <div class="col-md-4 d-flex align-items-end justify-content-end">
+                        <button class="map-btn" type="button" (click)="onMapa()">
+                            Mapa <i class="fas fa-map-marked-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="actions-row">
+        <button class="next-btn" type="button" (click)="onNext()">
+            Siguiente <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+</main>
