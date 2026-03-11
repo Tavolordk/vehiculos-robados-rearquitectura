@@ -1,87 +1,28 @@
 import { Injectable, inject } from '@angular/core';
-import { CatalogosRepository } from '../../../domain/catalogos/repositories/catalogos.repository';
+import { ObtenerCatalogosUseCase } from '../use-cases/obtener-catalogos.use-case';
 
 @Injectable({ providedIn: 'root' })
 export class CatalogosFacade {
-    private readonly repository = inject(CatalogosRepository);
+    private readonly useCase = inject(ObtenerCatalogosUseCase);
 
-    getDelitos() {
-        return this.repository.getDelitos();
-    }
-
-    getMediosComision() {
-        return this.repository.getMediosComision();
-    }
-
-    getArmas() {
-        return this.repository.getArmas();
-    }
-
-    getModalidadesDelictivas() {
-        return this.repository.getModalidadesDelictivas();
-    }
-
-    getModalidadesRobo() {
-        return this.repository.getModalidadesRobo();
-    }
-
-    getTiposPersona() {
-        return this.repository.getTiposPersona();
-    }
-
-    getSexos() {
-        return this.repository.getSexos();
-    }
-
-    getColoresPiel() {
-        return this.repository.getColoresPiel();
-    }
-
-    getComplexiones() {
-        return this.repository.getComplexiones();
-    }
-
-    getFuentesReporte() {
-        return this.repository.getFuentesReporte();
-    }
-
-    getTiposUsoReporte() {
-        return this.repository.getTiposUsoReporte();
-    }
-
-    getMotivosCancelacion() {
-        return this.repository.getMotivosCancelacion();
-    }
-
-    getEstatusReporte() {
-        return this.repository.getEstatusReporte();
-    }
-
-    getModosUbicacion() {
-        return this.repository.getModosUbicacion();
-    }
-
-    getTiposLugar() {
-        return this.repository.getTiposLugar();
-    }
-
-    getColoresVehiculo() {
-        return this.repository.getColoresVehiculo();
-    }
-
-    getMarcasVehiculo() {
-        return this.repository.getMarcasVehiculo();
-    }
-
-    getSubmarcasVehiculo(marcaId: number) {
-        return this.repository.getSubmarcasVehiculo(marcaId);
-    }
-
-    getTiposVehiculo() {
-        return this.repository.getTiposVehiculo();
-    }
-
-    getTiposUsoVehiculo() {
-        return this.repository.getTiposUsoVehiculo();
-    }
+    getDelitos() { return this.useCase.getDelitos(); }
+    getMediosComision() { return this.useCase.getMediosComision(); }
+    getArmas() { return this.useCase.getArmas(); }
+    getModalidadesDelictivas() { return this.useCase.getModalidadesDelictivas(); }
+    getModalidadesRobo() { return this.useCase.getModalidadesRobo(); }
+    getTiposPersona() { return this.useCase.getTiposPersona(); }
+    getSexos() { return this.useCase.getSexos(); }
+    getColoresPiel() { return this.useCase.getColoresPiel(); }
+    getComplexiones() { return this.useCase.getComplexiones(); }
+    getFuentesReporte() { return this.useCase.getFuentesReporte(); }
+    getTiposUsoReporte() { return this.useCase.getTiposUsoReporte(); }
+    getMotivosCancelacion() { return this.useCase.getMotivosCancelacion(); }
+    getEstatusReporte() { return this.useCase.getEstatusReporte(); }
+    getModosUbicacion() { return this.useCase.getModosUbicacion(); }
+    getTiposLugar() { return this.useCase.getTiposLugar(); }
+    getColoresVehiculo() { return this.useCase.getColoresVehiculo(); }
+    getMarcasVehiculo() { return this.useCase.getMarcasVehiculo(); }
+    getSubmarcasVehiculo(marcaId: number) { return this.useCase.getSubmarcasVehiculo(marcaId); }
+    getTiposVehiculo() { return this.useCase.getTiposVehiculo(); }
+    getTiposUsoVehiculo() { return this.useCase.getTiposUsoVehiculo(); }
 }

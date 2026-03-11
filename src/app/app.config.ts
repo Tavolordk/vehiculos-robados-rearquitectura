@@ -2,14 +2,13 @@ import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/
 import { provideRouter } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
 import { CatalogosRepository } from './domain/catalogos/repositories/catalogos.repository';
-import { CatalogosHttpRepository } from './infrastructure/catalogos/repositories/catalogos-http.repository';
 import { routes } from './app.routes';
 import { APP_ENVIRONMENT } from './core/config/app-environment.token';
 import { AuthRepository } from './domain/auth/repositories/auth.repository';
 import { AuthHttpRepository } from './infrastructure/auth/repositories/auth-http.repository';
 import { ConsultaVehiculoRepository } from './domain/consulta-vehiculo/repositories/consulta-vehiculo.repository';
 import { ConsultaVehiculoHttpRepository } from './infrastructure/consulta-vehiculo/repositories/consulta-vehiculo-http.repository';
-
+import { CatalogosRepositoryImpl } from './infrastructure/catalogos/repositories/catalogos.repository.impl';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
@@ -32,7 +31,7 @@ export const appConfig: ApplicationConfig = {
       useExisting: ConsultaVehiculoHttpRepository,
     }, {
       provide: CatalogosRepository,
-      useExisting: CatalogosHttpRepository,
+      useExisting: CatalogosRepositoryImpl,
     }
   ],
 };
