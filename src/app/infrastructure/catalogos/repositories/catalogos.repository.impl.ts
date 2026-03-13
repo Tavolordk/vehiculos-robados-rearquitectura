@@ -39,4 +39,7 @@ export class CatalogosRepositoryImpl extends CatalogosRepository {
     getSubmarcasVehiculo(marcaId: number) { return this.mapResponse(this.api.getSubmarcasVehiculo(marcaId)); }
     getTiposVehiculo() { return this.mapResponse(this.api.getTiposVehiculo()); }
     getTiposUsoVehiculo() { return this.mapResponse(this.api.getTiposUsoVehiculo()); }
+    getEntidades(soloActivos = true, nombre?: string) {
+        return this.mapResponse(this.api.getEntidades(soloActivos, nombre));
+    }
 }

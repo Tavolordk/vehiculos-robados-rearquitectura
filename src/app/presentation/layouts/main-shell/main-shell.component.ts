@@ -18,26 +18,6 @@ export class MainShellComponent {
 
     sidebarOpen = true;
 
-    completedSteps = {
-        'predenuncia.vehiculo': true,
-        'predenuncia.robo': false,
-        'predenuncia.denunciante': false,
-        'predenuncia.verificacion': false,
-        'denuncia.vehiculo': false,
-        'denuncia.robo': false,
-        'denuncia.denunciante': false,
-        'denuncia.modus': false,
-        'denuncia.verificacion': false,
-        'recuperacion.info': false,
-        'recuperacion.vehiculo': false,
-        'recuperacion.ficha': false,
-        'recuperacion.verificacion': false,
-        'entrega.vehiculo': false,
-        'entrega.inspeccion': false,
-        'entrega.documentacion': false,
-        'entrega.verificacion': false,
-    } as const;
-
     onLogout(): void {
         console.log('logout');
     }

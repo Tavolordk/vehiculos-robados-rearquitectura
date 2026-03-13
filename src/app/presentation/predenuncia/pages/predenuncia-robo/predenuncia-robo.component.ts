@@ -15,6 +15,9 @@ import { LugarTipoEntity } from '../../../../domain/predenuncia/entities/predenu
 export class PredenunciaRoboComponent {
     private readonly facade = inject(PredenunciaRoboFacade);
 
+    constructor() {
+    }
+
     get form() {
         return this.facade.form();
     }
@@ -159,8 +162,26 @@ export class PredenunciaRoboComponent {
     onMapa(): void {
         this.facade.onMapa();
     }
-
+    get descHechos(): string {
+        return this.form.descHechos;
+    }
+    set descHechos(value: string) {
+        this.facade.updateField('descHechos', value);
+    }
     onNext(): void {
+        const form = this.form;
+
+        const valido =
+            !!form.fechaRobo &&
+            !!form.horaRobo &&
+            !!form.modalidadRobo &&
+            !!form.entidad;
+
+        if (!valido) {
+            alert('Completa la información del robo');
+            return;
+        }
+
         this.facade.onNext();
     }
 }

@@ -3,6 +3,7 @@ import {
     LugarTipoEntity,
     PredenunciaRoboFormEntity,
 } from '../../../domain/predenuncia/entities/predenuncia-robo.entity';
+import { CatalogItemEntity } from '../../../domain/catalogos/entities/catalog-item.entity';
 
 @Injectable({ providedIn: 'root' })
 export class PredenunciaRoboState {
@@ -25,31 +26,13 @@ export class PredenunciaRoboState {
         longitud: '',
         tramo: '',
         kilometro: '',
+        descHechos: '',
     });
 
-    private readonly _modalidades = signal<string[]>([
-        'Con violencia',
-        'Sin violencia',
-        'Otro',
-    ]);
-
-    private readonly _entidades = signal<string[]>([
-        'OAXACA',
-        'CDMX',
-        'EDOMEX',
-    ]);
-
-    private readonly _municipios = signal<string[]>([
-        'Municipio 1',
-        'Municipio 2',
-        'Municipio 3',
-    ]);
-
-    private readonly _colonias = signal<string[]>([
-        'Colonia 1',
-        'Colonia 2',
-        'Colonia 3',
-    ]);
+    private readonly _modalidades = signal<CatalogItemEntity[]>([]);
+    private readonly _entidades = signal<CatalogItemEntity[]>([]);
+    private readonly _municipios = signal<CatalogItemEntity[]>([]);
+    private readonly _colonias = signal<CatalogItemEntity[]>([]);
 
     readonly form = this._form.asReadonly();
     readonly modalidades = this._modalidades.asReadonly();
@@ -69,5 +52,31 @@ export class PredenunciaRoboState {
             ...current,
             lugarTipo: tipo,
         }));
+    }
+
+    setModalidades(items: CatalogItemEntity[]): void {
+        this._modalidades.set(items);
+    }
+
+    setEntidades(items: CatalogItemEntity[]): void {
+        this._entidades.set(items);
+    }
+
+    setMunicipios(items: CatalogItemEntity[]): void {
+        this._municipios.set(items);
+    }
+
+    setColonias(items: CatalogItemEntity[]): void {
+        this._colonias.set(items);
+    }
+
+    clearUbicacionDependiente(): void {
+        this._form.update((current) => ({
+            ...current,
+            municipio: '',
+            colonia: '',
+        }));
+        this._municipios.set([]);
+        this._colonias.set([]);
     }
 }

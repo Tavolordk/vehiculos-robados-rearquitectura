@@ -15,12 +15,35 @@ import { AutoRowEntity } from '../../../../domain/predenuncia/entities/vehiculo.
 export class PredenunciaVehiculoComponent {
     private readonly facade = inject(PredenunciaVehiculoFacade);
 
+    constructor() {
+    }
+
     get form() {
         return this.facade.form();
     }
 
     get rows() {
         return this.facade.rows();
+    }
+
+    get marcas() {
+        return this.facade.marcas();
+    }
+
+    get submarcas() {
+        return this.facade.submarcas();
+    }
+
+    get colores() {
+        return this.facade.colores();
+    }
+
+    get tiposVehiculo() {
+        return this.facade.tiposVehiculo();
+    }
+
+    get entidades() {
+        return this.facade.entidades();
     }
 
     get folio(): string {
@@ -125,6 +148,24 @@ export class PredenunciaVehiculoComponent {
     }
 
     onSiguiente(): void {
+        const rows = this.rows;
+        const form = this.form;
+
+        const formularioVehiculoValido =
+            !!form.placa &&
+            !!form.marca &&
+            !!form.submarca &&
+            !!form.color;
+
+        if (rows.length === 0 && !formularioVehiculoValido) {
+            alert('Captura al menos un vehículo o agrégalo antes de continuar.');
+            return;
+        }
+
+        if (rows.length === 0 && formularioVehiculoValido) {
+            this.facade.onAgregarAuto();
+        }
+
         this.facade.onSiguiente();
     }
 }

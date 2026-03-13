@@ -1,6 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { AutoRowEntity, PredenunciaVehiculoFormEntity } from '../../../domain/predenuncia/entities/vehiculo.entity';
-
+import { CatalogItemEntity } from '../../../domain/catalogos/entities/catalog-item.entity';
 
 @Injectable({ providedIn: 'root' })
 export class PredenunciaVehiculoState {
@@ -20,14 +20,22 @@ export class PredenunciaVehiculoState {
         senas: '',
     });
 
-    private readonly _rows = signal<AutoRowEntity[]>([
-        { marca: 'Nissan', submarca: 'Tsuru', anio: '2000', color: 'Rojo', placa: 'XXX125', selected: true },
-        { marca: 'Chevrolet', submarca: 'Captiva', anio: '', color: 'Blanco', placa: 'XXX126' },
-        { marca: 'KIA', submarca: 'Tucson', anio: '', color: 'Dorado', placa: 'XXX127' },
-    ]);
+    private readonly _rows = signal<AutoRowEntity[]>([]);
+
+    private readonly _marcas = signal<CatalogItemEntity[]>([]);
+    private readonly _submarcas = signal<CatalogItemEntity[]>([]);
+    private readonly _colores = signal<CatalogItemEntity[]>([]);
+    private readonly _tiposVehiculo = signal<CatalogItemEntity[]>([]);
+    private readonly _entidades = signal<CatalogItemEntity[]>([]);
 
     readonly form = this._form.asReadonly();
     readonly rows = this._rows.asReadonly();
+
+    readonly marcas = this._marcas.asReadonly();
+    readonly submarcas = this._submarcas.asReadonly();
+    readonly colores = this._colores.asReadonly();
+    readonly tiposVehiculo = this._tiposVehiculo.asReadonly();
+    readonly entidades = this._entidades.asReadonly();
 
     updateForm(patch: Partial<PredenunciaVehiculoFormEntity>): void {
         this._form.update((current) => ({
@@ -38,6 +46,48 @@ export class PredenunciaVehiculoState {
 
     setRows(rows: AutoRowEntity[]): void {
         this._rows.set(rows);
+    }
+
+    addRow(row: AutoRowEntity): void {
+        this._rows.update((current) => [...current, row]);
+    }
+
+    updateRow(index: number, row: AutoRowEntity): void {
+        this._rows.update((current) =>
+            current.map((item, i) => (i === index ? row : item))
+        );
+    }
+
+    removeRow(index: number): void {
+        this._rows.update((current) => current.filter((_, i) => i !== index));
+    }
+
+    setMarcas(items: CatalogItemEntity[]): void {
+        this._marcas.set(items);
+    }
+
+    setSubmarcas(items: CatalogItemEntity[]): void {
+        this._submarcas.set(items);
+    }
+
+    setColores(items: CatalogItemEntity[]): void {
+        this._colores.set(items);
+    }
+
+    setTiposVehiculo(items: CatalogItemEntity[]): void {
+        this._tiposVehiculo.set(items);
+    }
+
+    setEntidades(items: CatalogItemEntity[]): void {
+        this._entidades.set(items);
+    }
+
+    clearSubmarcas(): void {
+        this._submarcas.set([]);
+        this._form.update((current) => ({
+            ...current,
+            submarca: '',
+        }));
     }
 
     clearForm(): void {

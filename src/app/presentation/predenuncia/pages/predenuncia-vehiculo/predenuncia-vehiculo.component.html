@@ -35,6 +35,9 @@
                 <label class="form-label">Procedencia de la placa</label>
                 <select class="form-select" [(ngModel)]="procedenciaPlaca">
                     <option value="">Seleccionar</option>
+                    <option *ngFor="let item of entidades" [value]="item.id">
+                        {{ item.descripcion }}
+                    </option>
                 </select>
             </div>
 
@@ -47,15 +50,16 @@
 
             <div class="col-md-5">
                 <label class="form-label">Modelo</label>
-                <select class="form-select" [(ngModel)]="modelo">
-                    <option value="">Seleccionar</option>
-                </select>
+                <input class="form-control" type="text" [(ngModel)]="modelo" />
             </div>
 
             <div class="col-md-4">
                 <label class="form-label">Entidad*</label>
                 <select class="form-select" [(ngModel)]="entidad">
                     <option value="">Seleccionar</option>
+                    <option *ngFor="let item of entidades" [value]="item.id">
+                        {{ item.descripcion }}
+                    </option>
                 </select>
             </div>
 
@@ -65,6 +69,9 @@
                 <label class="form-label">Marca*</label>
                 <select class="form-select" [(ngModel)]="marca">
                     <option value="">Seleccionar</option>
+                    <option *ngFor="let item of marcas" [value]="item.id">
+                        {{ item.descripcion }}
+                    </option>
                 </select>
             </div>
 
@@ -72,6 +79,9 @@
                 <label class="form-label">Submarca*</label>
                 <select class="form-select" [(ngModel)]="submarca">
                     <option value="">Seleccionar</option>
+                    <option *ngFor="let item of submarcas" [value]="item.id">
+                        {{ item.descripcion }}
+                    </option>
                 </select>
             </div>
 
@@ -84,6 +94,9 @@
                 <label class="form-label">Color *</label>
                 <select class="form-select" [(ngModel)]="color">
                     <option value="">Seleccionar</option>
+                    <option *ngFor="let item of colores" [value]="item.id">
+                        {{ item.descripcion }}
+                    </option>
                 </select>
             </div>
 

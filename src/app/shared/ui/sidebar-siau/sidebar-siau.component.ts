@@ -1,27 +1,9 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { SidebarProgressState, SidebarStepKey } from '../../../shared/state/sidebar-progress.state';
 
 type SectionKey = 'consulta' | 'registro' | 'admin';
-
-export type SidebarStepKey =
-    | 'predenuncia.vehiculo'
-    | 'predenuncia.robo'
-    | 'predenuncia.denunciante'
-    | 'predenuncia.verificacion'
-    | 'denuncia.vehiculo'
-    | 'denuncia.robo'
-    | 'denuncia.denunciante'
-    | 'denuncia.modus'
-    | 'denuncia.verificacion'
-    | 'recuperacion.info'
-    | 'recuperacion.vehiculo'
-    | 'recuperacion.ficha'
-    | 'recuperacion.verificacion'
-    | 'entrega.vehiculo'
-    | 'entrega.inspeccion'
-    | 'entrega.documentacion'
-    | 'entrega.verificacion';
 
 @Component({
     selector: 'app-sidebar-siau',
@@ -31,9 +13,10 @@ export type SidebarStepKey =
     styleUrls: ['./sidebar-siau.component.scss'],
 })
 export class SidebarSiauComponent {
+    private readonly sidebarProgress = inject(SidebarProgressState);
+
     @Input() open = true;
     @Output() openChange = new EventEmitter<boolean>();
-    @Input() completedSteps: Partial<Record<SidebarStepKey, boolean>> = {};
 
     sections: Record<SectionKey, boolean> = {
         consulta: true,
@@ -46,8 +29,12 @@ export class SidebarSiauComponent {
     recuperacionOpen = true;
     entregaOpen = false;
 
+    get completedSteps(): Partial<Record<SidebarStepKey, boolean>> {
+        return this.sidebarProgress.completedSteps();
+    }
+
     isStepDone(key: SidebarStepKey): boolean {
-        return !!this.completedSteps?.[key];
+        return !!this.completedSteps[key];
     }
 
     toggleSidebar(): void {

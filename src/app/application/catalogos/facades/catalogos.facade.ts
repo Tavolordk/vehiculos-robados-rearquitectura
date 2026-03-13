@@ -25,4 +25,7 @@ export class CatalogosFacade {
     getSubmarcasVehiculo(marcaId: number) { return this.useCase.getSubmarcasVehiculo(marcaId); }
     getTiposVehiculo() { return this.useCase.getTiposVehiculo(); }
     getTiposUsoVehiculo() { return this.useCase.getTiposUsoVehiculo(); }
+    getEntidades(soloActivos = true, nombre?: string) {
+        return this.useCase.getEntidades(soloActivos, nombre);
+    }
 }

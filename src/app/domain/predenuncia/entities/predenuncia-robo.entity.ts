@@ -24,4 +24,5 @@ export interface PredenunciaRoboFormEntity {
 
     tramo: string;
     kilometro: string;
+    descHechos: string;
 }

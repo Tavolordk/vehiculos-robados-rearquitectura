@@ -3,6 +3,7 @@ import {
     PredenunciaDenuncianteFormEntity,
     TipoPersonaEntity,
 } from '../../../domain/predenuncia/entities/predenuncia-denunciante.entity';
+import { CatalogItemEntity } from '../../../domain/catalogos/entities/catalog-item.entity';
 
 @Injectable({ providedIn: 'root' })
 export class PredenunciaDenuncianteState {
@@ -20,7 +21,12 @@ export class PredenunciaDenuncianteState {
         correo: '',
     });
 
+    private readonly _tiposPersona = signal<CatalogItemEntity[]>([]);
+    private readonly _sexos = signal<CatalogItemEntity[]>([]);
+
     readonly form = this._form.asReadonly();
+    readonly tiposPersona = this._tiposPersona.asReadonly();
+    readonly sexos = this._sexos.asReadonly();
 
     updateForm(patch: Partial<PredenunciaDenuncianteFormEntity>): void {
         this._form.update((current) => ({
@@ -38,5 +44,13 @@ export class PredenunciaDenuncianteState {
             curp: tipo === 'moral' ? '' : current.curp,
             sexo: tipo === 'moral' ? '' : current.sexo,
         }));
+    }
+
+    setTiposPersona(items: CatalogItemEntity[]): void {
+        this._tiposPersona.set(items);
+    }
+
+    setSexos(items: CatalogItemEntity[]): void {
+        this._sexos.set(items);
     }
 }

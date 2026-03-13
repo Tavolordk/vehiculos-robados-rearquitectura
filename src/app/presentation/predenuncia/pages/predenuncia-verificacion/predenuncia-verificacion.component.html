@@ -1,4 +1,4 @@
-<main class="content">
+<main class="content" *ngIf="data as currentData; else estadoVacio">
     <div class="top-banner">Predenuncia</div>
 
     <div class="content-card">
@@ -6,8 +6,8 @@
             <h2 class="section-title">Verificación de datos</h2>
 
             <div class="folio-info">
-                Folio <span>{{ folio }}</span>
-                Fecha y hora de registro <span>{{ fechaRegistro }}</span>
+                Folio <span>{{ currentData.folio }}</span>
+                Fecha y hora de registro <span>{{ currentData.fechaRegistro }}</span>
             </div>
         </div>
 
@@ -23,63 +23,63 @@
                     <div class="col-6">
                         <div class="data-row">
                             <div class="data-label">Folio</div>
-                            <div class="data-value">{{ robo.folio }}</div>
+                            <div class="data-value">{{ currentData.robo.folio }}</div>
                         </div>
                         <div class="data-row">
                             <div class="data-label">Fecha de robo</div>
-                            <div class="data-value">{{ robo.fechaRobo }}</div>
+                            <div class="data-value">{{ currentData.robo.fechaRobo }}</div>
                         </div>
                         <div class="data-row">
                             <div class="data-label">Entidad</div>
-                            <div class="data-value">{{ robo.entidad }}</div>
+                            <div class="data-value">{{ currentData.robo.entidad }}</div>
                         </div>
                         <div class="data-row">
                             <div class="data-label">Municipio</div>
-                            <div class="data-value">{{ robo.municipio }}</div>
+                            <div class="data-value">{{ currentData.robo.municipio }}</div>
                         </div>
                         <div class="data-row">
                             <div class="data-label">Calle</div>
-                            <div class="data-value">{{ robo.calle }}</div>
+                            <div class="data-value">{{ currentData.robo.calle }}</div>
                         </div>
                         <div class="data-row">
                             <div class="data-label">Tramo carretero</div>
-                            <div class="data-value">{{ robo.tramo || '—' }}</div>
+                            <div class="data-value">{{ currentData.robo.tramo || '—' }}</div>
                         </div>
                         <div class="data-row">
                             <div class="data-label">Kilometro</div>
-                            <div class="data-value">{{ robo.kilometro || '—' }}</div>
+                            <div class="data-value">{{ currentData.robo.kilometro || '—' }}</div>
                         </div>
                         <div class="data-row">
                             <div class="data-label">Latitud</div>
-                            <div class="data-value">{{ robo.latitud || '—' }}</div>
+                            <div class="data-value">{{ currentData.robo.latitud || '—' }}</div>
                         </div>
                         <div class="data-row">
                             <div class="data-label">Modalidad del Robo</div>
-                            <div class="data-value">{{ robo.modalidad }}</div>
+                            <div class="data-value">{{ currentData.robo.modalidad }}</div>
                         </div>
                     </div>
 
                     <div class="col-6">
                         <div class="data-row">
                             <div class="data-label">Hora de captura</div>
-                            <div class="data-value">{{ robo.horaCaptura }}</div>
+                            <div class="data-value">{{ currentData.robo.horaCaptura }}</div>
                         </div>
                         <div class="data-row">
                             <div class="data-label">Colonia</div>
-                            <div class="data-value">{{ robo.colonia }}</div>
+                            <div class="data-value">{{ currentData.robo.colonia }}</div>
                         </div>
                         <div class="data-row">
                             <div class="data-label">C.P.</div>
-                            <div class="data-value">{{ robo.cp }}</div>
+                            <div class="data-value">{{ currentData.robo.cp }}</div>
                         </div>
                         <div class="data-row">
                             <div class="data-label">Referencia del domicilio</div>
-                            <div class="data-value">{{ robo.referencia || '—' }}</div>
+                            <div class="data-value">{{ currentData.robo.referencia || '—' }}</div>
                         </div>
 
                         <div class="data-row mt-gap">
                             <div class="data-label">Longitud</div>
-                            <div class="data-value">{{ robo.longitud || '—' }}</div>
+                            <div class="data-value">{{ currentData.robo.longitud || '—' }}</div>
                         </div>
                     </div>
                 </div>
@@ -94,35 +94,35 @@
 
                 <div class="data-row">
                     <div class="data-label">Tipo de persona</div>
-                    <div class="data-value">{{ denunciante.tipoPersona }}</div>
+                    <div class="data-value">{{ currentData.denunciante.tipoPersona }}</div>
                 </div>
                 <div class="data-row">
                     <div class="data-label">Nombre (s)</div>
-                    <div class="data-value">{{ denunciante.nombres }}</div>
+                    <div class="data-value">{{ currentData.denunciante.nombres }}</div>
                 </div>
                 <div class="data-row">
                     <div class="data-label">Primer Apellido</div>
-                    <div class="data-value">{{ denunciante.apellido1 }}</div>
+                    <div class="data-value">{{ currentData.denunciante.apellido1 }}</div>
                 </div>
                 <div class="data-row">
                     <div class="data-label">Segundo Apellido</div>
-                    <div class="data-value">{{ denunciante.apellido2 }}</div>
+                    <div class="data-value">{{ currentData.denunciante.apellido2 }}</div>
                 </div>
                 <div class="data-row">
                     <div class="data-label">Sexo</div>
-                    <div class="data-value">{{ denunciante.sexo }}</div>
+                    <div class="data-value">{{ currentData.denunciante.sexo }}</div>
                 </div>
                 <div class="data-row">
                     <div class="data-label">Teléfono</div>
-                    <div class="data-value">{{ denunciante.telefono }}</div>
+                    <div class="data-value">{{ currentData.denunciante.telefono }}</div>
                 </div>
                 <div class="data-row">
                     <div class="data-label">RFC</div>
-                    <div class="data-value">{{ denunciante.rfc }}</div>
+                    <div class="data-value">{{ currentData.denunciante.rfc }}</div>
                 </div>
                 <div class="data-row">
                     <div class="data-label">Correo electrónico</div>
-                    <div class="data-value">{{ denunciante.correo }}</div>
+                    <div class="data-value">{{ currentData.denunciante.correo }}</div>
                 </div>
             </div>
         </div>
@@ -148,7 +148,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let v of vehiculos">
+                        <tr *ngFor="let v of currentData.vehiculos">
                             <td>{{ v.marca }}</td>
                             <td>{{ v.submarca }}</td>
                             <td>{{ v.modelo }}</td>
@@ -169,3 +169,15 @@
         </div>
     </div>
 </main>
+
+<ng-template #estadoVacio>
+    <main class="content">
+        <div class="top-banner">Predenuncia</div>
+
+        <div class="content-card">
+            <p *ngIf="loading">Cargando información...</p>
+            <p *ngIf="!loading && error">{{ error }}</p>
+            <p *ngIf="!loading && !error">No hay información para mostrar.</p>
+        </div>
+    </main>
+</ng-template>

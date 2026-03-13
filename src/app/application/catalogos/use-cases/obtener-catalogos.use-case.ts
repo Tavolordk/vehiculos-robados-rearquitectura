@@ -25,4 +25,7 @@ export class ObtenerCatalogosUseCase {
     getSubmarcasVehiculo(marcaId: number) { return this.repository.getSubmarcasVehiculo(marcaId); }
     getTiposVehiculo() { return this.repository.getTiposVehiculo(); }
     getTiposUsoVehiculo() { return this.repository.getTiposUsoVehiculo(); }
+    getEntidades(soloActivos = true, nombre?: string) {
+        return this.repository.getEntidades(soloActivos, nombre);
+    }
 }

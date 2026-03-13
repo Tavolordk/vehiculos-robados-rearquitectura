@@ -22,4 +22,5 @@ export abstract class CatalogosRepository {
     abstract getSubmarcasVehiculo(marcaId: number): Observable<CatalogItemEntity[]>;
     abstract getTiposVehiculo(): Observable<CatalogItemEntity[]>;
     abstract getTiposUsoVehiculo(): Observable<CatalogItemEntity[]>;
+    abstract getEntidades(soloActivos?: boolean, nombre?: string): Observable<CatalogItemEntity[]>;
 }

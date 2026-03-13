@@ -88,4 +88,17 @@ export class CatalogosHttpService {
     getTiposUsoVehiculo(): Observable<CatalogosResponseDto> {
         return this.http.get<CatalogosResponseDto>(`${this.baseUrl}/vehiculos/tipoUsoVehiculo`);
     }
+
+    getEntidades(soloActivos = true, nombre?: string): Observable<CatalogosResponseDto> {
+        let params: any = { soloActivos };
+
+        if (nombre) {
+            params.nombre = nombre;
+        }
+
+        return this.http.get<CatalogosResponseDto>(
+            `${this.baseUrl}/ubicacion/entidades`,
+            { params }
+        );
+    }
 }
