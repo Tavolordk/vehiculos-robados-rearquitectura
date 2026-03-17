@@ -161,3 +161,85 @@
     grid-template-columns: 1fr;
   }
 }
+.custom-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 24px;
+}
+
+.custom-modal {
+  width: min(960px, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18);
+}
+
+.custom-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 22px;
+  border-bottom: 1px solid #ececec;
+
+  h3 {
+    margin: 0;
+    font-size: 22px;
+    color: #7a1238;
+  }
+}
+
+.btn-close-modal {
+  border: none;
+  background: transparent;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  color: #666;
+}
+
+.custom-modal-body {
+  padding: 22px;
+}
+
+.custom-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 18px 22px;
+  border-top: 1px solid #ececec;
+}
+
+.btn-cancelar-modal,
+.btn-guardar-modal,
+.mini-edit-btn {
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.btn-cancelar-modal {
+  background: #e9ecef;
+  color: #333;
+  padding: 10px 18px;
+  font-weight: 600;
+}
+
+.btn-guardar-modal {
+  background: #a68946;
+  color: #fff;
+  padding: 10px 18px;
+  font-weight: 600;
+}
+
+.mini-edit-btn {
+  background: transparent;
+  color: #7a1238;
+  padding: 4px 8px;
+}

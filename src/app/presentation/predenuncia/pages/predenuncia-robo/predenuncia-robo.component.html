@@ -19,55 +19,62 @@
                     <div class="col-md-4">
                         <label class="form-label">Fecha de robo*</label>
                         <div class="date-input-wrapper">
-                            <input class="form-control" [class.is-invalid]="hasError('fechaRobo')" placeholder="dd/mm/aaaa" [(ngModel)]="fechaRobo"
-                                name="fechaRobo" />
+                            <input class="form-control" [class.is-invalid]="hasError('fechaRobo')"
+                                placeholder="dd/mm/aaaa" [(ngModel)]="fechaRobo" name="fechaRobo" />
                             <span class="input-group-text">
                                 <i class="far fa-calendar-alt"></i>
                             </span>
                         </div>
-                        <div class="invalid-feedback d-block" *ngIf="hasError('fechaRobo')">{{ getError('fechaRobo') }}</div>
+                        <div class="invalid-feedback d-block" *ngIf="hasError('fechaRobo')">{{ getError('fechaRobo') }}
+                        </div>
                     </div>
 
                     <div class="col-md-4">
                         <label class="form-label">Hora del robo*</label>
-                        <input class="form-control text-center" [class.is-invalid]="hasError('horaRobo')" [(ngModel)]="horaRobo" name="horaRobo"
-                            placeholder="00:00" />
-                        <div class="invalid-feedback d-block" *ngIf="hasError('horaRobo')">{{ getError('horaRobo') }}</div>
+                        <input class="form-control text-center" [class.is-invalid]="hasError('horaRobo')"
+                            [(ngModel)]="horaRobo" name="horaRobo" placeholder="00:00" />
+                        <div class="invalid-feedback d-block" *ngIf="hasError('horaRobo')">{{ getError('horaRobo') }}
+                        </div>
                     </div>
 
                     <div class="col-md-4">
                         <label class="form-label">Modalidad del robo*</label>
-                        <select class="form-select" [class.is-invalid]="hasError('modalidadRobo')" [(ngModel)]="modalidadRobo" name="modalidadRobo">
+                        <select class="form-select" [class.is-invalid]="hasError('modalidadRobo')"
+                            [(ngModel)]="modalidadRobo" name="modalidadRobo">
                             <option value="">Seleccionar</option>
                             <option *ngFor="let m of modalidades" [value]="m.id">
                                 {{ m.descripcion }}
                             </option>
                         </select>
-                        <div class="invalid-feedback d-block" *ngIf="hasError('modalidadRobo')">{{ getError('modalidadRobo') }}</div>
+                        <div class="invalid-feedback d-block" *ngIf="hasError('modalidadRobo')">{{
+                            getError('modalidadRobo') }}</div>
                     </div>
                 </div>
 
                 <div class="row g-3 mb-3">
                     <div class="col-md-4">
                         <label class="form-label">Entidad*</label>
-                        <select class="form-select" [class.is-invalid]="hasError('entidad')" [(ngModel)]="entidad" name="entidad">
+                        <select class="form-select" [class.is-invalid]="hasError('entidad')" [(ngModel)]="entidad"
+                            name="entidad">
                             <option value="">Seleccionar</option>
                             <option *ngFor="let e of entidades" [value]="e.id">
                                 {{ e.descripcion }}
                             </option>
                         </select>
-                        <div class="invalid-feedback d-block" *ngIf="hasError('entidad')">{{ getError('entidad') }}</div>
+                        <div class="invalid-feedback d-block" *ngIf="hasError('entidad')">{{ getError('entidad') }}
+                        </div>
                     </div>
-
                     <div class="col-md-8">
                         <label class="form-label">Municipio*</label>
-                        <select class="form-select" [class.is-invalid]="hasError('municipio')" [(ngModel)]="municipio" name="municipio">
+                        <select class="form-select" [class.is-invalid]="hasError('municipio')" [(ngModel)]="municipio"
+                            name="municipio">
                             <option value="">Seleccionar</option>
                             <option *ngFor="let m of municipios" [value]="m.id">
                                 {{ m.descripcion }}
                             </option>
                         </select>
-                        <div class="invalid-feedback d-block" *ngIf="hasError('municipio')">{{ getError('municipio') }}</div>
+                        <div class="invalid-feedback d-block" *ngIf="hasError('municipio')">{{ getError('municipio') }}
+                        </div>
                     </div>
                 </div>
 
@@ -75,26 +82,26 @@
                     <span class="radio-circle" [class.is-active]="lugarTipo === 'urbana'"></span>
                     <span>A Urbana</span>
                 </button>
-
                 <div class="row g-3 mb-3">
                     <div class="col-12">
                         <label class="form-label">Colonia*</label>
-                        <select class="form-select" [class.is-invalid]="hasError('colonia')" [(ngModel)]="colonia" name="colonia"
-                            [disabled]="lugarTipo !== 'urbana'">
+                        <select class="form-select" [class.is-invalid]="hasError('colonia')" [(ngModel)]="colonia"
+                            name="colonia" [disabled]="lugarTipo !== 'urbana'">
                             <option value="">Seleccionar</option>
                             <option *ngFor="let c of colonias" [value]="c.id">
                                 {{ c.descripcion }}
                             </option>
                         </select>
-                        <div class="invalid-feedback d-block" *ngIf="hasError('colonia')">{{ getError('colonia') }}</div>
+                        <div class="invalid-feedback d-block" *ngIf="hasError('colonia')">{{ getError('colonia') }}
+                        </div>
                     </div>
                 </div>
 
                 <div class="row g-3 mb-3">
                     <div class="col-12">
                         <label class="form-label">Calle*</label>
-                        <input class="form-control" [class.is-invalid]="hasError('calle')" [(ngModel)]="calle" name="calle"
-                            [disabled]="lugarTipo !== 'urbana'" />
+                        <input class="form-control" [class.is-invalid]="hasError('calle')" [(ngModel)]="calle"
+                            name="calle" [disabled]="lugarTipo !== 'urbana'" />
                         <div class="invalid-feedback d-block" *ngIf="hasError('calle')">{{ getError('calle') }}</div>
                     </div>
                 </div>
@@ -114,7 +121,8 @@
 
                     <div class="col-md-4">
                         <label class="form-label">C.P.</label>
-                        <input class="form-control" [class.is-invalid]="hasError('cp')" [(ngModel)]="cp" name="cp" [disabled]="lugarTipo !== 'urbana'" />
+                        <input class="form-control" [class.is-invalid]="hasError('cp')" [(ngModel)]="cp" name="cp"
+                            [disabled]="lugarTipo !== 'urbana'" />
                         <div class="invalid-feedback d-block" *ngIf="hasError('cp')">{{ getError('cp') }}</div>
                     </div>
                 </div>
@@ -135,15 +143,17 @@
                 <div class="row g-3 mb-3">
                     <div class="col-md-4">
                         <label class="form-label">Latitud*</label>
-                        <input class="form-control" [class.is-invalid]="hasError('latitud')" [(ngModel)]="latitud" name="latitud"
-                            [disabled]="lugarTipo !== 'coordenadas'" />
-                        <div class="invalid-feedback d-block" *ngIf="hasError('latitud')">{{ getError('latitud') }}</div>
+                        <input class="form-control" [class.is-invalid]="hasError('latitud')" [(ngModel)]="latitud"
+                            name="latitud" [disabled]="lugarTipo !== 'coordenadas'" />
+                        <div class="invalid-feedback d-block" *ngIf="hasError('latitud')">{{ getError('latitud') }}
+                        </div>
                     </div>
                     <div class="col-md-4">
                         <label class="form-label">Longitud*</label>
-                        <input class="form-control" [class.is-invalid]="hasError('longitud')" [(ngModel)]="longitud" name="longitud"
-                            [disabled]="lugarTipo !== 'coordenadas'" />
-                        <div class="invalid-feedback d-block" *ngIf="hasError('longitud')">{{ getError('longitud') }}</div>
+                        <input class="form-control" [class.is-invalid]="hasError('longitud')" [(ngModel)]="longitud"
+                            name="longitud" [disabled]="lugarTipo !== 'coordenadas'" />
+                        <div class="invalid-feedback d-block" *ngIf="hasError('longitud')">{{ getError('longitud') }}
+                        </div>
                     </div>
                 </div>
 
@@ -155,16 +165,17 @@
                 <div class="row g-3 mb-4">
                     <div class="col-md-4">
                         <label class="form-label">Tramo*</label>
-                        <input class="form-control" [class.is-invalid]="hasError('tramo')" [(ngModel)]="tramo" name="tramo"
-                            [disabled]="lugarTipo !== 'tramo'" />
+                        <input class="form-control" [class.is-invalid]="hasError('tramo')" [(ngModel)]="tramo"
+                            name="tramo" [disabled]="lugarTipo !== 'tramo'" />
                         <div class="invalid-feedback d-block" *ngIf="hasError('tramo')">{{ getError('tramo') }}</div>
                     </div>
 
                     <div class="col-md-4">
                         <label class="form-label">Kilometro*</label>
-                        <input class="form-control" [class.is-invalid]="hasError('kilometro')" [(ngModel)]="kilometro" name="kilometro"
-                            [disabled]="lugarTipo !== 'tramo'" />
-                        <div class="invalid-feedback d-block" *ngIf="hasError('kilometro')">{{ getError('kilometro') }}</div>
+                        <input class="form-control" [class.is-invalid]="hasError('kilometro')" [(ngModel)]="kilometro"
+                            name="kilometro" [disabled]="lugarTipo !== 'tramo'" />
+                        <div class="invalid-feedback d-block" *ngIf="hasError('kilometro')">{{ getError('kilometro') }}
+                        </div>
                     </div>
 
                     <div class="col-md-4 d-flex align-items-end justify-content-end">
@@ -176,9 +187,11 @@
                 <div class="row g-3 mb-4">
                     <div class="col-12">
                         <label class="form-label">Descripción de los hechos*</label>
-                        <textarea class="form-control desc-hechos-textarea" [class.is-invalid]="hasError('descHechos')" [(ngModel)]="descHechos" name="descHechos"
-                            rows="5" maxlength="1000" placeholder="Describa cómo ocurrieron los hechos"></textarea>
-                        <div class="invalid-feedback d-block" *ngIf="hasError('descHechos')">{{ getError('descHechos') }}</div>
+                        <textarea class="form-control desc-hechos-textarea" [class.is-invalid]="hasError('descHechos')"
+                            [(ngModel)]="descHechos" name="descHechos" rows="5" maxlength="1000"
+                            placeholder="Describa cómo ocurrieron los hechos"></textarea>
+                        <div class="invalid-feedback d-block" *ngIf="hasError('descHechos')">{{ getError('descHechos')
+                            }}</div>
                     </div>
                 </div>
             </form>

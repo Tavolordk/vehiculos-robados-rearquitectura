@@ -42,6 +42,7 @@ export class PredenunciaRoboValidator {
             errors.entidad = 'La entidad es obligatoria.';
         }
 
+        // Se permite -1 temporalmente para avanzar mientras no exista catálogo real
         if (!form.municipio?.trim()) {
             errors.municipio = 'El municipio es obligatorio.';
         }
@@ -51,6 +52,7 @@ export class PredenunciaRoboValidator {
         }
 
         if (form.lugarTipo === 'urbana') {
+            // Se permite -1 temporalmente para avanzar mientras no exista catálogo real
             if (!form.colonia?.trim()) {
                 errors.colonia = 'La colonia es obligatoria para ubicación urbana.';
             }

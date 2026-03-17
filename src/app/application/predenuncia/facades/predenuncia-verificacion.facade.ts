@@ -23,20 +23,23 @@ export class PredenunciaVerificacionFacade {
     readonly loading = this.state.loading;
     readonly error = this.state.error;
 
-    goToRobo(): void {
-        this.router.navigateByUrl('/predenuncia/robo');
+    private resolveDescripcion(
+        items: Array<{ id: string | number; descripcion: string }>,
+        value: string | number | null | undefined,
+        fallback = '—'
+    ): string {
+        const found = items.find((item) => String(item.id) === String(value));
+        return found?.descripcion ?? (String(value ?? '').trim() || fallback);
     }
 
-    goToDenunciante(): void {
-        this.router.navigateByUrl('/predenuncia/denunciante');
-    }
-
-    goToVehiculo(): void {
-        this.router.navigateByUrl('/predenuncia/vehiculo');
+    private resolveTipoPersona(value: string | null | undefined): string {
+        if (value === 'fisica') return 'Física';
+        if (value === 'moral') return 'Moral';
+        return value || '—';
     }
 
     hydrateFromForms(): void {
-        const snapshot = PredenunciaMapper.toVerificacionEntityFromForms({
+        const raw = PredenunciaMapper.toVerificacionEntityFromForms({
             folio: this.roboState.form().folio,
             fechaRegistro: this.roboState.form().fechaRegistro,
             roboForm: this.roboState.form(),
@@ -45,7 +48,33 @@ export class PredenunciaVerificacionFacade {
             vehiculos: this.vehiculoState.rows(),
         });
 
-        this.state.setData(snapshot);
+        const entidades = this.roboState.entidades();
+        const municipios = this.roboState.municipios();
+        const colonias = this.roboState.colonias();
+        const modalidades = this.roboState.modalidades();
+        const sexos = this.denuncianteState.sexos();
+
+        this.state.setData({
+            ...raw,
+            robo: {
+                ...raw.robo,
+                entidad: this.resolveDescripcion(entidades, this.roboState.form().entidad),
+                municipio:
+                    this.roboState.form().municipio === '-1'
+                        ? 'SIN CATÁLOGO DISPONIBLE AÚN'
+                        : this.resolveDescripcion(municipios, this.roboState.form().municipio),
+                colonia:
+                    this.roboState.form().colonia === '-1'
+                        ? 'SIN CATÁLOGO DISPONIBLE AÚN'
+                        : this.resolveDescripcion(colonias, this.roboState.form().colonia),
+                modalidad: this.resolveDescripcion(modalidades, this.roboState.form().modalidadRobo),
+            },
+            denunciante: {
+                ...raw.denunciante,
+                tipoPersona: this.resolveTipoPersona(this.denuncianteState.form().tipoPersona),
+                sexo: this.resolveDescripcion(sexos, this.denuncianteState.form().sexo),
+            },
+        });
     }
 
     private validateBeforeSave(): boolean {
@@ -103,9 +132,13 @@ export class PredenunciaVerificacionFacade {
             next: (response) => {
                 this.hydrateFromForms();
                 this.state.setLoading(false);
+                this.state.setError(null);
 
-                this.router.navigateByUrl('/dashboard/guardado-exitoso', {
+                // mientras no exista pantalla de éxito real, no navegues a una ruta inexistente
+                // deja los datos del resultado disponibles en el state del router
+                this.router.navigateByUrl('/predenuncia/verificacion', {
                     state: {
+                        guardadoExitoso: true,
                         reporteId: response.reporteId,
                         folio: response.folio,
                         codigo: response.codigo,

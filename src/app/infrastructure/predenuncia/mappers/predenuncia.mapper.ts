@@ -89,13 +89,13 @@ export class PredenunciaMapper {
                 correo: denuncianteForm.correo ?? '',
             },
             vehiculos: vehiculos.map((item) => ({
-                marca: item.marca ?? '',
-                submarca: item.submarca ?? '',
-                modelo: item.anio ?? '',
-                color: item.color ?? '',
+                marca: item.marcaDescripcion ?? item.marca ?? '',
+                submarca: item.submarcaDescripcion ?? item.submarca ?? '',
+                modelo: item.anio ?? item.modelo ?? '',
+                color: item.colorDescripcion ?? item.color ?? '',
                 placaPermiso: item.placa ?? '',
-                serieVin: '',
-                nrpv: '',
+                serieVin: item.serieVin ?? '',
+                nrpv: item.nrpv ?? '',
             })),
         };
     }
@@ -179,9 +179,9 @@ export class PredenunciaMapper {
 
             ubicModoId: modoUbicacionMap[roboForm.lugarTipo] ?? 1,
             ubicEntidadId: this.toNumber(roboForm.entidad),
-            ubicMunicipioId: this.toNumber(roboForm.municipio),
+            ubicMunicipioId: this.toNullableCatalogNumber(roboForm.municipio),
             ubicLocalidadId: null,
-            ubicColoniaId: this.toNumber(roboForm.colonia),
+            ubicColoniaId: this.toNullableCatalogNumber(roboForm.colonia),
             ubicCp: this.toNullString(roboForm.cp),
             ubicCalle: this.toNullString(roboForm.calle),
             ubicNumExt: this.toNullString(roboForm.numExt),
@@ -301,5 +301,13 @@ export class PredenunciaMapper {
         }
 
         return new Date().toISOString();
+    }
+    private static toNullableCatalogNumber(value: string | number | null | undefined): number | null {
+        if (value === null || value === undefined || value === '' || String(value).trim() === '-1') {
+            return null;
+        }
+
+        const parsed = Number(value);
+        return Number.isFinite(parsed) ? parsed : null;
     }
 }

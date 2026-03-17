@@ -1,4 +1,4 @@
-<main class="content" *ngIf="data as currentData; else estadoVacio">
+<main class="content">
     <div class="top-banner">Predenuncia</div>
 
     <div class="content-card">
@@ -6,14 +6,14 @@
             <h2 class="section-title">Verificación de datos</h2>
 
             <div class="folio-info">
-                Folio <span>{{ currentData.folio }}</span>
-                Fecha y hora de registro <span>{{ currentData.fechaRegistro }}</span>
+                Folio <span>{{ folio }}</span>
+                Fecha y hora de registro <span>{{ fechaRegistro }}</span>
             </div>
         </div>
 
         <div class="info-grid">
             <div class="info-box">
-                <button type="button" class="edit-icon-btn" (click)="goToRobo()" title="Editar">
+                <button type="button" class="edit-icon-btn" (click)="openRoboModal()" title="Editar">
                     <i class="fas fa-pen"></i>
                 </button>
 
@@ -23,70 +23,70 @@
                     <div class="col-6">
                         <div class="data-row">
                             <div class="data-label">Folio</div>
-                            <div class="data-value">{{ currentData.robo.folio }}</div>
+                            <div class="data-value">{{ robo.folio }}</div>
                         </div>
                         <div class="data-row">
                             <div class="data-label">Fecha de robo</div>
-                            <div class="data-value">{{ currentData.robo.fechaRobo }}</div>
+                            <div class="data-value">{{ robo.fechaRobo }}</div>
                         </div>
                         <div class="data-row">
                             <div class="data-label">Entidad</div>
-                            <div class="data-value">{{ currentData.robo.entidad }}</div>
+                            <div class="data-value">{{ robo.entidad }}</div>
                         </div>
                         <div class="data-row">
                             <div class="data-label">Municipio</div>
-                            <div class="data-value">{{ currentData.robo.municipio }}</div>
+                            <div class="data-value">{{ robo.municipio }}</div>
                         </div>
                         <div class="data-row">
                             <div class="data-label">Calle</div>
-                            <div class="data-value">{{ currentData.robo.calle }}</div>
+                            <div class="data-value">{{ robo.calle }}</div>
                         </div>
                         <div class="data-row">
                             <div class="data-label">Tramo carretero</div>
-                            <div class="data-value">{{ currentData.robo.tramo || '—' }}</div>
+                            <div class="data-value">{{ robo.tramo || '—' }}</div>
                         </div>
                         <div class="data-row">
                             <div class="data-label">Kilometro</div>
-                            <div class="data-value">{{ currentData.robo.kilometro || '—' }}</div>
+                            <div class="data-value">{{ robo.kilometro || '—' }}</div>
                         </div>
                         <div class="data-row">
                             <div class="data-label">Latitud</div>
-                            <div class="data-value">{{ currentData.robo.latitud || '—' }}</div>
+                            <div class="data-value">{{ robo.latitud || '—' }}</div>
                         </div>
                         <div class="data-row">
                             <div class="data-label">Modalidad del Robo</div>
-                            <div class="data-value">{{ currentData.robo.modalidad }}</div>
+                            <div class="data-value">{{ robo.modalidad }}</div>
                         </div>
                     </div>
 
                     <div class="col-6">
                         <div class="data-row">
                             <div class="data-label">Hora de captura</div>
-                            <div class="data-value">{{ currentData.robo.horaCaptura }}</div>
+                            <div class="data-value">{{ robo.horaCaptura }}</div>
                         </div>
                         <div class="data-row">
                             <div class="data-label">Colonia</div>
-                            <div class="data-value">{{ currentData.robo.colonia }}</div>
+                            <div class="data-value">{{ robo.colonia }}</div>
                         </div>
                         <div class="data-row">
                             <div class="data-label">C.P.</div>
-                            <div class="data-value">{{ currentData.robo.cp }}</div>
+                            <div class="data-value">{{ robo.cp }}</div>
                         </div>
                         <div class="data-row">
                             <div class="data-label">Referencia del domicilio</div>
-                            <div class="data-value">{{ currentData.robo.referencia || '—' }}</div>
+                            <div class="data-value">{{ robo.referencia || '—' }}</div>
                         </div>
 
                         <div class="data-row mt-gap">
                             <div class="data-label">Longitud</div>
-                            <div class="data-value">{{ currentData.robo.longitud || '—' }}</div>
+                            <div class="data-value">{{ robo.longitud || '—' }}</div>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="info-box">
-                <button type="button" class="edit-icon-btn" (click)="goToDenunciante()" title="Editar">
+                <button type="button" class="edit-icon-btn" (click)="openDenuncianteModal()" title="Editar">
                     <i class="fas fa-pen"></i>
                 </button>
 
@@ -94,41 +94,41 @@
 
                 <div class="data-row">
                     <div class="data-label">Tipo de persona</div>
-                    <div class="data-value">{{ currentData.denunciante.tipoPersona }}</div>
+                    <div class="data-value">{{ denunciante.tipoPersona }}</div>
                 </div>
                 <div class="data-row">
                     <div class="data-label">Nombre (s)</div>
-                    <div class="data-value">{{ currentData.denunciante.nombres }}</div>
+                    <div class="data-value">{{ denunciante.nombres }}</div>
                 </div>
                 <div class="data-row">
                     <div class="data-label">Primer Apellido</div>
-                    <div class="data-value">{{ currentData.denunciante.apellido1 }}</div>
+                    <div class="data-value">{{ denunciante.apellido1 }}</div>
                 </div>
                 <div class="data-row">
                     <div class="data-label">Segundo Apellido</div>
-                    <div class="data-value">{{ currentData.denunciante.apellido2 }}</div>
+                    <div class="data-value">{{ denunciante.apellido2 }}</div>
                 </div>
                 <div class="data-row">
                     <div class="data-label">Sexo</div>
-                    <div class="data-value">{{ currentData.denunciante.sexo }}</div>
+                    <div class="data-value">{{ denunciante.sexo }}</div>
                 </div>
                 <div class="data-row">
                     <div class="data-label">Teléfono</div>
-                    <div class="data-value">{{ currentData.denunciante.telefono }}</div>
+                    <div class="data-value">{{ denunciante.telefono }}</div>
                 </div>
                 <div class="data-row">
                     <div class="data-label">RFC</div>
-                    <div class="data-value">{{ currentData.denunciante.rfc }}</div>
+                    <div class="data-value">{{ denunciante.rfc }}</div>
                 </div>
                 <div class="data-row">
                     <div class="data-label">Correo electrónico</div>
-                    <div class="data-value">{{ currentData.denunciante.correo }}</div>
+                    <div class="data-value">{{ denunciante.correo }}</div>
                 </div>
             </div>
         </div>
 
         <div class="table-container">
-            <button type="button" class="edit-icon-btn" (click)="goToVehiculo()" title="Editar">
+            <button type="button" class="edit-icon-btn" (click)="openVehiculoModal(0)" title="Editar">
                 <i class="fas fa-pen"></i>
             </button>
 
@@ -145,17 +145,23 @@
                             <th>Placa / Permiso</th>
                             <th>Serie / VIN</th>
                             <th>NRPV</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let v of currentData.vehiculos">
+                        <tr *ngFor="let v of vehiculos; let i = index">
                             <td>{{ v.marca }}</td>
                             <td>{{ v.submarca }}</td>
                             <td>{{ v.modelo }}</td>
                             <td>{{ v.color }}</td>
                             <td>{{ v.placaPermiso }}</td>
-                            <td>{{ v.serieVin }}</td>
-                            <td>{{ v.nrpv }}</td>
+                            <td>{{ v.serieVin || '—' }}</td>
+                            <td>{{ v.nrpv || '—' }}</td>
+                            <td>
+                                <button type="button" class="mini-edit-btn" (click)="openVehiculoModal(i)">
+                                    <i class="fas fa-pen"></i>
+                                </button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -170,14 +176,175 @@
     </div>
 </main>
 
-<ng-template #estadoVacio>
-    <main class="content">
-        <div class="top-banner">Predenuncia</div>
-
-        <div class="content-card">
-            <p *ngIf="loading">Cargando información...</p>
-            <p *ngIf="!loading && error">{{ error }}</p>
-            <p *ngIf="!loading && !error">No hay información para mostrar.</p>
+<div class="custom-modal-backdrop" *ngIf="showRoboModal">
+    <div class="custom-modal">
+        <div class="custom-modal-header">
+            <h3>Editar información del robo</h3>
+            <button type="button" class="btn-close-modal" (click)="closeRoboModal()">×</button>
         </div>
-    </main>
-</ng-template>
+
+        <div class="custom-modal-body">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label">Folio</label>
+                    <input class="form-control" [(ngModel)]="roboEdit.folio" name="roboFolio" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Fecha de robo</label>
+                    <input class="form-control" [(ngModel)]="roboEdit.fechaRobo" name="roboFechaRobo" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Entidad</label>
+                    <input class="form-control" [(ngModel)]="roboEdit.entidad" name="roboEntidad" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Municipio</label>
+                    <input class="form-control" [(ngModel)]="roboEdit.municipio" name="roboMunicipio" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Colonia</label>
+                    <input class="form-control" [(ngModel)]="roboEdit.colonia" name="roboColonia" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Calle</label>
+                    <input class="form-control" [(ngModel)]="roboEdit.calle" name="roboCalle" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">C.P.</label>
+                    <input class="form-control" [(ngModel)]="roboEdit.cp" name="roboCp" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Modalidad</label>
+                    <input class="form-control" [(ngModel)]="roboEdit.modalidad" name="roboModalidad" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Hora de captura</label>
+                    <input class="form-control" [(ngModel)]="roboEdit.horaCaptura" name="roboHoraCaptura" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Referencia</label>
+                    <input class="form-control" [(ngModel)]="roboEdit.referencia" name="roboReferencia" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Tramo</label>
+                    <input class="form-control" [(ngModel)]="roboEdit.tramo" name="roboTramo" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Kilometro</label>
+                    <input class="form-control" [(ngModel)]="roboEdit.kilometro" name="roboKilometro" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Latitud</label>
+                    <input class="form-control" [(ngModel)]="roboEdit.latitud" name="roboLatitud" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Longitud</label>
+                    <input class="form-control" [(ngModel)]="roboEdit.longitud" name="roboLongitud" />
+                </div>
+            </div>
+        </div>
+
+        <div class="custom-modal-footer">
+            <button type="button" class="btn-cancelar-modal" (click)="closeRoboModal()">Cancelar</button>
+            <button type="button" class="btn-guardar-modal" (click)="saveRoboModal()">Guardar cambios</button>
+        </div>
+    </div>
+</div>
+
+<div class="custom-modal-backdrop" *ngIf="showDenuncianteModal">
+    <div class="custom-modal">
+        <div class="custom-modal-header">
+            <h3>Editar información del denunciante</h3>
+            <button type="button" class="btn-close-modal" (click)="closeDenuncianteModal()">×</button>
+        </div>
+
+        <div class="custom-modal-body">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label">Tipo de persona</label>
+                    <input class="form-control" [(ngModel)]="denuncianteEdit.tipoPersona" name="denTipoPersona" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Nombre(s)</label>
+                    <input class="form-control" [(ngModel)]="denuncianteEdit.nombres" name="denNombres" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Primer apellido</label>
+                    <input class="form-control" [(ngModel)]="denuncianteEdit.apellido1" name="denApellido1" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Segundo apellido</label>
+                    <input class="form-control" [(ngModel)]="denuncianteEdit.apellido2" name="denApellido2" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Sexo</label>
+                    <input class="form-control" [(ngModel)]="denuncianteEdit.sexo" name="denSexo" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Teléfono</label>
+                    <input class="form-control" [(ngModel)]="denuncianteEdit.telefono" name="denTelefono" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">RFC</label>
+                    <input class="form-control" [(ngModel)]="denuncianteEdit.rfc" name="denRfc" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Correo</label>
+                    <input class="form-control" [(ngModel)]="denuncianteEdit.correo" name="denCorreo" />
+                </div>
+            </div>
+        </div>
+
+        <div class="custom-modal-footer">
+            <button type="button" class="btn-cancelar-modal" (click)="closeDenuncianteModal()">Cancelar</button>
+            <button type="button" class="btn-guardar-modal" (click)="saveDenuncianteModal()">Guardar cambios</button>
+        </div>
+    </div>
+</div>
+
+<div class="custom-modal-backdrop" *ngIf="showVehiculoModal">
+    <div class="custom-modal">
+        <div class="custom-modal-header">
+            <h3>Editar vehículo</h3>
+            <button type="button" class="btn-close-modal" (click)="closeVehiculoModal()">×</button>
+        </div>
+
+        <div class="custom-modal-body">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label">Marca</label>
+                    <input class="form-control" [(ngModel)]="vehiculoEdit.marca" name="vehMarca" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Submarca</label>
+                    <input class="form-control" [(ngModel)]="vehiculoEdit.submarca" name="vehSubmarca" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Modelo</label>
+                    <input class="form-control" [(ngModel)]="vehiculoEdit.modelo" name="vehModelo" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Color</label>
+                    <input class="form-control" [(ngModel)]="vehiculoEdit.color" name="vehColor" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Placa / Permiso</label>
+                    <input class="form-control" [(ngModel)]="vehiculoEdit.placaPermiso" name="vehPlaca" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Serie / VIN</label>
+                    <input class="form-control" [(ngModel)]="vehiculoEdit.serieVin" name="vehSerieVin" />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">NRPV</label>
+                    <input class="form-control" [(ngModel)]="vehiculoEdit.nrpv" name="vehNrpv" />
+                </div>
+            </div>
+        </div>
+
+        <div class="custom-modal-footer">
+            <button type="button" class="btn-cancelar-modal" (click)="closeVehiculoModal()">Cancelar</button>
+            <button type="button" class="btn-guardar-modal" (click)="saveVehiculoModal()">Guardar cambios</button>
+        </div>
+    </div>
+</div>
