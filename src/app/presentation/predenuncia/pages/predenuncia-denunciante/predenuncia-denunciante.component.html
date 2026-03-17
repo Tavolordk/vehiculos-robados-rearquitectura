@@ -38,16 +38,18 @@
                 <label class="form-label-custom">
                     Nombre (s) o razón social <span class="asterisk">*</span>
                 </label>
-                <input class="form-control-custom" type="text" [(ngModel)]="nombreRazonSocial"
-                    name="nombreRazonSocial" />
+                <input class="form-control-custom" [class.is-invalid]="hasError('nombreRazonSocial')" type="text"
+                    [(ngModel)]="nombreRazonSocial" name="nombreRazonSocial" />
+                <div class="invalid-feedback d-block" *ngIf="hasError('nombreRazonSocial')">{{ getError('nombreRazonSocial') }}</div>
             </div>
 
             <div class="col-md-4">
                 <label class="form-label-custom">
                     Primer apellido <span class="asterisk">*</span>
                 </label>
-                <input class="form-control-custom" type="text" [(ngModel)]="primerApellido" name="primerApellido"
+                <input class="form-control-custom" [class.is-invalid]="hasError('primerApellido')" type="text" [(ngModel)]="primerApellido" name="primerApellido"
                     [disabled]="tipoPersona === 'moral'" />
+                <div class="invalid-feedback d-block" *ngIf="hasError('primerApellido')">{{ getError('primerApellido') }}</div>
             </div>
 
             <div class="col-md-4">
@@ -60,37 +62,42 @@
         <div class="row g-3 mb-4">
             <div class="col-md-4">
                 <label class="form-label-custom">CURP</label>
-                <input class="form-control-custom" type="text" [(ngModel)]="curp" name="curp"
+                <input class="form-control-custom" [class.is-invalid]="hasError('curp')" type="text" [(ngModel)]="curp" name="curp"
                     [disabled]="tipoPersona === 'moral'" />
+                <div class="invalid-feedback d-block" *ngIf="hasError('curp')">{{ getError('curp') }}</div>
             </div>
 
             <div class="col-md-4">
                 <label class="form-label-custom">RFC</label>
-                <input class="form-control-custom" type="text" [(ngModel)]="rfc" name="rfc" />
+                <input class="form-control-custom" [class.is-invalid]="hasError('rfc')" type="text" [(ngModel)]="rfc" name="rfc" />
+                <div class="invalid-feedback d-block" *ngIf="hasError('rfc')">{{ getError('rfc') }}</div>
             </div>
 
             <div class="col-md-4">
                 <label class="form-label-custom">
                     Sexo <span class="asterisk">*</span>
                 </label>
-                <select class="form-select-custom" [(ngModel)]="sexo" name="sexo" [disabled]="tipoPersona === 'moral'">
+                <select class="form-select-custom" [class.is-invalid]="hasError('sexo')" [(ngModel)]="sexo" name="sexo" [disabled]="tipoPersona === 'moral'">
                     <option value="">Seleccionar</option>
                     <option *ngFor="let item of sexos" [value]="item.id">
                         {{ item.descripcion }}
                     </option>
                 </select>
+                <div class="invalid-feedback d-block" *ngIf="hasError('sexo')">{{ getError('sexo') }}</div>
             </div>
         </div>
 
         <div class="row g-3 mb-2">
             <div class="col-md-4">
                 <label class="form-label-custom">Teléfono</label>
-                <input class="form-control-custom" type="text" [(ngModel)]="telefono" name="telefono" />
+                <input class="form-control-custom" [class.is-invalid]="hasError('telefono')" type="text" [(ngModel)]="telefono" name="telefono" />
+                <div class="invalid-feedback d-block" *ngIf="hasError('telefono')">{{ getError('telefono') }}</div>
             </div>
 
             <div class="col-md-8">
                 <label class="form-label-custom">Correo electrónico</label>
-                <input class="form-control-custom" type="email" [(ngModel)]="correo" name="correo" />
+                <input class="form-control-custom" [class.is-invalid]="hasError('correo')" type="email" [(ngModel)]="correo" name="correo" />
+                <div class="invalid-feedback d-block" *ngIf="hasError('correo')">{{ getError('correo') }}</div>
             </div>
         </div>
     </div>

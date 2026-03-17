@@ -17,12 +17,20 @@
         <div class="row g-3">
             <div class="col-md-5">
                 <label class="form-label">Serie / VIN</label>
-                <input class="form-control" type="text" [(ngModel)]="serieVin" />
+                <input class="form-control" [class.is-invalid]="hasError('serieVin')" type="text" [(ngModel)]="serieVin"
+                    name="serieVin" />
+                <div class="invalid-feedback d-block" *ngIf="hasError('serieVin')">
+                    {{ error('serieVin') }}
+                </div>
             </div>
 
             <div class="col-md-4">
                 <label class="form-label">Placa*</label>
-                <input class="form-control" type="text" [(ngModel)]="placa" />
+                <input class="form-control" [class.is-invalid]="hasError('placa')" type="text" [(ngModel)]="placa"
+                    name="placa" />
+                <div class="invalid-feedback d-block" *ngIf="hasError('placa')">
+                    {{ error('placa') }}
+                </div>
             </div>
 
             <div class="col-md-3 d-flex align-items-end">
@@ -33,7 +41,7 @@
 
             <div class="col-md-5">
                 <label class="form-label">Procedencia de la placa</label>
-                <select class="form-select" [(ngModel)]="procedenciaPlaca">
+                <select class="form-select" [(ngModel)]="procedenciaPlaca" name="procedenciaPlaca">
                     <option value="">Seleccionar</option>
                     <option *ngFor="let item of entidades" [value]="item.id">
                         {{ item.descripcion }}
@@ -43,71 +51,95 @@
 
             <div class="col-md-4">
                 <label class="form-label">NRPV</label>
-                <input class="form-control" type="text" [(ngModel)]="nrpv" />
+                <input class="form-control" [class.is-invalid]="hasError('nrpv')" type="text" [(ngModel)]="nrpv"
+                    name="nrpv" />
+                <div class="invalid-feedback d-block" *ngIf="hasError('nrpv')">
+                    {{ error('nrpv') }}
+                </div>
             </div>
 
             <div class="col-md-3"></div>
 
             <div class="col-md-5">
                 <label class="form-label">Modelo</label>
-                <input class="form-control" type="text" [(ngModel)]="modelo" />
+                <input class="form-control" [class.is-invalid]="hasError('modelo')" type="text" [(ngModel)]="modelo"
+                    name="modelo" />
+                <div class="invalid-feedback d-block" *ngIf="hasError('modelo')">
+                    {{ error('modelo') }}
+                </div>
             </div>
 
             <div class="col-md-4">
                 <label class="form-label">Entidad*</label>
-                <select class="form-select" [(ngModel)]="entidad">
+                <select class="form-select" [class.is-invalid]="hasError('entidad')" [(ngModel)]="entidad"
+                    name="entidad">
                     <option value="">Seleccionar</option>
                     <option *ngFor="let item of entidades" [value]="item.id">
                         {{ item.descripcion }}
                     </option>
                 </select>
+                <div class="invalid-feedback d-block" *ngIf="hasError('entidad')">
+                    {{ error('entidad') }}
+                </div>
             </div>
 
             <div class="col-md-3"></div>
 
             <div class="col-md-5">
                 <label class="form-label">Marca*</label>
-                <select class="form-select" [(ngModel)]="marca">
+                <select class="form-select" [class.is-invalid]="hasError('marca')" [(ngModel)]="marca" name="marca">
                     <option value="">Seleccionar</option>
                     <option *ngFor="let item of marcas" [value]="item.id">
                         {{ item.descripcion }}
                     </option>
                 </select>
+                <div class="invalid-feedback d-block" *ngIf="hasError('marca')">
+                    {{ error('marca') }}
+                </div>
             </div>
 
             <div class="col-md-4">
                 <label class="form-label">Submarca*</label>
-                <select class="form-select" [(ngModel)]="submarca">
+                <select class="form-select" [class.is-invalid]="hasError('submarca')" [(ngModel)]="submarca"
+                    name="submarca">
                     <option value="">Seleccionar</option>
                     <option *ngFor="let item of submarcas" [value]="item.id">
                         {{ item.descripcion }}
                     </option>
                 </select>
+                <div class="invalid-feedback d-block" *ngIf="hasError('submarca')">
+                    {{ error('submarca') }}
+                </div>
             </div>
 
             <div class="col-md-3">
                 <label class="form-label">Permiso</label>
-                <input class="form-control" type="text" [(ngModel)]="permiso" />
+                <input class="form-control" type="text" [(ngModel)]="permiso" name="permiso" />
             </div>
 
             <div class="col-md-5">
                 <label class="form-label">Color *</label>
-                <select class="form-select" [(ngModel)]="color">
+                <select class="form-select" [class.is-invalid]="hasError('color')" [(ngModel)]="color" name="color">
                     <option value="">Seleccionar</option>
                     <option *ngFor="let item of colores" [value]="item.id">
                         {{ item.descripcion }}
                     </option>
                 </select>
+                <div class="invalid-feedback d-block" *ngIf="hasError('color')">
+                    {{ error('color') }}
+                </div>
             </div>
 
             <div class="col-md-7">
                 <label class="form-label">Señas particulares del vehículo robado</label>
-                <input class="form-control" type="text" [(ngModel)]="senas" />
+                <input class="form-control" type="text" [(ngModel)]="senas" name="senas" />
             </div>
         </div>
 
         <div class="clearfix">
-            <button type="button" class="btn-agregar" (click)="onAgregarAuto()">Agregar auto</button>
+            <button type="button" class="btn-agregar" (click)="onAgregarAuto()">
+                Agregar auto
+            </button>
         </div>
     </div>
 
@@ -126,10 +158,10 @@
 
             <tbody>
                 <tr *ngFor="let r of rows" [class.selected]="r.selected">
-                    <td>{{ r.marca }}</td>
-                    <td>{{ r.submarca }}</td>
+                    <td>{{ r.marcaDescripcion }}</td>
+                    <td>{{ r.submarcaDescripcion }}</td>
                     <td>{{ r.anio }}</td>
-                    <td>{{ r.color }}</td>
+                    <td>{{ r.colorDescripcion }}</td>
                     <td>{{ r.placa }}</td>
                     <td>
                         <div class="action-icons">
@@ -146,5 +178,135 @@
         <button type="button" class="btn-siguiente" (click)="onSiguiente()">
             Siguiente <i class="fas fa-chevron-right"></i>
         </button>
+    </div>
+</div>
+
+<div class="custom-modal-backdrop" *ngIf="showEditModal">
+    <div class="custom-modal">
+        <div class="custom-modal-header">
+            <h3>Editar vehículo</h3>
+            <button type="button" class="btn-close-modal" (click)="closeEditModal()">×</button>
+        </div>
+
+        <div class="custom-modal-body">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label">Serie / VIN</label>
+                    <input class="form-control" [class.is-invalid]="hasEditError('serieVin')" type="text"
+                        [(ngModel)]="editForm.serieVin" name="editSerieVin" />
+                    <div class="invalid-feedback d-block" *ngIf="hasEditError('serieVin')">
+                        {{ editError('serieVin') }}
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Placa*</label>
+                    <input class="form-control" [class.is-invalid]="hasEditError('placa')" type="text"
+                        [(ngModel)]="editForm.placa" name="editPlaca" />
+                    <div class="invalid-feedback d-block" *ngIf="hasEditError('placa')">
+                        {{ editError('placa') }}
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Procedencia de la placa</label>
+                    <select class="form-select" [(ngModel)]="editForm.procedenciaPlaca" name="editProcedenciaPlaca">
+                        <option value="">Seleccionar</option>
+                        <option *ngFor="let item of entidades" [value]="item.id">
+                            {{ item.descripcion }}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">NRPV</label>
+                    <input class="form-control" [class.is-invalid]="hasEditError('nrpv')" type="text"
+                        [(ngModel)]="editForm.nrpv" name="editNrpv" />
+                    <div class="invalid-feedback d-block" *ngIf="hasEditError('nrpv')">
+                        {{ editError('nrpv') }}
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Modelo</label>
+                    <input class="form-control" [class.is-invalid]="hasEditError('modelo')" type="text"
+                        [(ngModel)]="editForm.modelo" name="editModelo" />
+                    <div class="invalid-feedback d-block" *ngIf="hasEditError('modelo')">
+                        {{ editError('modelo') }}
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Entidad*</label>
+                    <select class="form-select" [class.is-invalid]="hasEditError('entidad')"
+                        [(ngModel)]="editForm.entidad" name="editEntidad">
+                        <option value="">Seleccionar</option>
+                        <option *ngFor="let item of entidades" [value]="item.id">
+                            {{ item.descripcion }}
+                        </option>
+                    </select>
+                    <div class="invalid-feedback d-block" *ngIf="hasEditError('entidad')">
+                        {{ editError('entidad') }}
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Marca*</label>
+                    <select class="form-select" [class.is-invalid]="hasEditError('marca')" [(ngModel)]="editForm.marca"
+                        name="editMarca" (ngModelChange)="onEditMarcaChange($event)">
+                        <option value="">Seleccionar</option>
+                        <option *ngFor="let item of marcas" [value]="item.id">
+                            {{ item.descripcion }}
+                        </option>
+                    </select>
+                    <div class="invalid-feedback d-block" *ngIf="hasEditError('marca')">
+                        {{ editError('marca') }}
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Submarca*</label>
+                    <select class="form-select" [class.is-invalid]="hasEditError('submarca')"
+                        [(ngModel)]="editForm.submarca" name="editSubmarca">
+                        <option value="">Seleccionar</option>
+                        <option *ngFor="let item of submarcas" [value]="item.id">
+                            {{ item.descripcion }}
+                        </option>
+                    </select>
+                    <div class="invalid-feedback d-block" *ngIf="hasEditError('submarca')">
+                        {{ editError('submarca') }}
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Permiso</label>
+                    <input class="form-control" type="text" [(ngModel)]="editForm.permiso" name="editPermiso" />
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Color*</label>
+                    <select class="form-select" [class.is-invalid]="hasEditError('color')" [(ngModel)]="editForm.color"
+                        name="editColor">
+                        <option value="">Seleccionar</option>
+                        <option *ngFor="let item of colores" [value]="item.id">
+                            {{ item.descripcion }}
+                        </option>
+                    </select>
+                    <div class="invalid-feedback d-block" *ngIf="hasEditError('color')">
+                        {{ editError('color') }}
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <label class="form-label">Señas particulares del vehículo robado</label>
+                    <input class="form-control" type="text" [(ngModel)]="editForm.senas" name="editSenas" />
+                </div>
+            </div>
+        </div>
+
+        <div class="custom-modal-footer">
+            <button type="button" class="btn-cancelar-modal" (click)="closeEditModal()">Cancelar</button>
+            <button type="button" class="btn-guardar-modal" (click)="onSaveEdit()">Guardar cambios</button>
+        </div>
     </div>
 </div>

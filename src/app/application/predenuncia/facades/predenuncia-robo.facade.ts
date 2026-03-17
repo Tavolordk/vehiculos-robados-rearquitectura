@@ -4,6 +4,9 @@ import { LugarTipoEntity } from '../../../domain/predenuncia/entities/predenunci
 import { CatalogosFacade } from '../../catalogos/facades/catalogos.facade';
 import { Router } from '@angular/router';
 import { SidebarProgressState } from '../../../shared/state/sidebar-progress.state';
+import { PredenunciaRoboField, PredenunciaRoboValidator } from '../validators/predenuncia-robo.validator';
+import { Normalizers } from '../../../shared/validation/normalizers';
+
 @Injectable({ providedIn: 'root' })
 export class PredenunciaRoboFacade {
     private readonly state = inject(PredenunciaRoboState);
@@ -15,6 +18,8 @@ export class PredenunciaRoboFacade {
     readonly entidades = this.state.entidades;
     readonly municipios = this.state.municipios;
     readonly colonias = this.state.colonias;
+    readonly errors = this.state.errors;
+    readonly submitted = this.state.submitted;
 
     constructor() {
         this.cargarCatalogosIniciales();
@@ -33,7 +38,8 @@ export class PredenunciaRoboFacade {
     }
 
     updateField(field: string, value: string): void {
-        this.state.updateForm({ [field]: value });
+        const normalizedValue = this.normalizeFieldValue(field, value);
+        this.state.updateForm({ [field]: normalizedValue });
 
         if (field === 'entidad') {
             this.state.updateForm({
@@ -47,36 +53,69 @@ export class PredenunciaRoboFacade {
 
         if (field === 'municipio') {
             this.state.updateForm({
-                municipio: value,
+                municipio: normalizedValue,
                 colonia: '',
             });
 
             this.state.setColonias([]);
         }
+
+        this.validate();
     }
 
     setLugarTipo(tipo: LugarTipoEntity): void {
         this.state.setLugarTipo(tipo);
+        this.validate();
     }
 
     onMapa(): void {
         console.log('Abrir mapa / modal / integración GIS');
     }
 
+    validate(): boolean {
+        const result = PredenunciaRoboValidator.validate(this.state.form());
+        this.state.setErrors(result.errors);
+        return result.valid;
+    }
+
+    getError(field: PredenunciaRoboField): string {
+        return this.errors()[field] ?? '';
+    }
+
+    hasError(field: PredenunciaRoboField): boolean {
+        return !!this.getError(field);
+    }
+
     onNext(): void {
-        const form = this.state.form();
+        this.state.setSubmitted(true);
 
-        const esValido =
-            !!form.fechaRobo &&
-            !!form.horaRobo &&
-            !!form.modalidadRobo &&
-            !!form.entidad;
-
-        if (!esValido) {
-            alert('Completa la información del robo');
+        if (!this.validate()) {
             return;
         }
         this.sidebarProgress.markStepCompleted('predenuncia.robo');
         this.router.navigateByUrl('/predenuncia/denunciante');
+    }
+
+    private normalizeFieldValue(field: string, value: string): string {
+        switch (field) {
+            case 'fechaRobo':
+            case 'horaRobo':
+                return String(value ?? '').trim();
+            case 'cp':
+                return Normalizers.numeric(value).slice(0, 5);
+            case 'latitud':
+            case 'longitud':
+            case 'kilometro':
+                return String(value ?? '').replace(/[^0-9.-]/g, '').trim();
+            case 'calle':
+            case 'referencia':
+            case 'tramo':
+            case 'descHechos':
+            case 'numExt':
+            case 'numInt':
+                return Normalizers.upperCollapse(value);
+            default:
+                return String(value ?? '').trim();
+        }
     }
 }

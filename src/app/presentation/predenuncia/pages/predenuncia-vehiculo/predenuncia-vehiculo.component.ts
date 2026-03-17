@@ -3,7 +3,11 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { PredenunciaVehiculoFacade } from '../../../../application/predenuncia/facades/predenuncia-vehiculo.facade';
-import { AutoRowEntity } from '../../../../domain/predenuncia/entities/vehiculo.entity';
+import {
+    AutoRowEntity,
+    PredenunciaVehiculoFormEntity,
+} from '../../../../domain/predenuncia/entities/vehiculo.entity';
+import { PredenunciaVehiculoField } from '../../../../application/predenuncia/validators/predenuncia-vehiculo.validator';
 
 @Component({
     selector: 'app-predenuncia-vehiculo',
@@ -15,8 +19,10 @@ import { AutoRowEntity } from '../../../../domain/predenuncia/entities/vehiculo.
 export class PredenunciaVehiculoComponent {
     private readonly facade = inject(PredenunciaVehiculoFacade);
 
-    constructor() {
-    }
+    showEditModal = false;
+    editIndex: number | null = null;
+    editErrors: Partial<Record<PredenunciaVehiculoField, string>> = {};
+    editForm: PredenunciaVehiculoFormEntity = this.facade.createEmptyForm();
 
     get form() {
         return this.facade.form();
@@ -44,6 +50,10 @@ export class PredenunciaVehiculoComponent {
 
     get entidades() {
         return this.facade.entidades();
+    }
+
+    get errors() {
+        return this.facade.errors();
     }
 
     get folio(): string {
@@ -131,6 +141,22 @@ export class PredenunciaVehiculoComponent {
         this.facade.updateField('senas', value);
     }
 
+    hasError(field: PredenunciaVehiculoField): boolean {
+        return !!this.errors[field];
+    }
+
+    error(field: PredenunciaVehiculoField): string {
+        return this.errors[field] ?? '';
+    }
+
+    hasEditError(field: PredenunciaVehiculoField): boolean {
+        return !!this.editErrors[field];
+    }
+
+    editError(field: PredenunciaVehiculoField): string {
+        return this.editErrors[field] ?? '';
+    }
+
     onBuscar(): void {
         this.facade.onBuscar();
     }
@@ -144,28 +170,65 @@ export class PredenunciaVehiculoComponent {
     }
 
     onEditar(row: AutoRowEntity): void {
-        this.facade.onEditar(row);
-    }
+        const index = this.rows.findIndex((item) => item === row);
 
-    onSiguiente(): void {
-        const rows = this.rows;
-        const form = this.form;
-
-        const formularioVehiculoValido =
-            !!form.placa &&
-            !!form.marca &&
-            !!form.submarca &&
-            !!form.color;
-
-        if (rows.length === 0 && !formularioVehiculoValido) {
-            alert('Captura al menos un vehículo o agrégalo antes de continuar.');
+        if (index < 0) {
             return;
         }
 
-        if (rows.length === 0 && formularioVehiculoValido) {
-            this.facade.onAgregarAuto();
+        this.editIndex = index;
+        this.editErrors = {};
+
+        this.facade.buildEditForm(row).subscribe({
+            next: (form) => {
+                this.editForm = { ...form };
+                this.showEditModal = true;
+            },
+            error: (error) => {
+                console.error('Error al preparar edición de vehículo', error);
+            },
+        });
+    }
+
+    onEditMarcaChange(value: string): void {
+        this.editForm = {
+            ...this.editForm,
+            marca: value,
+            submarca: '',
+        };
+
+        if (!value) {
+            return;
         }
 
+        this.facade.cargarSubmarcas(Number(value)).subscribe({
+            error: (error) => console.error('Error al cargar submarcas del modal', error),
+        });
+    }
+
+    onSaveEdit(): void {
+        if (this.editIndex === null) {
+            return;
+        }
+
+        const result = this.facade.updateRowFromForm(this.editIndex, this.editForm);
+        this.editErrors = result.errors;
+
+        if (!result.valid) {
+            return;
+        }
+
+        this.closeEditModal();
+    }
+
+    closeEditModal(): void {
+        this.showEditModal = false;
+        this.editIndex = null;
+        this.editErrors = {};
+        this.editForm = this.facade.createEmptyForm();
+    }
+
+    onSiguiente(): void {
         this.facade.onSiguiente();
     }
 }

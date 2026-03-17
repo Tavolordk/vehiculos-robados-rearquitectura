@@ -6,6 +6,9 @@ import { PredenunciaDenuncianteState } from '../state/predenuncia-denunciante.st
 import { PredenunciaVehiculoState } from '../state/predenuncia-vehiculo.state';
 import { PredenunciaRepository } from '../../../domain/predenuncia/repositories/predenuncia.repository';
 import { PredenunciaMapper } from '../../../infrastructure/predenuncia/mappers/predenuncia.mapper';
+import { PredenunciaRoboValidator } from '../validators/predenuncia-robo.validator';
+import { PredenunciaDenuncianteValidator } from '../validators/predenuncia-denunciante.validator';
+import { PredenunciaVehiculoValidator } from '../validators/predenuncia-vehiculo.validator';
 
 @Injectable({ providedIn: 'root' })
 export class PredenunciaVerificacionFacade {
@@ -45,7 +48,42 @@ export class PredenunciaVerificacionFacade {
         this.state.setData(snapshot);
     }
 
+    private validateBeforeSave(): boolean {
+        const roboValidation = PredenunciaRoboValidator.validate(this.roboState.form());
+        const denuncianteValidation = PredenunciaDenuncianteValidator.validate(this.denuncianteState.form());
+        const vehiculoActualValidation = PredenunciaVehiculoValidator.validate(this.vehiculoState.form());
+        const hasVehiculos = this.vehiculoState.rows().length > 0;
+
+        this.roboState.setErrors(roboValidation.errors);
+        this.denuncianteState.setErrors(denuncianteValidation.errors);
+        this.vehiculoState.setErrors(vehiculoActualValidation.errors);
+
+        if (!roboValidation.valid) {
+            this.router.navigateByUrl('/predenuncia/robo');
+            return false;
+        }
+
+        if (!denuncianteValidation.valid) {
+            this.router.navigateByUrl('/predenuncia/denunciante');
+            return false;
+        }
+
+        if (!hasVehiculos) {
+            this.state.setError('Debe capturar y agregar al menos un vehículo antes de guardar.');
+            this.router.navigateByUrl('/predenuncia/vehiculo');
+            return false;
+        }
+
+        return true;
+    }
+
     onGuardar(): void {
+        const valid = this.validateBeforeSave();
+
+        if (!valid) {
+            return;
+        }
+
         this.state.setLoading(true);
         this.state.setError(null);
 
@@ -64,7 +102,6 @@ export class PredenunciaVerificacionFacade {
         this.repository.crear(payload).subscribe({
             next: (response) => {
                 this.hydrateFromForms();
-
                 this.state.setLoading(false);
 
                 this.router.navigateByUrl('/dashboard/guardado-exitoso', {

@@ -4,6 +4,7 @@ import {
     PredenunciaRoboFormEntity,
 } from '../../../domain/predenuncia/entities/predenuncia-robo.entity';
 import { CatalogItemEntity } from '../../../domain/catalogos/entities/catalog-item.entity';
+import { PredenunciaRoboField } from '../validators/predenuncia-robo.validator';
 
 @Injectable({ providedIn: 'root' })
 export class PredenunciaRoboState {
@@ -33,12 +34,16 @@ export class PredenunciaRoboState {
     private readonly _entidades = signal<CatalogItemEntity[]>([]);
     private readonly _municipios = signal<CatalogItemEntity[]>([]);
     private readonly _colonias = signal<CatalogItemEntity[]>([]);
+    private readonly _errors = signal<Partial<Record<PredenunciaRoboField, string>>>({});
+    private readonly _submitted = signal<boolean>(false);
 
     readonly form = this._form.asReadonly();
     readonly modalidades = this._modalidades.asReadonly();
     readonly entidades = this._entidades.asReadonly();
     readonly municipios = this._municipios.asReadonly();
     readonly colonias = this._colonias.asReadonly();
+    readonly errors = this._errors.asReadonly();
+    readonly submitted = this._submitted.asReadonly();
 
     updateForm(patch: Partial<PredenunciaRoboFormEntity>): void {
         this._form.update((current) => ({
@@ -78,5 +83,13 @@ export class PredenunciaRoboState {
         }));
         this._municipios.set([]);
         this._colonias.set([]);
+    }
+
+    setErrors(errors: Partial<Record<PredenunciaRoboField, string>>): void {
+        this._errors.set(errors);
+    }
+
+    setSubmitted(value: boolean): void {
+        this._submitted.set(value);
     }
 }

@@ -15,9 +15,6 @@ import { TipoPersonaEntity } from '../../../../domain/predenuncia/entities/prede
 export class PredenunciaDenuncianteComponent {
     private readonly facade = inject(PredenunciaDenuncianteFacade);
 
-    constructor() {
-    }
-
     get form() {
         return this.facade.form();
     }
@@ -28,6 +25,14 @@ export class PredenunciaDenuncianteComponent {
 
     get sexos() {
         return this.facade.sexos();
+    }
+
+    get errors() {
+        return this.facade.errors();
+    }
+
+    get submitted(): boolean {
+        return this.facade.submitted();
     }
 
     get folio(): string {
@@ -102,19 +107,15 @@ export class PredenunciaDenuncianteComponent {
         this.facade.setTipoPersona(tipo);
     }
 
+    hasError(field: Parameters<PredenunciaDenuncianteFacade['hasError']>[0]): boolean {
+        return this.facade.hasError(field);
+    }
+
+    getError(field: Parameters<PredenunciaDenuncianteFacade['getError']>[0]): string {
+        return this.facade.getError(field);
+    }
+
     onNext(): void {
-        const form = this.form;
-
-        const valido =
-            !!form.nombreRazonSocial &&
-            !!form.rfc &&
-            (form.tipoPersona === 'moral' || !!form.sexo);
-
-        if (!valido) {
-            alert('Completa los campos requeridos');
-            return;
-        }
-
         this.facade.onNext();
     }
 }

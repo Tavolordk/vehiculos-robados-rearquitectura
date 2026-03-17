@@ -4,6 +4,9 @@ import { TipoPersonaEntity } from '../../../domain/predenuncia/entities/predenun
 import { CatalogosFacade } from '../../catalogos/facades/catalogos.facade';
 import { Router } from '@angular/router';
 import { SidebarProgressState } from '../../../shared/state/sidebar-progress.state';
+import { PredenunciaDenuncianteField, PredenunciaDenuncianteValidator } from '../validators/predenuncia-denunciante.validator';
+import { Normalizers } from '../../../shared/validation/normalizers';
+
 @Injectable({ providedIn: 'root' })
 export class PredenunciaDenuncianteFacade {
     private readonly state = inject(PredenunciaDenuncianteState);
@@ -13,6 +16,8 @@ export class PredenunciaDenuncianteFacade {
     readonly form = this.state.form;
     readonly tiposPersona = this.state.tiposPersona;
     readonly sexos = this.state.sexos;
+    readonly errors = this.state.errors;
+    readonly submitted = this.state.submitted;
 
     constructor() {
         this.cargarCatalogos();
@@ -31,27 +36,56 @@ export class PredenunciaDenuncianteFacade {
     }
 
     updateField(field: string, value: string): void {
-        this.state.updateForm({ [field]: value });
+        const normalizedValue = this.normalizeFieldValue(field, value);
+        this.state.updateForm({ [field]: normalizedValue });
+        this.validate();
     }
 
     setTipoPersona(tipo: TipoPersonaEntity): void {
         this.state.setTipoPersona(tipo);
+        this.validate();
+    }
+
+    validate(): boolean {
+        const result = PredenunciaDenuncianteValidator.validate(this.state.form());
+        this.state.setErrors(result.errors);
+        return result.valid;
+    }
+
+    getError(field: PredenunciaDenuncianteField): string {
+        return this.errors()[field] ?? '';
+    }
+
+    hasError(field: PredenunciaDenuncianteField): boolean {
+        return !!this.getError(field);
     }
 
     onNext(): void {
-        const form = this.state.form();
+        this.state.setSubmitted(true);
 
-        const esValido =
-            !!form.nombreRazonSocial &&
-            !!form.rfc &&
-            (form.tipoPersona === 'moral' || !!form.sexo);
-
-        if (!esValido) {
-            alert('Completa los campos requeridos');
+        if (!this.validate()) {
             return;
         }
 
         this.sidebarProgress.markStepCompleted('predenuncia.denunciante');
         this.router.navigateByUrl('/predenuncia/verificacion');
+    }
+
+    private normalizeFieldValue(field: string, value: string): string {
+        switch (field) {
+            case 'nombreRazonSocial':
+            case 'primerApellido':
+            case 'segundoApellido':
+                return Normalizers.upperCollapse(value);
+            case 'curp':
+            case 'rfc':
+                return Normalizers.upper(value);
+            case 'telefono':
+                return Normalizers.numeric(value).slice(0, 10);
+            case 'correo':
+                return Normalizers.email(value);
+            default:
+                return value;
+        }
     }
 }

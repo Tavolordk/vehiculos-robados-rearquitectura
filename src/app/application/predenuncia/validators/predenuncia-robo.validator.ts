@@ -42,6 +42,10 @@ export class PredenunciaRoboValidator {
             errors.entidad = 'La entidad es obligatoria.';
         }
 
+        if (!form.municipio?.trim()) {
+            errors.municipio = 'El municipio es obligatorio.';
+        }
+
         if (!form.descHechos?.trim()) {
             errors.descHechos = 'La descripción de los hechos es obligatoria.';
         }

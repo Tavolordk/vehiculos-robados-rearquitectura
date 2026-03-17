@@ -1,10 +1,14 @@
 import { Injectable, signal } from '@angular/core';
-import { AutoRowEntity, PredenunciaVehiculoFormEntity } from '../../../domain/predenuncia/entities/vehiculo.entity';
+import {
+    AutoRowEntity,
+    PredenunciaVehiculoFormEntity,
+} from '../../../domain/predenuncia/entities/vehiculo.entity';
 import { CatalogItemEntity } from '../../../domain/catalogos/entities/catalog-item.entity';
+import { PredenunciaVehiculoField } from '../validators/predenuncia-vehiculo.validator';
 
 @Injectable({ providedIn: 'root' })
 export class PredenunciaVehiculoState {
-    private readonly _form = signal<PredenunciaVehiculoFormEntity>({
+    private readonly initialForm: PredenunciaVehiculoFormEntity = {
         folio: '626317',
         fechaRegistro: '25/08/2025 11:32 a.m.',
         serieVin: '',
@@ -18,6 +22,10 @@ export class PredenunciaVehiculoState {
         permiso: '',
         color: '',
         senas: '',
+    };
+
+    private readonly _form = signal<PredenunciaVehiculoFormEntity>({
+        ...this.initialForm,
     });
 
     private readonly _rows = signal<AutoRowEntity[]>([]);
@@ -27,6 +35,7 @@ export class PredenunciaVehiculoState {
     private readonly _colores = signal<CatalogItemEntity[]>([]);
     private readonly _tiposVehiculo = signal<CatalogItemEntity[]>([]);
     private readonly _entidades = signal<CatalogItemEntity[]>([]);
+    private readonly _errors = signal<Partial<Record<PredenunciaVehiculoField, string>>>({});
 
     readonly form = this._form.asReadonly();
     readonly rows = this._rows.asReadonly();
@@ -36,6 +45,7 @@ export class PredenunciaVehiculoState {
     readonly colores = this._colores.asReadonly();
     readonly tiposVehiculo = this._tiposVehiculo.asReadonly();
     readonly entidades = this._entidades.asReadonly();
+    readonly errors = this._errors.asReadonly();
 
     updateForm(patch: Partial<PredenunciaVehiculoFormEntity>): void {
         this._form.update((current) => ({
@@ -105,5 +115,13 @@ export class PredenunciaVehiculoState {
             color: '',
             senas: '',
         }));
+    }
+
+    setErrors(errors: Partial<Record<PredenunciaVehiculoField, string>>): void {
+        this._errors.set(errors);
+    }
+
+    clearErrors(): void {
+        this._errors.set({});
     }
 }
