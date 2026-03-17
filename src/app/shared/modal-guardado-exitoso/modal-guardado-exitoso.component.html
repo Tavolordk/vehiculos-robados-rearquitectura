@@ -1,0 +1,28 @@
+<div class="backdrop" (click)="onClose()"></div>
+
+<div class="custom-card" role="dialog" aria-modal="true" aria-label="Guardado exitoso">
+    <button type="button" class="close-btn" (click)="onClose()" aria-label="Cerrar">x</button>
+
+    <div class="success-icon-container">
+        <div class="success-icon">
+            <span class="custom-check"></span>
+        </div>
+    </div>
+
+    <h2>{{ title }}</h2>
+
+    <p class="subtitle">{{ subtitle }}</p>
+
+    <div class="folio-label">No. de Folio</div>
+    <div class="folio-number">{{ folio }}</div>
+
+    <div class="btn-container">
+        <button type="button" class="btn btn-gold" (click)="onPrint()">
+            Imprimir comprobante
+        </button>
+
+        <button type="button" class="btn btn-gray" (click)="onEmail()">
+            Enviar por correo
+        </button>
+    </div>
+</div>

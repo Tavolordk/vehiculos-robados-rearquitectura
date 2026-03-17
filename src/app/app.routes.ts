@@ -54,6 +54,11 @@ export const routes: Routes = [
                     import('./presentation/predenuncia/pages/predenuncia-verificacion/predenuncia-verificacion.component')
                         .then((m) => m.PredenunciaVerificacionComponent),
             }, {
+                path: 'dashboard/guardado-exitoso',
+                loadComponent: () =>
+                    import('./shared/modal-guardado-exitoso/modal-guardado-exitoso.component')
+                        .then((m) => m.ModalGuardadoExitosoComponent),
+            }, {
                 path: 'denuncia/vehiculo',
                 loadComponent: () =>
                     import('./presentation/denuncia/pages/denuncia-vehiculo/denuncia-vehiculo.component')

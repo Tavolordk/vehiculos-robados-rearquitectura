@@ -136,7 +136,7 @@ export class PredenunciaVerificacionFacade {
 
                 // mientras no exista pantalla de éxito real, no navegues a una ruta inexistente
                 // deja los datos del resultado disponibles en el state del router
-                this.router.navigateByUrl('/predenuncia/verificacion', {
+                this.router.navigateByUrl('/dashboard/guardado-exitoso', {
                     state: {
                         guardadoExitoso: true,
                         reporteId: response.reporteId,

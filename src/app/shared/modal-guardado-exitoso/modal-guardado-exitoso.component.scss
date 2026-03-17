@@ -1,0 +1,106 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 9998;
+}
+
+.custom-card {
+  position: fixed;
+  inset: 50% auto auto 50%;
+  transform: translate(-50%, -50%);
+  width: min(520px, calc(100vw - 32px));
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18);
+  padding: 28px 24px 24px;
+  z-index: 9999;
+  text-align: center;
+}
+
+.close-btn {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  cursor: pointer;
+  color: #666;
+}
+
+.success-icon-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.success-icon {
+  width: 74px;
+  height: 74px;
+  border-radius: 50%;
+  border: 3px solid #1d7f3f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-check {
+  width: 18px;
+  height: 34px;
+  border-right: 4px solid #1d7f3f;
+  border-bottom: 4px solid #1d7f3f;
+  transform: rotate(45deg) translate(-2px, -2px);
+  display: inline-block;
+}
+
+h2 {
+  margin: 0 0 10px;
+  font-size: 28px;
+  color: #7a1238;
+  font-weight: 700;
+}
+
+.subtitle {
+  margin: 0 0 18px;
+  color: #555;
+  font-size: 15px;
+}
+
+.folio-label {
+  color: #777;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.folio-number {
+  font-size: 28px;
+  font-weight: 700;
+  color: #7a1238;
+  margin-bottom: 24px;
+}
+
+.btn-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.btn {
+  border: none;
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-gold {
+  background: #a68946;
+  color: #fff;
+}
+
+.btn-gray {
+  background: #d9d9d9;
+  color: #333;
+}
